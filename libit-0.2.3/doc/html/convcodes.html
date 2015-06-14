@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Convolutional Codes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Channel Coding Tools"
+HREF="channel.html"><LINK
+REL="PREVIOUS"
+TITLE="Channels"
+HREF="channels.html"><LINK
+REL="NEXT"
+TITLE="Signal Processing Tools"
+HREF="signal.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="channels.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Channel Coding Tools</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="signal.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CONVCODES"
+>5.3. Convolutional Codes</A
+></H1
+><P
+>     Convolutional codes of rate k:n are provided using the it_convolutional_code_t object type. They are initialized from the matrix of generator polynomials, with each row representing an input bit and each column an output bit. Sequences are encoded using the <A
+HREF="man.it-convolutional-code-encode.html"
+>it_convolutional_code_encode()</A
+> call. Viterbi decoding is provided through the <A
+HREF="man.it-viterbi-decode.html"
+>it_viterbi_decode()</A
+> provided the metrics are given. These metrics are represented using matrix of 2^n columns corresponding to branch labels (the n bits output by the convolutional code) and a number of rows equal to the length of the sequence. The Viterbi algorithm returns the sequence of maximal total metric. Here is an example declaring and using a 133/171 convolutional code of rate one half:</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="CONVCODE-EXAMPLE"
+></A
+><P
+><B
+>Example 5-4. Convolutional code example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* the matrix of generator polynomials */
+  imat generator = imat_new(1, 2); 
+  generator[0][0] = 0133; /* generator polynomial using the C octal notation */
+  generator[0][1] = 0171;
+
+  /* create the convolutional code */
+  it_convolutional_code_t *code = it_convolutional_code_new(generator);
+
+  /* generate a random binary sequence of 100 bits */
+  bvec input = source_binary(100, 0.5);
+
+  /* encode the sequence */
+  output = it_cc_encode(code, input);
+
+  /* modulate */
+  vec modulated = modulate_bpsk(output);
+
+  /* transmit over an AWGN channel of variance 1/4 */
+  vec received = channel_awgn(modulated, 0.5);
+ 
+  /* compute metrics */
+  mat metrics = bspk_metrics(cc, received);
+
+  /* decode */
+  bvec decoded = it_viterbi_decode(cc, metrics);
+  </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="channels.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="signal.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Channels</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="channel.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Signal Processing Tools</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

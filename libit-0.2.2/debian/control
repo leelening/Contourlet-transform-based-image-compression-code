@@ -1,0 +1,27 @@
+Source: libit
+Priority: optional
+Maintainer: Herve Jegou <herve.jegou@irisa.fr>
+Build-Depends: debhelper (>> 3.0.0)
+Standards-Version: 3.5.2
+
+Package: libit-dev
+Section: devel
+Architecture: any
+Depends: libit (= ${Source-Version})
+Description: library for information theory and signal processing - development
+ libit provides easy to use yet efficient tools related to information theory
+ and signal processing. It includes basic vector, matrix and function types, 
+ some common source and channel coding tools such as quantization, entropy
+ coding, etc...
+ .
+ This package contains development files for libit.
+
+Package: libit
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: library for information theory and signal processing
+ libit provides easy to use yet efficient tools related to information theory
+ and signal processing. It includes basic vector, matrix and function types, 
+ some common source and channel coding tools such as quantization, entropy
+ coding, etc...

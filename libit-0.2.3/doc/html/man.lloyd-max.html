@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>lloyd_max</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="parser_print"
+HREF="man.parser-print.html"><LINK
+REL="NEXT"
+TITLE="it_dequantize"
+HREF="man.it-dequantize.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.parser-print.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-dequantize.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.LLOYD-MAX"
+></A
+>lloyd_max</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN10411"
+></A
+><H2
+>Name</H2
+>lloyd_max&nbsp;--&nbsp;generate the Lloyd-Max quantizer codebook</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN10414"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN10415"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/quantizer.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void lloyd_max</CODE
+>( it_function_t function, it_args_t args, double a, double b, int N);
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>Generate the codebook for the Lloyd-Max quantizer on <CODE
+CLASS="PARAMETER"
+>N</CODE
+> levels. This is the optimal codebook for a stationnary i.i.d. source. [<CODE
+CLASS="PARAMETER"
+>a</CODE
+>,<CODE
+CLASS="PARAMETER"
+>b</CODE
+>] is an initial interval where to expect the pdf <CODE
+CLASS="PARAMETER"
+>function</CODE
+> to be non-zero. A good guess is [ mean - std_dev, mean + std_dev ]. Note that returned centroids may lie outside this interval. The algorithm stops when the relative difference in distortion is smaller than the IT_EPSILON constant. The parameter <CODE
+CLASS="PARAMETER"
+>args</CODE
+> is used to specify the extra parameters of the pdf function <CODE
+CLASS="PARAMETER"
+>function</CODE
+>. </P
+><H2
+>RETURN VALUE</H2
+><P
+>    None
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;quantizer.h&gt;
+
+...
+
+it_function_args(itf_gaussian) itf_gaussian_args;
+vec codebook;
+itf_gaussian_args.sigma = 1.0;
+codebook = lloyd_max(itf_gaussian, &#38;itf_gaussian_args, -5, 5, 4);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.parser-print.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-dequantize.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>parser_print</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_dequantize</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

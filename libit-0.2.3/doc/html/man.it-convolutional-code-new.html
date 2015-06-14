@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_convolutional_code_new</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_convolutional_code_encode_symbolic"
+HREF="man.it-convolutional-code-encode-symbolic.html"><LINK
+REL="NEXT"
+TITLE="it_viterbi_decode"
+HREF="man.it-viterbi-decode.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-convolutional-code-encode-symbolic.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-viterbi-decode.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-CONVOLUTIONAL-CODE-NEW"
+></A
+>it_convolutional_code_new</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN214"
+></A
+><H2
+>Name</H2
+>it_convolutional_code_new&nbsp;--&nbsp;convolutional code constructor</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN217"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN218"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/convcode.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void it_convolutional_code_new</CODE
+>( imat generators, int feedback
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The <CODE
+CLASS="FUNCTION"
+>it_convolutional_code_new</CODE
+> function creates a new convolutional code object from the matrix of generator polynomials <CODE
+CLASS="PARAMETER"
+>generators</CODE
+>. The rate of the code is k:n where k is the number of rows and n is the number of columns in <CODE
+CLASS="PARAMETER"
+>generators</CODE
+>. Each generator polynomial is given as an integer representing the bits to be considered and xored in the shift register.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The newly allocated convolutional code object
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;convcode.h&gt;
+
+...
+
+/* the matrix of generator polynomials */
+imat generator = imat_new(1, 2); 
+
+int feedback = 0; /* an optional feedback polynomial for recursive codes */
+generator[0][0] = 0133; /* generator polynomial using the C octal notation */
+generator[0][1] = 0171;
+
+/* create the convolutional code */
+it_convolutional_code_t *code = it_convolutional_code_new(generator, feedback);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-convolutional-code-encode-symbolic.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-viterbi-decode.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_convolutional_code_encode_symbolic</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_viterbi_decode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

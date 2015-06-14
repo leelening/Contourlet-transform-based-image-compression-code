@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>mat_distance_norm</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="imat_distance_mse"
+HREF="man.imat-distance-mse.html"><LINK
+REL="NEXT"
+TITLE="vec_distance_hamming"
+HREF="man.vec-distance-hamming.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.imat-distance-mse.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.vec-distance-hamming.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.MAT-DISTANCE-NORM"
+></A
+>mat_distance_norm</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN625"
+></A
+><H2
+>Name</H2
+>mat_distance_norm&nbsp;--&nbsp;norm distance between two matrices</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN628"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN629"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/distance.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double mat_distance_norm</CODE
+>( mat m1, mat m2, double norm
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the distance between the two matrices <CODE
+CLASS="PARAMETER"
+>m1</CODE
+> and <CODE
+CLASS="PARAMETER"
+>m2</CODE
+> corresponding to the norm <CODE
+CLASS="PARAMETER"
+>norm</CODE
+>. This norm is defined as the sum of the absolute differences between elements of <CODE
+CLASS="PARAMETER"
+>m1</CODE
+> and the corresponding elements of <CODE
+CLASS="PARAMETER"
+>m2</CODE
+> raised to the power of <CODE
+CLASS="PARAMETER"
+>norm</CODE
+>.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The distance derived from the norm
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;distance.h&gt;
+
+...
+
+mat m1 = mat_new(2,2);
+mat m2 = mat_new(2,2);
+m1[0][0] = 3.5;
+m1[0][1] = 6.8;
+m1[1][0] = 2.2;
+m1[1][1] = 5.1;
+m2[0][0] = 5.5;
+m2[0][1] = 2.3;
+m2[1][0] = 7.7;
+m2[1][1] = 0.6;
+/* compute the Euclidean distance between the two matrices */
+double distance = mat_distance_norm(m1, m2, 2);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.imat-distance-mse.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.vec-distance-hamming.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imat_distance_mse</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>vec_distance_hamming</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

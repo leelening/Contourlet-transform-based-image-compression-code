@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Quantization</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Source Coding Tools"
+HREF="source.html"><LINK
+REL="PREVIOUS"
+TITLE="Source Coding Tools"
+HREF="source.html"><LINK
+REL="NEXT"
+TITLE="Variable Length Codes"
+HREF="vlc.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="source.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Source Coding Tools</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="vlc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="QUANTIZATION"
+>4.2. Quantization</A
+></H1
+><P
+>      Various quantizers are provided in an object oriented
+      hierarchy. All derive from the it_quantizer_t object, which is
+      the vector quantizer. Currently, the following quantizers are
+      defined: 
+  </P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN639"
+></A
+><P
+><B
+>Table 4-1. Quantizers</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Object</TH
+><TH
+>Quantizer</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>it_quantizer_t</TD
+><TD
+>Vector quantizer</TD
+></TR
+><TR
+><TD
+>it_scalar_quantizer_t</TD
+><TD
+>Scalar quantizer</TD
+></TR
+><TR
+><TD
+>it_uniform_quantizer_t</TD
+><TD
+>Uniform scalar quantizer</TD
+></TR
+><TR
+><TD
+>it_trellis_coded_quantizer_t</TD
+><TD
+>Trellis coded quantizer</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>      A value is quantized to an index with the <A
+HREF="man.it-quantize.html"
+>it_quantize()</A
+> call. A value is dequantized using the <A
+HREF="man.it-dequantize.html"
+>it_dequantize()</A
+> call. A whole real-valued vec can be quantized to an ivec using the <A
+HREF="man.it-quantize-vec.html"
+>it_quantize_vec()</A
+> call, and dequantized with the <A
+HREF="man.it-dequantize-vec.html"
+>it_dequantize_vec()</A
+> call. Similarly matrices can be quantized and dequantized row by row with the <A
+HREF="man.it-quantize-mat.html"
+>it_quantize_mat()</A
+> and <A
+HREF="man.it-dequantize-mat.html"
+>it_dequantize_mat()</A
+> calls.
+  </P
+><P
+>      The default scalar quantizer can be initilized from a codebook. Quantization is done using a logarithmic search inside that codebook for the closest codeword. Dequantization done in a much faster way by simply indexing the codebook. The <A
+HREF="man.lloyd-max.html"
+>lloyd_max()</A
+> call can be used to compute the optimal codebook of source (minimizing the quantization distortion for a given fixed rate). Here is an example on how to build the Lloyd-Max quantizer with 4 levels for the gaussian source of zero mean and variance 1. We use the gaussian function defined in <A
+HREF="functions.html"
+>Section 1.4</A
+>. For more information on functions, refer to that section.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="LLOYDMAX-EXAMPLE"
+></A
+><P
+><B
+>Example 4-7. LLoyd-Max quantization example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* set the standard deviation of the gaussian to 1 */
+  gaussian_args.sigma = 1.0; 
+  /* generate the Lloyd-Max quantization codebook for 4 levels */
+  /* The pdf is limited to the range [-5,5] (assumed equal to 0 outside) */
+  codebook = lloyd_max(gaussian, "gaussian_args, -5, 5, 4);
+
+  /* create the associated quantizer */
+  it_scalar_quantizer_t quantizer = it_scalar_quantizer_new(codebook);
+
+  /* generate a random vector distributed normally */
+  source = source_gaussian(100000, 0, gaussian_args.sigma);
+
+  /* quantize */
+  ivec qsource = it_quantize_vec(quantizer, source);
+
+  /* dequantize */
+  vec rec = it_dequantize_vec(quantizer, qsource);
+  </PRE
+></DIV
+><P
+>      The uniform scalar quantizer can be initialized either from the position of the center and the step, or from the expected range of the values and the number of quantization levels. The first version uses the <A
+HREF="man.it-uniform-quantizer-new-from-center.html"
+>it_uniform_quantizer_new_from_center()</A
+> call and can be given a factor to have a larger central zone (dead-zone). The second versions is created using the <A
+HREF="man.it-uniform-quantizer-new-from-range.html"
+>it_uniform_quantizer_new_from_range()</A
+> call. The uniform scalar quantizer uses a division for quantization which is much faster than the generic logarithm search algorithm. Here is an example on how to use each version:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="UNIQ-EXAMPLE"
+></A
+><P
+><B
+>Example 4-8. Uniform scalar quantization example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* create a random vector uniformly distributed in [0,1] */
+  vec source = source_uniform_01(100000);
+
+  /* create a new uniform quantizer with 256 levels
+     equally spread in the [0,1] range              */
+  it_uniform_quantizer_t uniq =
+      it_uniform_quantizer_new_from_range(256, 0.0, 1.0);
+
+  /* quantize / dequantize */
+  ivec qsource = it_quantize_vec(uniq, source);
+  vec rec = it_dequantize_vec(uniq, qsource);
+
+  /* create a new uniform quantizer with step 1/256 centered on 0
+     with a dead-zone of twice the step size                      */
+  it_uniform_quantizer_t uniq =
+      it_uniform_quantizer_new_from_center(0, 1/256., 2.0);
+
+  /* quantize / dequantize */
+  ivec qsource = it_quantize_vec(uniq, source);
+  vec rec = it_dequantize_vec(uniq, qsource);
+  </PRE
+></DIV
+><P
+>      The trellis-coded quantizer (TCQ) is built from any scalar
+      quantizer (uniform or generic) and a convolutional code. TCQ is
+      a fast vector quantization technique achieving near optimal
+      performance. It is based on the set partitioning by a
+      convolutional code of the product codebook of a scalar
+      quantizer. For more information on TCQ, refer to "M.W. Marcellin
+      and T.R. Fisher, Trellis-coded quantization of memoryless and
+      gauss-markov sources, IEEE Trans. Comm., 38:82--93,
+      Jan. 1990". Here is an example on how to define and use such a
+      quantizer:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="TCQ-EXAMPLE"
+></A
+><P
+><B
+>Example 4-9. TCQ example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* generator polynomials for the convolutional code (rate 1/2) */
+  imat generator = imat_new(1, 2); 
+  generator[0][0] = 0133;
+  generator[0][1] = 0171;
+  /* create a convolutional code */
+  it_convolutional_code_t *code = it_convolutional_code_new(generator);
+
+  /* create a uniform quantizer with 512 levels */
+  uniq = it_uniform_quantizer_new_from_range(512, 0.0, 1.0);
+  /* create a TCQ quantizer from the uniform quantizer and the convolutional code */
+  tcq = it_trellis_coded_quantizer_new_partition(code, uniq);
+
+  /* create a random vector uniformly distributed in [0,1] */
+  vec source = source_uniform_01(100000);
+
+  /* quantize / dequantize */
+  ivec qsource = it_quantize_vec(tcq, source);
+  vec rec = it_dequantize_vec(tcq, qsource);
+  </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="source.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="vlc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Source Coding Tools</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="source.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Variable Length Codes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

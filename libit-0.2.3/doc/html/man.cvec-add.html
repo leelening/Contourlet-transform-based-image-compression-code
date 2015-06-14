@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>cvec_add</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="ivec_add"
+HREF="man.ivec-add.html"><LINK
+REL="NEXT"
+TITLE="vec_apply_function"
+HREF="man.vec-apply-function.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.ivec-add.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.vec-apply-function.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.CVEC-ADD"
+></A
+>cvec_add</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN11898"
+></A
+><H2
+>Name</H2
+>cvec_add&nbsp;--&nbsp;add a vector to another</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN11901"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN11902"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/vec.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void cvec_add</CODE
+>( cvec v1, cvec v2
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function adds the vector <CODE
+CLASS="PARAMETER"
+>v2</CODE
+> to the vector <CODE
+CLASS="PARAMETER"
+>v1</CODE
+>. The result is stored in the vector <CODE
+CLASS="PARAMETER"
+>v1</CODE
+>.
+Note that the vectors <CODE
+CLASS="PARAMETER"
+>v1</CODE
+> and <CODE
+CLASS="PARAMETER"
+>v2</CODE
+> must have the same length.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    None
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;vec.h&gt;
+
+...
+
+cvec v1 = cvec_new_string( "i 0.5 -2 5" );   /* vector [i 0.5 -2 5] */
+cvec v2 = cvec_new_string( "-3 0 i 5" );     /* vector [-3 0 i 5]   */
+cvec_add( v1, v2 );                          /* v1 = [i-3 0.5 i-2 10] */
+cvec_delete(v1);
+cvec_delete(v2);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.ivec-add.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.vec-apply-function.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ivec_add</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>vec_apply_function</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

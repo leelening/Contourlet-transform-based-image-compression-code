@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>vec_distance_kullback_leibler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="bvec_distance_hamming"
+HREF="man.bvec-distance-hamming.html"><LINK
+REL="NEXT"
+TITLE="ivec_distance_levenshtein"
+HREF="man.ivec-distance-levenshtein.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.bvec-distance-hamming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.ivec-distance-levenshtein.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.VEC-DISTANCE-KULLBACK-LEIBLER"
+></A
+>vec_distance_kullback_leibler</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN766"
+></A
+><H2
+>Name</H2
+>vec_distance_kullback_leibler&nbsp;--&nbsp;Kullback-Leibler distance</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN769"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN770"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/distance.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double vec_distance_kullback_leibler</CODE
+>( vec pdf1, vec pdf2
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the Kullback-Leibler distance between two discrete distributions <CODE
+CLASS="PARAMETER"
+>pdf1</CODE
+> and <CODE
+CLASS="PARAMETER"
+>pdf2</CODE
+>. As this function is not symmetric, the term "distance" is inappropriate, therefore it is sometimes refered to as "relative entropy". It corresponds to the excess rate needed for coding the source described by <CODE
+CLASS="PARAMETER"
+>pdf1</CODE
+> using the distribution <CODE
+CLASS="PARAMETER"
+>pdf2</CODE
+> instead.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The Kullback-Leibler distance
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;distance.h&gt;
+
+...
+
+/* the probability distribution function of the source        */
+vec pdf = vec_new_string( "0.6 0.4" );           /* pdf = [ 0.6 0.4 ]        */
+/* a uniform p.d.f. */
+vec uni = vec_new_set(2, 1.0/2.0);               /* uni = [ 0.5 0.5 ]        */
+/* compute the relative entropy */
+double r = vec_distance_kullback_leibler( pdf, uni );   /* r = 0.029         */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.bvec-distance-hamming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.ivec-distance-levenshtein.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>bvec_distance_hamming</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ivec_distance_levenshtein</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

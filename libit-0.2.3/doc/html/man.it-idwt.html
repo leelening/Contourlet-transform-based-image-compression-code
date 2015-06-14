@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_idwt</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_dwt"
+HREF="man.it-dwt.html"><LINK
+REL="NEXT"
+TITLE="it_wavelet_merge"
+HREF="man.it-wavelet-merge.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-dwt.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet-merge.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-IDWT"
+></A
+>it_idwt</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN20852"
+></A
+><H2
+>Name</H2
+>it_idwt&nbsp;--&nbsp;inverse discrete wavelet transform</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN20855"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN20856"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>vec it_idwt</CODE
+>( vec t, it_wavelet_lifting_t const *lifting, int levels
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the inverse discrete wavelet transform of <CODE
+CLASS="PARAMETER"
+>vt</CODE
+> using the lifting steps described by <CODE
+CLASS="PARAMETER"
+>lifting</CODE
+>. The input vector of coefficients <CODE
+CLASS="PARAMETER"
+>vt</CODE
+> is the concatenation of all the coefficients in each subbands starting from the low-frequency subband. Currently the lifting steps for the usual 5/3 and 9/7 biorthogonal filters are predefined as "it_wavelet_lifting_53" and "it_wavelet_lifting_97", although you can provide your own lifting steps.
+  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The set of inverse wavelet coefficients
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet.h&gt;
+
+...
+
+/* analyse a signal 'v' using a 5-level 9/7 wavelet decomposition */
+vec vt = it_dwt(v, it_wavelet_lifting_97, 5);
+/* clear the high subband */
+vec_set_between(vt, (vec_length(v) + 1) / 2, end, 0);
+/* recompose the vector by inverse transform */
+vec vr = it_idwt(vt, it_wavelet_lifting_97, 5);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-dwt.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-wavelet-merge.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_dwt</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_wavelet_merge</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

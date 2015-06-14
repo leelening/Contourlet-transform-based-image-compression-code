@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>ivec_length_max</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="vec_length_max"
+HREF="man.vec-length-max.html"><LINK
+REL="NEXT"
+TITLE="bvec_length_max"
+HREF="man.bvec-length-max.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.vec-length-max.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.bvec-length-max.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IVEC-LENGTH-MAX"
+></A
+>ivec_length_max</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN13643"
+></A
+><H2
+>Name</H2
+>ivec_length_max&nbsp;--&nbsp;get the number of elements allocated to a vector</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN13646"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN13647"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/vec.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>int ivec_length_max</CODE
+>( ivec v
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>ivec_length</CODE
+> returns the maximum length of the vector <CODE
+CLASS="PARAMETER"
+>v</CODE
+>. By maximum length, it does not mean that the vector can't grow. It just means the length to which the vector can grow without a call (implicit or explicit) to function <CODE
+CLASS="FUNCTION"
+>ivec_set_length_mat</CODE
+>.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The maximum length
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;vec.h&gt;
+
+...
+
+ivec v  = ivec_new_alloc (1,3);
+v[0]   = 3;                      /* v = [3]   */
+int l  = ivec_length (v);        /* l = 1     */
+int l  = ivec_length_max(v);     /* l = 3     */
+
+ivec_push (v, 2);                /* v = [3 2], and there is not re-allocation */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.vec-length-max.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.bvec-length-max.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>vec_length_max</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>bvec_length_max</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

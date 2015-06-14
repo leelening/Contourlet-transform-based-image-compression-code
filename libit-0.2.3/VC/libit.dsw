@@ -1,0 +1,311 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "libit"=.\libit.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "libit_static"=.\libit_static.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test_ac"=.\test_ac\test_ac.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_cc"=.\test_cc\test_cc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_cplx"=.\test_cplx\test_cplx.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_distance"=.\test_distance\test_distance.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_filter"=.\test_filter\test_filter.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_fourier"=.\test_fourier\test_fourier.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_io"=.\test_io\test_io.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_mat"=.\test_mat\test_mat.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_math"=.\test_math\test_math.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_parser"=.\test_parser\test_parser.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_pnm"=.\test_pnm\test_pnm.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_poly"=.\test_poly\test_poly.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_quantizer"=.\test_quantizer\test_quantizer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_source"=.\test_source\test_source.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_vec"=.\test_vec\test_vec.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_vlc"=.\test_vlc\test_vlc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_wav"=.\test_wav\test_wav.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test_wavelet"=.\test_wavelet\test_wavelet.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libit_static
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>cmat_eq</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="bmat_eq"
+HREF="man.bmat-eq.html"><LINK
+REL="NEXT"
+TITLE="mat_eye"
+HREF="man.mat-eye.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.bmat-eq.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.mat-eye.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.CMAT-EQ"
+></A
+>cmat_eq</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN3393"
+></A
+><H2
+>Name</H2
+>cmat_eq&nbsp;--&nbsp;Test matrices for equality</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN3396"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN3397"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/mat.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>int cmat_eq</CODE
+>( cmat m1, cmat m2
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>cmat_eq</CODE
+> tests if <CODE
+CLASS="PARAMETER"
+>m1</CODE
+> and <CODE
+CLASS="PARAMETER"
+>m2</CODE
+> are equal and return a non-zero integer if <CODE
+CLASS="PARAMETER"
+>m1</CODE
+>==<CODE
+CLASS="PARAMETER"
+>m2</CODE
+>, or zero otherwise.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    Zero if 'm1'!='m2', or a non-zero integer otherwise
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;mat.h&gt;
+
+...
+
+cmat m1, m2;
+m1 = cmat_new_zeros(2,2);
+m2 = cmat_new_ones(2,2);
+if(cmat_eq(m1, m2))
+  printf("the matrices are equal");
+else
+  printf("the matrices are not equal");</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.bmat-eq.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.mat-eye.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>bmat_eq</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mat_eye</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

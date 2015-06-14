@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>imat_col_decr</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="mat_col_decr"
+HREF="man.mat-col-decr.html"><LINK
+REL="NEXT"
+TITLE="mat_col_div_by"
+HREF="man.mat-col-div-by.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.mat-col-decr.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.mat-col-div-by.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IMAT-COL-DECR"
+></A
+>imat_col_decr</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN6230"
+></A
+><H2
+>Name</H2
+>imat_col_decr&nbsp;--&nbsp;substract a value to elements of a given column</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN6233"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN6234"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/mat.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void imat_col_decr</CODE
+>( imat m, size_t col, int a
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>imat_col_decr</CODE
+> substracts <CODE
+CLASS="PARAMETER"
+>a</CODE
+> to all the elements of the column <CODE
+CLASS="PARAMETER"
+>col</CODE
+> in the matrix <CODE
+CLASS="PARAMETER"
+>m</CODE
+> </P
+><H2
+>RETURN VALUE</H2
+><P
+>    None
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;mat.h&gt;
+
+...
+
+imat m = imat_new_string ("[[1 2 3][4 5 6]]");  /* m = [[1 2 3]   
+                                                        [4 5 6]]  */
+imat_col_decr (m);                              /* m = [[0 1 2]   
+                                                        [3 4 5]]  */&#13;</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.mat-col-decr.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.mat-col-div-by.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mat_col_decr</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mat_col_div_by</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

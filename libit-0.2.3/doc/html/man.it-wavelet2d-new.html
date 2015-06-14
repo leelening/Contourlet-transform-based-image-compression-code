@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_wavelet2D_new</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_wavelet2D_merge"
+HREF="man.it-wavelet2d-merge.html"><LINK
+REL="NEXT"
+TITLE="it_wavelet2D_split"
+HREF="man.it-wavelet2d-split.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet2d-merge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet2d-split.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-WAVELET2D-NEW"
+></A
+>it_wavelet2D_new</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN21072"
+></A
+><H2
+>Name</H2
+>it_wavelet2D_new&nbsp;--&nbsp;separable 2D wavelet transform constructor</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN21075"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN21076"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet2D.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void it_wavelet2D_new</CODE
+>( it_wavelet_lifting_t const *lifting, int level
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>The <CODE
+CLASS="FUNCTION"
+>it_wavelet2D_new</CODE
+> function creates a new separable 2D wavelet transform object on <CODE
+CLASS="PARAMETER"
+>level</CODE
+> levels using lifting steps <CODE
+CLASS="PARAMETER"
+>lifting</CODE
+>. This object can later be used as an it_transform2D_t to perform discrete wavelet transform or inverse wavelet transform on a real-valued matrix using the <CODE
+CLASS="FUNCTION"
+>it_transform2D</CODE
+> or <CODE
+CLASS="FUNCTION"
+>it_itransform2D</CODE
+> method respectively.</P
+><P
+> Creating this transform object and using the <CODE
+CLASS="FUNCTION"
+>it_transform2D</CODE
+> method is prefered to using <CODE
+CLASS="FUNCTION"
+>it_dwt2D</CODE
+> when multiple transform on matrices of the same size are to be done. </P
+><H2
+>RETURN VALUE</H2
+><P
+>    
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet2D.h&gt;
+
+...
+
+it_wavelet_t *wavelet2D = it_wavelet2D_new(it_wavelet_lifting_97, 5);
+mat m = mat_new_ones(100,100);
+mat mt;
+mt = (mat) it_transform2D(wavelet2D, (mat) m);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-wavelet2d-merge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-wavelet2d-split.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_wavelet2D_merge</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_wavelet2D_split</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

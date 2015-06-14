@@ -1,0 +1,435 @@
+# Makefile.in generated automatically by automake 1.4-p6 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999, 2001 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @host_alias@
+host_triplet = @host@
+AS = @AS@
+BINARY_AGE = @BINARY_AGE@
+CC = @CC@
+DLLTOOL = @DLLTOOL@
+INTERFACE_AGE = @INTERFACE_AGE@
+IT_RLD_FLAGS = @IT_RLD_FLAGS@
+LIBTOOL = @LIBTOOL@
+LN_S = @LN_S@
+LT_AGE = @LT_AGE@
+LT_CURRENT = @LT_CURRENT@
+LT_RELEASE = @LT_RELEASE@
+LT_REVISION = @LT_REVISION@
+MAJOR_VERSION = @MAJOR_VERSION@
+MAKEINFO = @MAKEINFO@
+MICRO_VERSION = @MICRO_VERSION@
+MINOR_VERSION = @MINOR_VERSION@
+OBJDUMP = @OBJDUMP@
+PACKAGE = @PACKAGE@
+RANLIB = @RANLIB@
+VERSION = @VERSION@
+
+lib_LTLIBRARIES = libit.la
+
+libit_la_SOURCES = \
+	arithmetic_codec.c     \
+	channel.c     \
+	convcode.c    \
+	cplx.c        \
+	distance.c    \
+	fastica.c     \
+	fourier.c     \
+	filter.c      \
+	hmmalgo.c     \
+	io.c          \
+	linalg.c      \
+	mat.c         \
+	math.c	      \
+	parser.c      \
+	poly.c        \
+	quantizer.c   \
+	random.c      \
+	source.c      \
+	source_fit.c  \
+	source_func.c \
+	vec.c         \
+	vlc.c         \
+	wavelet.c     \
+	separable2D.c \
+	wavelet2D.c
+
+
+libit_la_LDFLAGS = \
+        -release $(LT_RELEASE) \
+        -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_CLEAN_FILES = 
+LTLIBRARIES =  $(lib_LTLIBRARIES)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) 
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+libit_la_LIBADD = 
+libit_la_OBJECTS =  arithmetic_codec.lo channel.lo convcode.lo cplx.lo \
+distance.lo fastica.lo fourier.lo filter.lo hmmalgo.lo io.lo linalg.lo \
+mat.lo math.lo parser.lo poly.lo quantizer.lo random.lo source.lo \
+source_fit.lo source_func.lo vec.lo vlc.lo wavelet.lo separable2D.lo \
+wavelet2D.lo
+CFLAGS = @CFLAGS@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = gtar
+GZIP_ENV = --best
+SOURCES = $(libit_la_SOURCES)
+OBJECTS = $(libit_la_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .lo .o .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps src/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-libLTLIBRARIES:
+
+clean-libLTLIBRARIES:
+	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
+
+distclean-libLTLIBRARIES:
+
+maintainer-clean-libLTLIBRARIES:
+
+install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(libdir)
+	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "$(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p; \
+	  else :; fi; \
+	done
+
+uninstall-libLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  $(LIBTOOL)  --mode=uninstall rm -f $(DESTDIR)$(libdir)/$$p; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+libit.la: $(libit_la_OBJECTS) $(libit_la_DEPENDENCIES)
+	$(LINK) -rpath $(libdir) $(libit_la_LDFLAGS) $(libit_la_OBJECTS) $(libit_la_LIBADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = src
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+arithmetic_codec.lo arithmetic_codec.o : arithmetic_codec.c \
+	../include/it/types.h ../include/it/vec.h ../include/it/cplx.h \
+	../include/it/arithmetic_codec.h
+channel.lo channel.o : channel.c ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/types.h \
+	../include/it/source.h ../include/it/random.h \
+	../include/it/mat.h ../include/it/channel.h
+convcode.lo convcode.o : convcode.c ../include/it/types.h \
+	../include/it/vec.h ../include/it/cplx.h \
+	../include/it/convcode.h ../include/it/mat.h ../include/it/io.h \
+	../include/it/hmmalgo.h
+cplx.lo cplx.o : cplx.c ../include/it/cplx.h ../include/it/types.h
+distance.lo distance.o : distance.c ../include/it/types.h \
+	../include/it/distance.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/mat.h \
+	../include/it/source_func.h
+fastica.lo fastica.o : fastica.c ../include/it/fastica.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/types.h \
+	../include/it/mat.h ../include/it/math.h ../include/it/source.h \
+	../include/it/random.h ../include/it/linalg.h \
+	../include/it/io.h
+filter.lo filter.o : filter.c ../include/it/types.h \
+	../include/it/filter.h ../include/it/mat.h ../include/it/vec.h \
+	../include/it/cplx.h
+fourier.lo fourier.o : fourier.c ../include/it/types.h \
+	../include/it/fourier.h ../include/it/mat.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/transform.h \
+	../include/it/io.h ../include/it/math.h
+hmmalgo.lo hmmalgo.o : hmmalgo.c ../include/it/hmmalgo.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/types.h \
+	../include/it/mat.h
+io.lo io.o : io.c ../include/it/vec.h ../include/it/cplx.h \
+	../include/it/types.h ../include/it/mat.h ../include/it/io.h \
+	../include/it/poly.h
+linalg.lo linalg.o : linalg.c ../include/it/linalg.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/types.h ../include/it/mat.h \
+	../include/it/io.h ../include/it/math.h
+mat.lo mat.o : mat.c ../include/it/mat.h ../include/it/types.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/math.h \
+	../include/it/io.h ../include/it/random.h
+math.lo math.o : math.c ../include/it/types.h ../include/it/math.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/io.h \
+	../include/it/mat.h
+parser.lo parser.o : parser.c ../include/it/io.h ../include/it/mat.h \
+	../include/it/types.h ../include/it/vec.h ../include/it/cplx.h \
+	../include/it/parser.h
+poly.lo poly.o : poly.c ../include/it/math.h ../include/it/types.h \
+	../include/it/poly.h ../include/it/vec.h ../include/it/cplx.h \
+	../include/it/mat.h ../include/it/io.h
+quantizer.lo quantizer.o : quantizer.c ../include/it/types.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/math.h \
+	../include/it/quantizer.h ../include/it/mat.h \
+	../include/it/convcode.h ../include/it/io.h
+random.lo random.o : random.c ../include/it/vec.h ../include/it/cplx.h \
+	../include/it/types.h ../include/it/random.h \
+	../include/it/mat.h
+separable2D.lo separable2D.o : separable2D.c ../include/it/types.h \
+	../include/it/transform.h ../include/it/mat.h \
+	../include/it/vec.h ../include/it/cplx.h \
+	../include/it/transform2D.h ../include/it/separable2D.h \
+	../include/it/io.h
+source.lo source.o : source.c ../include/it/random.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/types.h ../include/it/mat.h \
+	../include/it/source.h ../include/it/source_func.h \
+	../include/it/io.h ../include/it/math.h
+source_fit.lo source_fit.o : source_fit.c ../include/it/source_fit.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/types.h \
+	../include/it/distance.h ../include/it/mat.h \
+	../include/it/math.h ../include/it/io.h
+source_func.lo source_func.o : source_func.c ../include/it/source_func.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/types.h \
+	../include/it/mat.h ../include/it/math.h ../include/it/io.h
+vec.lo vec.o : vec.c ../include/it/math.h ../include/it/types.h \
+	../include/it/vec.h ../include/it/cplx.h ../include/it/io.h \
+	../include/it/mat.h ../include/it/random.h
+vlc.lo vlc.o : vlc.c ../include/it/vlc.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/types.h ../include/it/io.h \
+	../include/it/mat.h ../include/it/math.h
+wavelet.lo wavelet.o : wavelet.c ../include/it/types.h \
+	../include/it/wavelet.h ../include/it/mat.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/transform.h \
+	../include/it/io.h
+wavelet2D.lo wavelet2D.o : wavelet2D.c ../include/it/types.h \
+	../include/it/wavelet.h ../include/it/mat.h ../include/it/vec.h \
+	../include/it/cplx.h ../include/it/transform.h \
+	../include/it/wavelet2D.h ../include/it/transform2D.h \
+	../include/it/io.h
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-libLTLIBRARIES
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-libLTLIBRARIES
+uninstall: uninstall-am
+all-am: Makefile $(LTLIBRARIES)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(libdir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-libLTLIBRARIES mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-libLTLIBRARIES clean-compile clean-libtool clean-tags \
+		clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-libLTLIBRARIES distclean-compile \
+		distclean-libtool distclean-tags distclean-generic \
+		clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-libLTLIBRARIES \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-libLTLIBRARIES distclean-libLTLIBRARIES \
+clean-libLTLIBRARIES maintainer-clean-libLTLIBRARIES \
+uninstall-libLTLIBRARIES install-libLTLIBRARIES mostlyclean-compile \
+distclean-compile clean-compile maintainer-clean-compile \
+mostlyclean-libtool distclean-libtool clean-libtool \
+maintainer-clean-libtool tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info-am info dvi-am dvi check \
+check-am installcheck-am installcheck install-exec-am install-exec \
+install-data-am install-data install-am install uninstall-am uninstall \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

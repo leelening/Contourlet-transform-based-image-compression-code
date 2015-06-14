@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Parser</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Input/Output"
+HREF="inputoutput.html"><LINK
+REL="PREVIOUS"
+TITLE="Sound reading and writing"
+HREF="wav.html"><LINK
+REL="NEXT"
+TITLE="Measures"
+HREF="measures.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="wav.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Input/Output</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="measures.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="PARSER"
+>2.4. Parser</A
+></H1
+><P
+>  In order to manage sources of external data, a parser is provided. 
+The parser allows to handle three kind of sources: 
+      <P
+></P
+><UL
+><LI
+><P
+>command line arguments,</P
+></LI
+><LI
+><P
+>parameter files,</P
+></LI
+><LI
+><P
+>strings. </P
+></LI
+></UL
+>
+The latter kind of source allows to easily manage the default arguments. 
+For each kind of source, there are two functions that add the 
+source to the parser internal data. 
+The difference between these functions is that the first (initialization) 
+function allocates the memory for the parser, while the second function adds a source 
+that must have previously been allocated by an initialization function. 
+Hence, the first source must be added using the initialization function. 
+The table below summarizes the list of functions for each kind of source.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN419"
+></A
+><P
+><B
+>Table 2-1. Parser source adding functions</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Kind of Source</TH
+><TH
+>Initialization Function (first source)</TH
+><TH
+>Extra source Function</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Command line arguments</TD
+><TD
+>parser_init_params</TD
+><TD
+>parser_add_params</TD
+></TR
+><TR
+><TD
+>File</TD
+><TD
+>parser_init_file</TD
+><TD
+>parser_add_file</TD
+></TR
+><TR
+><TD
+>String</TD
+><TD
+>parser_init_string</TD
+><TD
+>parser_add_string</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>The three kinds of source may be useful in the same program. 
+Note that if a variable is defined in two sources handled by the same parser, 
+the first source added to the parser has the highest priority. 
+In other terms, the data will be retrieved in the order in which the sources 
+have been added to the parser. 
+Hence, a source added while initializing the parser is always 
+with the highest priority. 
+The variables are retrieved with the functions summarized in the table below. 
+Note that the objects are initialized by the parser and must be 
+freed afterwards. </P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN441"
+></A
+><P
+><B
+>Table 2-2. Functions to retrieve variables with a parser</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Function name</TH
+><TH
+>variable type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>parser_get_int</TD
+><TD
+>int</TD
+></TR
+><TR
+><TD
+>parser_get_double</TD
+><TD
+>double</TD
+></TR
+><TR
+><TD
+>parser_get_byte</TD
+><TD
+>byte</TD
+></TR
+><TR
+><TD
+>parser_get_cplx</TD
+><TD
+>cplx</TD
+></TR
+><TR
+><TD
+>parser_get_string</TD
+><TD
+>char *</TD
+></TR
+><TR
+><TD
+>parser_get_vec</TD
+><TD
+>vec</TD
+></TR
+><TR
+><TD
+>parser_get_ivec</TD
+><TD
+>ivec</TD
+></TR
+><TR
+><TD
+>parser_get_bvec</TD
+><TD
+>bvec</TD
+></TR
+><TR
+><TD
+>parser_get_cvec</TD
+><TD
+>cvec</TD
+></TR
+><TR
+><TD
+>parser_get_mat</TD
+><TD
+>mat</TD
+></TR
+><TR
+><TD
+>parser_get_imat</TD
+><TD
+>imat</TD
+></TR
+><TR
+><TD
+>parser_get_bmat</TD
+><TD
+>bmat</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>The parser type is parser_t. As in most of advanced types, 
+the user should not handle directly parser_t object, but a pointer parser_t *. 
+The corresponding memory area is allocated with the functions parser_init_params,
+parser_init_file or parser_init_string. 
+For a typical program, the following order of priority between sources 
+is of interest: command line arguments, parameter file, 
+string for default parameters. 
+The program below illustrates this scenario. </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="PARSER-EXAMPLE-INIT"
+></A
+><P
+><B
+>Example 2-4. Parser example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* Initialization of the parser with the command line. 
+     This source has the highest priority                            */
+  parser_t * parser = parser_init_params( argc, argv );
+
+  /* Add a file parameter source to the parser                       */
+  parser_add_file( parser, "test_parser.param" );
+
+  /* Add some default values if the parameters have not been defined */
+  parser_add_string( parser, "a=-35\ndef=9\nmyvec=[-1,-2,-3]" );
+
+  /* Print the content pre-processed by the parser                   */
+  parser_print( parser );
+
+  /* Retrieve some variables with the parser                         */
+  i   = parser_get_int(parser, "a");
+  def = parser_get_int(parser, "def");
+  dbl = parser_get_double(parser, "dbl");
+  s   = parser_get_string(parser, "S");
+  v   = parser_get_vec(parser, "myvec");       /* By default [1 2 3] */
+  iv  = parser_get_ivec(parser, "myivec");
+
+  /* Test if the variable myivec is defined                          */
+  if( !parser_exists(parser, "myivec") )
+    it_warning("Variable myivec is not defined\n");
+
+  /* Free the pointer                                                */
+  parser_delete(parser);   
+  free(s);
+  vec_delete(v);                             /* Vectors must be free */
+  ivec_delete(v);
+  </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="wav.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="measures.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Sound reading and writing</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Measures</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

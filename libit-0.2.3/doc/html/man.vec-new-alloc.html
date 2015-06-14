@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>vec_new_alloc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="Vec_new_alloc"
+HREF="man.-vec-new-alloc.html"><LINK
+REL="NEXT"
+TITLE="ivec_new_alloc"
+HREF="man.ivec-new-alloc.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.-vec-new-alloc.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.ivec-new-alloc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.VEC-NEW-ALLOC"
+></A
+>vec_new_alloc</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN15042"
+></A
+><H2
+>Name</H2
+>vec_new_alloc&nbsp;--&nbsp;create a new vector</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN15045"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN15046"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/vec.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>vec vec_new_alloc</CODE
+>( size_t length, size_t length_max
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The  function <CODE
+CLASS="FUNCTION"
+>vec_new_alloc</CODE
+> creates a new vector of <CODE
+CLASS="PARAMETER"
+>length</CODE
+> real numbers represented with the <CODE
+CLASS="PARAMETER"
+>double</CODE
+> type. Unlike the function <CODE
+CLASS="FUNCTION"
+>vec_new</CODE
+>, the function <CODE
+CLASS="FUNCTION"
+>vec_new_alloc</CODE
+> allocates the memory for a greater number of elements than the vector length. Hence, the number <CODE
+CLASS="PARAMETER"
+>length_max</CODE
+> gives the size up to which the vector can grow without any memory reallocation. This function allows to avoid to reallocate memory if the vector comes to grow up to the value <CODE
+CLASS="PARAMETER"
+>length_max</CODE
+>. This may be useful if the vector is used as a stack. Note however that in most cases the user does not have to care about the real amount of memory allocated for the vector, since the geometric reallocation strategy allows to avoid to introduce additional complexity while modifying the size of a vector.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The new vector
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;vec.h&gt;
+
+...
+
+int i;
+int K = 100;
+vec v = vec_new_alloc(0, K); /* create a new vector of size 0, and
+                                  allocate memory for 100 elements */
+for( i = 0 ; i &lt; K ; i++ )   /* Add 100 elements in the vector.    */
+  vec_push(v, i);           
+vec_delete(v);               /* free the vector                    */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.-vec-new-alloc.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.ivec-new-alloc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Vec_new_alloc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ivec_new_alloc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

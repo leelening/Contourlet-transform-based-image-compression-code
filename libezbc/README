@@ -1,0 +1,16 @@
+Stand-alone implementation of the Embedded ZeroBlock Coder.
+
+Reference paper: "Embedded Image Coding Using Zeroblocks Of Subband/Wavelet Coefficient And Context Modeling", Shih-Ta Hsiang and John W. Woods, Data Compression Conference (DCC '01), March 27 - 29, 2001, Snowbird, Utah.
+
+This package consists of the following files:
+- COPYING: GNU Library General Public License
+- arithmetic_codec.c/.h: binary arithmetic coder
+- bitbuffer.c/.h: bitwise input/ouput
+- ezbc_decoder.c/.h: EZBC decoder
+- ezbc_decoder.c/.h: EZBC encoder
+- ezbc_codec.c/.h: EZBC encoder/decoder common code
+- ezbc_tables.c/.h: context tables
+- Makefile: build the lib using make
+- README: this file
+
+The source code in this package is provided as is under the terms of the GNU Library General Public License. Please refer to the COPYING file for more details.

@@ -1,0 +1,18 @@
+INSTALLATION
+
+	-Execute the configure script
+		./configure (see options with ./configure --help)
+
+	-Compile source:
+		make
+
+	-Install programs (must be root):
+		make install
+
+
+
+POST-INSTALLATION
+
+	-Add the bin directory in the path (using export (bash) or setenv(csh))
+		
+

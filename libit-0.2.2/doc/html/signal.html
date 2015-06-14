@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Signal Processing Tools</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Programming with libit"
+HREF="programming.html"><LINK
+REL="PREVIOUS"
+TITLE="Convolutional Codes"
+HREF="convcodes.html"><LINK
+REL="NEXT"
+TITLE="2D Transforms"
+HREF="transform2d.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="convcodes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="transform2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="SIGNAL"
+></A
+>Chapter 6. Signal Processing Tools</H1
+><P
+>      This chapter presents the various signal processing tools provided by the library.
+  </P
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="TRANSFORM"
+>6.1. 1D Transforms</A
+></H1
+><P
+>    All transforms in libit share the same framework. They are objects taking a generic vector (Vec) as input and output a transformed generic vector, which may be of different type or length (e.g. for redundant transforms). Declaring new transforms is done by inheriting from the it_transform_t object and defining the transform and inverse transform methods. For more details on objects and object oriented programming in C with libit, see <A
+HREF="objects.html"
+>Appendix A</A
+>. Here is the set of transforms provided by libit (which is currently quite limited).
+  </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="FOURIER"
+>6.1.1. Discrete Fourier Transform</A
+></H2
+><P
+>    The Fourier transform of a signal gives a frequency representation of the energy and relative phase present in this signal. The discrete transform <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>X</I
+></SPAN
+> of a signal <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>x</I
+></SPAN
+> is defined in complex domain as:
+  </P
+><DIV
+CLASS="INFORMALEQUATION"
+><P
+></P
+><A
+NAME="AEN762"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="eq-fourier.png"
+ALIGN="CENTER"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>    This transform is invertible and the original signal can be
+    recovered by using the inverse transform:
+  </P
+><DIV
+CLASS="INFORMALEQUATION"
+><P
+></P
+><A
+NAME="AEN774"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="eq-ifourier.png"
+ALIGN="CENTER"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>    In libit, the discrete Fourier transform of a vector is obtained by calling <A
+HREF="man.it-dft.html"
+>it_dft()</A
+>, which takes a complex vector (cvec) as input and returns a complex vector representing the amplitude and phase for each frequency. The inverse transform is obtained by using <A
+HREF="man.it-idft.html"
+>it_idft()</A
+>.
+  </P
+><P
+>    Currently the transform is implemented as in the math formula, which is inefficient (O(N^2) vs O(Nlog(N)) for the FFT algorithm). However it has the advantage being able to handle vectors of any length. For vectors where the length can be decomposed in a power of two times an odd number, the current implementation of the DFT could be optimized much. Also, there is no optimized function for the special case of real samples yet; Thus, real-valued vectors (vec) must be converted to complex vectors using <A
+HREF="man.vec-to-cvec.html"
+>vec_to_cvec()</A
+> before calling <A
+HREF="man.it-dft.html"
+>it_dft()</A
+> (which will lead to a symmetric conjugate frequency representation).
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SIGNAL.TRAN.DWT.EXAMPLE-FOURIER"
+></A
+><P
+><B
+>Example 6-1. Discrete Fourier transform example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* analyse the vector using the discrete Fourier transform */
+cvec vt = it_dft(v);
+
+/* recompose the vector by inverse transform */
+cvec vr = it_idft(vt);</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="WAVELET"
+>6.1.2. Discrete Wavelet Transform</A
+></H2
+><P
+>    The dicrete wavelet transform (DWT) analyses a signal into a given number of subbands (scales) while maintaining a time-frequency localization compromise. High frequencies and impulses are well localized in space, while low frequencies are precise. The DWT provided by libit is a dyadic, reversible transform implemented using the lifting scheme. Currently there is no factorization algorithm in the library to extract the lifting steps from the definition of the FIR filters. Therefore these steps must be given explicitly. However, the most commonly used 5/3 and 9/7 biorthogonal wavelet lifting steps are provided.
+  </P
+><P
+>    To apply a wavelet transform on a vector, use the <A
+HREF="man.it-dwt.html"
+>it_dwt()</A
+> function. It takes a real vector as input and output a real vector of the same length containing all the concatenated subbands (from low-frequency to high-frequency). Additional parameters include the number of levels and the lifting steps used for the decomposition. The output vector can be split in an array of subbands using <A
+HREF="man.it-wavelet-split.html"
+>it_wavelet_split()</A
+>, and merged back using <A
+HREF="man.it-wavelet-merge.html"
+>it_wavelet_merge()</A
+>. The inverse transform is provided through <A
+HREF="man.it-idwt.html"
+>it_idwt()</A
+>. Here is an example on how to analyse a signal using the 9/7 biorthogonal wavelet.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SIGNAL.TRAN.DWT.EXAMPLE-97"
+></A
+><P
+><B
+>Example 6-2. Discrete wavelet transform example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* analyse the vector using a 5-level 9/7 wavelet decomposition */
+vec vt = it_dwt(v, it_wavelet_lifting_97, 5);
+
+/* clear the high subband */
+vec_set_between(vt, (vec_length(v) + 1) / 2, end, 0);
+
+/* recompose the vector by inverse transform */
+vec vr = it_idwt(vt, it_wavelet_lifting_97, 5);</PRE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="convcodes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="transform2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Convolutional Codes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>2D Transforms</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

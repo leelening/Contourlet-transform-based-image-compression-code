@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_wavelet_new</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_wavelet_merge"
+HREF="man.it-wavelet-merge.html"><LINK
+REL="NEXT"
+TITLE="it_wavelet_split"
+HREF="man.it-wavelet-split.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet-merge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet-split.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-WAVELET-NEW"
+></A
+>it_wavelet_new</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN20914"
+></A
+><H2
+>Name</H2
+>it_wavelet_new&nbsp;--&nbsp;wavelet transform constructor</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN20917"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN20918"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void it_wavelet_new</CODE
+>( it_wavelet_lifting_t const *lifting, int level
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>The <CODE
+CLASS="FUNCTION"
+>it_wavelet_new</CODE
+> function creates a new wavelet transform object on <CODE
+CLASS="PARAMETER"
+>level</CODE
+> levels using lifting steps <CODE
+CLASS="PARAMETER"
+>lifting</CODE
+>. This object can later be used as an it_transform_t to perform discrete wavelet transform or inverse wavelet transform on a real-valued vector using the <CODE
+CLASS="FUNCTION"
+>it_transform</CODE
+> or <CODE
+CLASS="FUNCTION"
+>it_itransform</CODE
+> method respectively.</P
+><P
+> Creating this transform object and using the <CODE
+CLASS="FUNCTION"
+>it_transform</CODE
+> method is prefered to using <CODE
+CLASS="FUNCTION"
+>it_dwt</CODE
+> when multiple transform on vectors of the same size are to be done. </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The wavelet transform object
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet.h&gt;
+
+...
+
+it_wavelet_t *wavelet = it_wavelet_new(it_wavelet_lifting_97, 5);
+vec v = vec_new_string("[ 0.3 1.5 2.5 ]");
+vec vt;
+vt = (vec) it_transform(wavelet, (vec) v);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-wavelet-merge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-wavelet-split.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_wavelet_merge</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_wavelet_split</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

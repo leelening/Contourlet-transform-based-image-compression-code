@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Matrices</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Basic Types"
+HREF="basictypes.html"><LINK
+REL="PREVIOUS"
+TITLE="Vectors"
+HREF="vectors.html"><LINK
+REL="NEXT"
+TITLE="Functions"
+HREF="functions.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="vectors.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 1. Basic Types</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="MATRICES"
+>1.3. Matrices</A
+></H1
+><P
+>      Matrices are build upon vectors in a very similar manner. A generic Mat type is provided to allow the definition of any type of matrix. These generic matrices are created using the <A
+HREF="man.-mat-new.html"
+>Mat_new()</A
+> macro by specifying the type of the elements along with the width and height of the matrix. They are deleted using  <A
+HREF="man.-mat-delete.html"
+>Mat_delete()</A
+> and their width and height can be get or set using <A
+HREF="man.-mat-width.html"
+>Mat_width()</A
+>, <A
+HREF="man.-mat-height.html"
+>Mat_height()</A
+>, <A
+HREF="man.-mat-set-width.html"
+>Mat_set_width()</A
+> and <A
+HREF="man.-mat-set-height.html"
+>Mat_set_height()</A
+> respectively. Similarly to vectors, the generic Mat type is derived into four types for the most common usage:
+  </P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN250"
+></A
+><P
+><B
+>Table 1-4. Matrix types</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Matrix type</TH
+><TH
+>Element type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>mat</TD
+><TD
+>double</TD
+></TR
+><TR
+><TD
+>imat</TD
+><TD
+>int</TD
+></TR
+><TR
+><TD
+>bmat</TD
+><TD
+>unsigned char</TD
+></TR
+><TR
+><TD
+>cmat</TD
+><TD
+>cplx</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>    Matrix elements are accessed with the double bracket operator [][] starting at index 0 in row,column order. For example, m[2][3] corresponds to the element at the third row and fourth column of the matrix m. Each row of the matrix is a vector which can be accessed using the bracket operator []. Thus, m[2] is the vector corresponding to the third row of the matrix. As for vectors, functions requiring row or column indexes can be given the 'end' keyword corresponding to the index of the last row or last column respectively. As many functions are defined similarly on the mat, imat, bmat and cmat types, only the mat functions will be documented here when there is no ambiguity on how to derive the corresponding functions for the other matrix types.
+  </P
+><P
+>    Matrices are copied using the <A
+HREF="man.mat-clone.html"
+>mat_clone()</A
+> function. Using the equal sign (=) will <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> copy a matrix, rather create a reference to it (modifying one will modify the other). Similarly, testing matrices for equality is done using the <A
+HREF="man.mat-eq.html"
+>mat_eq()</A
+> function instead of the == operator.  Also, many functions, such as <A
+HREF="man.mat-set-height.html"
+>mat_set_height()</A
+> which sets the height of a matrix, may modify the actual value of the matrix pointer. References created using the equal sign are then <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>invalid</I
+></SPAN
+>. Unless you know what you're doing, it is generally better never to use the equal sign on a matrix and prefer the <A
+HREF="man.mat-clone.html"
+>mat_clone()</A
+> call instead.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.MAT-COPY"
+></A
+><P
+><B
+>Example 1-9. Copy, reference, and test for equality</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>mat m = mat_new(2,2);  /* create a new 2x2 matrix of double elements */
+m[0][0] = 0.0;         
+m[0][1] = 0.5;         /* set 2nd element of the 1st row to 0.5 */
+vec_set(m[1], 1.4);    /* set the whole 2nd row to 1.4 */
+mat m1 = m;            /* create a reference to the matrix m */
+mat m2 = mat_clone(m); /* create a copy of the matrix m */
+if(m2 == m)            /* m2 == m ? false */
+  printf("same object\n");  
+if(mat_eq(m2,m))       /* content of m2 same as m ? true */
+  printf("same matrix\n");  
+m1[0][1] = 1.0;
+m2[1][0] = 2.0;
+/* m contains [[ 0.0 1.0 ] [ 1.4 1.4 ]] */
+/* m1 contains [[ 0.0 1.0 ] [ 1.4 1.4 ]] */
+/* m2 contains [[ 0.0 0.5 ] [ 2.0 1.4 ]] */
+  </PRE
+></DIV
+><P
+>    Constant matrices, containing the same element repeated over the length of the vector, are created using the <A
+HREF="man.mat-new-set.html"
+>mat_new_set()</A
+> call. In particular a matrix full of zero or full of one is created using the <A
+HREF="man.mat-new-zeros.html"
+>mat_new_zeros()</A
+> or <A
+HREF="man.mat-new-ones.html"
+>mat_new_ones()</A
+> call respectively. A diagonal matrix is created from a vector using <A
+HREF="man.mat-new-diag.html"
+>mat_new_diag()</A
+>. The identity matrix is created using <A
+HREF="man.mat-new-eye.html"
+>mat_new_eye()</A
+>. All these functions also exist in a direct form, to be used on an already existing matrix (mat_set, mat_zeros, mat_ones, mat_diag, mat_eye).
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.MAT-NEW-COMMON"
+></A
+><P
+><B
+>Example 1-10. Common matrices</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>mat m0 = mat_new_zeros(1, 2);     /* create the matrix [[0 0]]       */
+mat m1 = mat_new_ones(2, 1);      /* create the matrix [[1] [1]]     */
+mat m2 = mat_new_set(3, 2, 2);    /* create the matrix [[3 3] [3 3]] */
+cvec cv = cvec_new_unit_roots(4); /* vector [ 1 i -1 -i ]            */
+cmat m3 = cmat_new_diag(cv);      /* create the matrix [[ 1  0  0  0 ]
+                                                        [ 0  i  0  0 ]
+                                                        [ 0  0 -1  0 ]
+                                                        [ 0  0  0 -i ]] */
+mat m4 = mat_new_eye(2);          /* create the matrix [[1 0] [0 1]] */
+
+mat_ones(m4);                     /* set m4 to [[1 1] [1 1]]         */
+  </PRE
+></DIV
+><P
+>    Submatrices can be extracted from a matrix using <A
+HREF="man.mat-get-submatrix.html"
+>mat_get_submatrix()</A
+>. The content of submatrix in a matrix can be set using <A
+HREF="man.mat-set-submatrix.html"
+>mat_set_submatrix()</A
+>. Similarly, <A
+HREF="man.mat-get-col.html"
+>mat_get_col()</A
+>, <A
+HREF="man.mat-get-row.html"
+>mat_get_row()</A
+>, <A
+HREF="man.mat-set-col.html"
+>mat_set_col()</A
+> and <A
+HREF="man.mat-set-row.html"
+>mat_set_row()</A
+> allow to retrieve or set a row or a column of a matrix. Matrices can be turned into vectors using <A
+HREF="man.mat-to-vec.html"
+>mat_to_vec()</A
+> which stores the element of a matrix in a vector in raster order (fill a row with elements of the vector, then proceed to next row). Given the width of the matrix, a vector can also be turned into matrix using <A
+HREF="man.vec-to-mat.html"
+>vec_to_mat()</A
+>. Note that <A
+HREF="man.mat-get-submatrix.html"
+>mat_get_submatrix()</A
+>, <A
+HREF="man.mat-get-row.html"
+>mat_get_row()</A
+>, <A
+HREF="man.mat-get-col.html"
+>mat_get_col()</A
+>, <A
+HREF="man.mat-to-vec.html"
+>mat_to_vec()</A
+> and <A
+HREF="man.vec-to-mat.html"
+>vec_to_mat()</A
+> are constructive functions, allocating a new matrix or vector object each time they are called.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.MAT-SUB"
+></A
+><P
+><B
+>Example 1-11. Submatrices</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>cvec cv = cvec_new_unit_roots(4); /* vector [ 1 i -1 -i ]               */
+cmat m1 = cmat_new_diag(cv);      /* create the matrix [[ 1  0  0  0 ]
+                                                        [ 0  i  0  0 ]
+                                                        [ 0  0 -1  0 ]
+                                                        [ 0  0  0 -i ]] */
+cmat m2 = cmat_get_submatrix(m1, 2, 2, end, end);
+                                  /* create the matrix [[-1 0] [0 -i]]  */
+cvec_ones(m2);                    /* m2 = [[1 1] [1 1]]                 */
+cmat_set_submatrix(m1, m2, 1, 1); /* m1 = [[ 1  0  0  0 ]
+                                           [ 0  1  1  0 ]
+                                           [ 0  1  1  0 ]
+                                           [ 0  0  0 -i ]]              */
+cvec cv2 = cmat_get_col(m1, 3);   /* v = [ 0 0 0 -i ]                   */
+cmat_set_row(m1, 1, cv);          /* m1 = [[ 1  0  0  0 ]
+                                           [ 1  i -1 -i ]
+                                           [ 0  1  1  0 ]
+                                           [ 0  0  0 -i ]]              */
+cvec cv3 = cmat_to_cvec(m1);
+                        /* cv3 = [ 1 0 0 0 1 i -1 -i 0 1 1 0 0 0 0 -i ] */
+m3 = cvec_to_cmat(cv3, 8);        /* m3 = [[ 1  0  0  0  1  i -1 -i ]
+                                           [ 0  1  1  0  0  0  0 -i ]]  */
+  </PRE
+></DIV
+><P
+>    Some common arithmetic operations are defined on matrices. Scalar operations include <A
+HREF="man.mat-incr.html"
+>mat_incr()</A
+>, <A
+HREF="man.mat-decr.html"
+>mat_decr()</A
+>, <A
+HREF="man.mat-mul-by.html"
+>mat_mul_by()</A
+> and <A
+HREF="man.mat-div-by.html"
+>mat_div_by()</A
+>, which respectively add, subtract, multiply or divide each element of a matrix with a scalar element. These operations may also be performed only on a specific row or column of the matrix by adding '_row' or '_col' to the function name (e.g. <A
+HREF="man.mat-col-incr.html"
+>mat_col_incr()</A
+>). Elementwise operations between matrices are performed using the <A
+HREF="man.mat-elem-add.html"
+>mat_elem_add()</A
+>, <A
+HREF="man.mat-elem-sub.html"
+>mat_elem_sub()</A
+>, <A
+HREF="man.mat-elem-mul.html"
+>mat_elem_mul()</A
+>, <A
+HREF="man.mat-elem-div.html"
+>mat_elem_div()</A
+> functions which respectively add, subtract, multiply or divide each element of a first matrix with the corresponding element in the matrix vector. Matrices are added or subtracted using <A
+HREF="man.mat-add.html"
+>mat_add()</A
+> or <A
+HREF="man.mat-sub.html"
+>mat_sub()</A
+> respectively (or equivalently vec_elem_add and vec_elem_sub). The product of two matrices, of a matrix with a vector, or of a vector with a matrix is obtained using <A
+HREF="man.mat-mul.html"
+>mat_mul()</A
+>, <A
+HREF="man.mat-vec-mul.html"
+>mat_vec_mul()</A
+> or <A
+HREF="man.vec-mat-mul.html"
+>vec_mat_mul()</A
+> respectively. To transpose a matrix, use <A
+HREF="man.mat-transpose.html"
+>mat_transpose()</A
+>. Matrices are inverted using <A
+HREF="man.mat-inv.html"
+>mat_inv()</A
+>. Note that constructive versions of these last two functions are defined (mat_new_transpose(), <A
+HREF="man.mat-new-inv.html"
+>mat_new_inv()</A
+>).
+  </P
+><P
+>    Mathematical functions can be applied to matrices using the <A
+HREF="man.mat-apply-function.html"
+>mat_apply_function()</A
+> call. Functions are defined using the it_function_t type, for more information see <A
+HREF="functions.html"
+>Section 1.4</A
+>. Minimum and maximum values of a matrix are obtained with the <A
+HREF="man.mat-min.html"
+>mat_min()</A
+> and <A
+HREF="man.mat-max.html"
+>mat_max()</A
+> calls respectively.
+  </P
+><P
+>    The sum of all elements in a matrix is computed using <A
+HREF="man.mat-sum.html"
+>mat_sum()</A
+>. It can also be computed only on a specific row or column using <A
+HREF="man.mat-row-sum.html"
+>mat_row_sum()</A
+> or <A
+HREF="man.mat-col-sum.html"
+>mat_col_sum()</A
+> respectively. Additionnally, the vector corresponding to the sum of each columns or the sum of each rows is available through <A
+HREF="man.mat-cols-sum.html"
+>mat_cols_sum()</A
+> or <A
+HREF="man.mat-rows-sum.html"
+>mat_rows_sum()</A
+> respectively.
+  </P
+><P
+>    Matrices are normalized using <A
+HREF="man.mat-normalize.html"
+>mat_normalize()</A
+>, resulting in a matrix whose sum is equal to one. The mean of a matrix is obtained using <A
+HREF="man.mat-mean.html"
+>mat_mean()</A
+>. The unbiased variance of a matrix can be computed with the <A
+HREF="man.mat-variance.html"
+>mat_variance()</A
+> function. The one and infinite norms are obtained using mat_norm_1() and <A
+HREF="man.mat-norm-inf.html"
+>mat_norm_inf()</A
+> respectively.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.MAT-OPERATIONS"
+></A
+><P
+><B
+>Example 1-12. Operations on matrices</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>mat m1 = mat_new_set(4, 2, 2);         /* matrix [[4 4] [4 4]]     */
+mat m2 = mat_new_eye(2);               /* matrix [[1 0] [0 1]]     */
+mat_incr(m1, 2);                       /* m1 = [[6 6] [6 6]]       */
+mat_col_incr(m1, 2, 4);                /* m1 = [[6 10] [6 10]]     */
+mat_div_by(m1, 2);                     /* m1 = [[3 5] [3 5]]       */
+mat_add(m1, m2);                       /* m1 = [[4 5] [3 6]]       */
+mat_mul(m1, m2);                       /* m1 = [[4 5] [3 6]]       */
+mat_transpose(m1, m2);                 /* m1 = [[4 3] [5 6]]       */
+mat_elem_mul(m1, m2);                  /* m1 = [[4 0] [0 6]]       */
+
+mat_eval(m1, IT_FUNCTION(sqrt), NULL); /* m1 = [[2 0] [0 2.45 ]]   */
+m1[1][0] = 1;                          /* m1 = [[2 0] [1 2.45 ]]   */
+double s = mat_sum(m1);                /* s = 5.45                 */
+vec v = mat_cols_sum(m1);              /* v = [ [3] [2.45] ]       */
+double mean = mat_mean(m1);            /* mean = 5.45/4 = 1.36     */
+double norm1 = mat_norm_1(m1);         /* 1-norm = 3.45            */
+double normI = mat_norm_inf(m1);       /* infinite-norm = 3        */
+  </PRE
+></DIV
+><P
+>    Matrices are displayed using the <A
+HREF="man.it-printf.html"
+>it_printf()</A
+> family of functions. For more information on how to display the new types see <A
+HREF="inputoutput.html"
+>Input/Output</A
+>.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="MAT-PRINT"
+></A
+><P
+><B
+>Example 1-13. Printing</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>mat v = mat_new_eye(4);       /* identity matrix in dim. 4 */
+it_printf("#f\n", v); /* [[1.000000 0.000000 0.000000 0.000000]  */
+                          [0.000000 1.000000 0.000000 0.000000]  */
+                          [0.000000 0.000000 1.000000 0.000000]  */
+                          [0.000000 0.000000 0.000000 1.000000]] */
+  </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="vectors.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Vectors</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="basictypes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

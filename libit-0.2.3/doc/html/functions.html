@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Basic Types"
+HREF="basictypes.html"><LINK
+REL="PREVIOUS"
+TITLE="Matrices"
+HREF="matrices.html"><LINK
+REL="NEXT"
+TITLE="Input/Output"
+HREF="inputoutput.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="matrices.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 1. Basic Types</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FUNCTIONS"
+>1.4. Functions</A
+></H1
+><P
+>      In order to handle continuous functions (e.g. for probability density functions) a new it_function_t type is defined. Functions have only one variable 'x' of double type, and return a single real value of double type too. They are declared using the <A
+HREF="man.it-function.html"
+>it_function()</A
+> macro, with no return value and no argument. Here is a simple example of a function called 'normal' returning the value of a gaussian pdf with zero mean and variance equal to one.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="FUNC-EXAMPLE-1"
+></A
+><P
+><B
+>Example 1-14. Function example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>it_function(normal)
+{
+  return(1/sqrt(2.0*M_PI) * exp(-x*x / 2.0));
+}
+  </PRE
+></DIV
+><P
+>      Although functions are always univariate, they can have extra parameters to modify they behaviour. Function parameters are declared using the <A
+HREF="man.it-function-args.html"
+>it_function_args()</A
+> macro. Each parameter is declared in a struct-like manner. A function parameters is accessed as an element of the it_this structure. For example we can now define a function called 'gaussian' with a varying parameter sigma representing the standard deviation of the gaussian:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="FUNC-EXAMPLE-2"
+></A
+><P
+><B
+>Example 1-15. Function example (with parameters)</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* the gaussian function with parameter sigma */
+it_function_args(gaussian) {
+  double sigma;  /* standard deviation */
+};
+it_function(gaussian)
+{
+  double sigma = it_this-&#62;sigma;
+
+  return(1.0 / (sqrt(2.0*M_PI)*sigma) * exp(-x*x / (2.0*sigma*sigma)));
+}
+  </PRE
+></DIV
+><P
+>      There are some predefined functions in libit. One is 'itf_identity', the identity function (which returns x). Other are operators which allow to perform basic operations on functions, such as addition, multiplication, composition, differentiation and integration. An operator is actually a function taking one or more function and its arguments as parameters. Here is an example on how to build a function which is the product of the identity and our previously defined gaussian:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="FUNC-EXAMPLE-3"
+></A
+><P
+><B
+>Example 1-16. Multiplication operator example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* declare the gaussian parameters */
+it_function_args(gaussian) gaussian_args;
+/* declare the multiplication operator parameters */
+it_function_args(mul) mul_args;
+
+/* function product */
+mul_args.f = itf_identity; /* first operand: the identity function  */
+mul_args.f_args = NULL;    /* which takes no special parameters.    */
+mul_args.g = gaussian;     /* second operand: our gaussian function */
+mul_args.g_args = &#38;gaussian_args;  /* and its arguments (sigma) */
+
+gaussian_args.sigma = 2;   /* set sigma to 2 */
+itf_mul(2, &#38;mul_args); /* compute x*g(x, sigma) for x = 2, sigma = 2 */
+itf_mul(1, &#38;mul_args); /* compute x*g(x, sigma) for x = 1, sigma = 2 */
+gaussian_args.sigma = 3;   /* set sigma to 3 */
+itf_mul(2, &#38;mul_args); /* compute x*g(x, sigma) for x = 2, sigma = 3 */
+  </PRE
+></DIV
+><P
+>      Since operators are just another kind of function, they can be composed easily. Standard C functions taking only a double as their argument (like many functions of math.h) can be cast into it_function_t using the <A
+HREF="man.it-function.html"
+>IT_FUNCTION()</A
+> macro. Here is another example on how to compute the derivative of the arctangent:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="FUNC-EXAMPLE-4"
+></A
+><P
+><B
+>Example 1-17. Differentiation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* derivatives */
+differentiate_args.function = IT_FUNCTION(atan); /* the arctangent function */
+differentiate_args.args = NULL;
+itf_differentiate(2.0, &#38;differentiate_args); /* compute the derivative of
+                                                 the arctangent in 2 (=1/5) */ 
+  </PRE
+></DIV
+><P
+>      Note that there exists also a similar it_ifunction_t type for functions of a unique integer variable returning an integer variable. Multivariate functions taking a input vector and returning a double are also defined as it_vfunction, however no operation is defined on these objects yet.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="matrices.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Matrices</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="basictypes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Input/Output</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

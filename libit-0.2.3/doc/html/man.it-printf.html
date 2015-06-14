@@ -1,0 +1,320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_printf</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_fprintf"
+HREF="man.it-fprintf.html"><LINK
+REL="NEXT"
+TITLE="it_read_double"
+HREF="man.it-read-double.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-fprintf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-read-double.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-PRINTF"
+></A
+>it_printf</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN1473"
+></A
+><H2
+>Name</H2
+>it_printf&nbsp;--&nbsp;formatted output</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN1476"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN1477"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/io.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void it_printf</CODE
+>( char *fmt, ...
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>The function <CODE
+CLASS="FUNCTION"
+>it_printf</CODE
+> extends the standard C <CODE
+CLASS="FUNCTION"
+>printf</CODE
+> function and provides an output according to the <CODE
+CLASS="PARAMETER"
+>format</CODE
+> string. Being an extension <CODE
+CLASS="FUNCTION"
+>printf</CODE
+>, it supports all its types and modifiers.</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN1490"
+></A
+><H3
+>Additional format string conversion specification</H3
+><P
+>The following extra escape characters can be using to print a vector or a matrix. To output the actual character instead, it must be doubled in the format string.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>$</DT
+><DD
+><P
+>         The following conversion specifier and modifiers apply to
+         the elements of the vector argument.
+      </P
+></DD
+><DT
+>#</DT
+><DD
+><P
+>         The following conversion specifier and modifiers apply to
+         the elements of the matrix argument.
+      </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN1502"
+></A
+><H3
+>Additional conversion specifier</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>z</DT
+><DD
+><P
+>         The <CODE
+CLASS="PARAMETER"
+>cplx</CODE
+> argument is output as "a + b * i"
+         where a and b are the real and imaginary part respectively,
+         output in floating point decimal notation.
+      </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>v</DT
+><DD
+><P
+>         The <CODE
+CLASS="PARAMETER"
+>double</CODE
+> element in a vector is output in
+         floating point decimal notation, with a fixed number of decimals.
+         By default this conversion specifier is equivalent to .3f.
+         It can be changed with the <CODE
+CLASS="FUNCTION"
+>it_set_vec_default_fmt</CODE
+> function.
+      </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>m</DT
+><DD
+><P
+>         The <CODE
+CLASS="PARAMETER"
+>double</CODE
+> element in a matrix is output in
+         floating point decimal notation, with a fixed number of decimals.
+         By default this conversion specifier is equivalent to 9.3g.
+         It can be changed with the <CODE
+CLASS="FUNCTION"
+>it_set_mat_default_fmt</CODE
+> function.
+      </P
+></DD
+></DL
+></DIV
+></DIV
+><H2
+>RETURN VALUE</H2
+><P
+>    None
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;io.h&gt;
+
+...
+
+ivec v = ivec_new_ones(10); /* a new vector with elements set to 1 */
+it_printf("$d
+", v);       /* output the vector */
+ivec_delete(v);             /* free the vector */
+cmat m = cmat_new_ones(3,4); /* create a new matrix of complex */
+it_printf("#z
+", m);        /* output the matrix */
+cmat_delete(m);              /* free the matrix */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-fprintf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-read-double.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_fprintf</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_read_double</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

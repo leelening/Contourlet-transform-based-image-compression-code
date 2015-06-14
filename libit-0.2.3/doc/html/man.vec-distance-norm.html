@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>vec_distance_norm</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="ivec_distance_mse"
+HREF="man.ivec-distance-mse.html"><LINK
+REL="NEXT"
+TITLE="bvec_ber"
+HREF="man.bvec-ber.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.ivec-distance-mse.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.bvec-ber.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.VEC-DISTANCE-NORM"
+></A
+>vec_distance_norm</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN891"
+></A
+><H2
+>Name</H2
+>vec_distance_norm&nbsp;--&nbsp;norm distance between two vectors</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN894"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN895"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/distance.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double vec_distance_norm</CODE
+>( vec v1, vec v2, double norm
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the distance between the two vectors <CODE
+CLASS="PARAMETER"
+>v1</CODE
+> and <CODE
+CLASS="PARAMETER"
+>v2</CODE
+> corresponding to the norm <CODE
+CLASS="PARAMETER"
+>norm</CODE
+>. This norm is defined as the sum of the absolute differences between elements of <CODE
+CLASS="PARAMETER"
+>v1</CODE
+> and the corresponding elements of <CODE
+CLASS="PARAMETER"
+>v2</CODE
+> raised to the power of <CODE
+CLASS="PARAMETER"
+>norm</CODE
+>. The <CODE
+CLASS="PARAMETER"
+>norm</CODE
+> argument is usually set to 2, which corresponds to the classical Euclidean norm.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The distance derived from the norm
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;distance.h&gt;
+
+...
+
+vec v1 = vec_new_string("6.5 6.2 3.5");
+vec v2 = vec_new_string("6.5 6.2 3.5");
+/* compute the Euclidean distance between the two vectors */
+double distance = vec_distance_norm(v1, v2, 2);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.ivec-distance-mse.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.bvec-ber.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ivec_distance_mse</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>bvec_ber</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

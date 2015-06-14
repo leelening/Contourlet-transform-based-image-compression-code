@@ -1,0 +1,609 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Vectors</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Basic Types"
+HREF="basictypes.html"><LINK
+REL="PREVIOUS"
+TITLE="Basic Types"
+HREF="basictypes.html"><LINK
+REL="NEXT"
+TITLE="Matrices"
+HREF="matrices.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="basictypes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 1. Basic Types</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="matrices.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="VECTORS"
+>1.2. Vectors</A
+></H1
+><P
+>     The vector type (Vec) allows to define vectors of elements of any type.
+     These generic vectors are created with the 
+     Vec_new
+     macro by specifying the type of element it contains and its initial
+     length. For people familiar with C++, this is similar to a templated type.
+     Vectors are used like C arrays, except their length is stored internally
+     and can be changed dynamically. A vector length is accessed through the
+     Vec_length
+     macro and set using
+     Vec_set_length. Vectors are destroyed with the
+     <A
+HREF="man.-vec-delete.html"
+>Vec_delete</A
+>
+     call, releasing the allocated resources.
+  </P
+><P
+>     As vectors are actually pointers to their elements, they can be used in
+     any place where a pointer type to the element is needed. The element size
+     (in bytes) of a vector is also accessible using the Vec_element_size
+     macro. This allows for a great flexibility due to compatibility with
+     existing C functions. For example to read the content of a vector from a 
+     binary file, the following code can be used:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="GENERIC-VEC-EXAMPLE"
+></A
+><P
+><B
+>Example 1-2. Vector example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>Vec v = Vec_new(float, 10); /* create a new vector of 10 float elements */
+/* fill the vector with 10 floats read from a binary file identified by 'fd' */
+fread(v, Vec_element_size(v), Vec_length(v), fd); 
+Vec_delete(v);              /* release the resources used by v */
+  </PRE
+></DIV
+><P
+>      For practical reasons and ease of use, this generic Vec type is derived
+      into four commonly used vector types:
+  </P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN129"
+></A
+><P
+><B
+>Table 1-3. Vector types</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Vector type</TH
+><TH
+>Element type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>vec</TD
+><TD
+>double</TD
+></TR
+><TR
+><TD
+>ivec</TD
+><TD
+>int</TD
+></TR
+><TR
+><TD
+>bvec</TD
+><TD
+>unsigned char</TD
+></TR
+><TR
+><TD
+>cvec</TD
+><TD
+>cplx</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>    Vector elements are accessed with the bracket operator [] starting at index 0. For instance, v[3] corresponds to the fourth element of vector v.  Functions requiring an index can be given the 'end' keyword instead, which corresponds to the last index of the vector to process.
+  </P
+><P
+>    Each vector type has specific functions to handle it, which perform some additional type checking. Therefore, although the length of a ivec can be retrieved using the Vec_length macro, the ivec_length function is prefered. These specific functions being defined for all types (i.e. vec_length, ivec_length, bvec_length, cvec_length), only the vec_ variants will be documented here when there is no ambiguity on how to derive the ivec_, bvec_ and cvec_ variants.
+  </P
+><P
+>    Vectors can be copied using the <A
+HREF="man.vec-clone.html"
+>vec_clone()</A
+> function. This will create a new copy of the vector, properly allocated and with each element copied independently. Using the equal sign (=) will <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> copy a vector, rather create a reference to it (modifying one will modify the other). Similarly, testing vectors for equality is done using the <A
+HREF="man.vec-eq.html"
+>vec_eq()</A
+> function instead of the == operator.  Also, many functions, such as <A
+HREF="man.vec-set-length.html"
+>vec_set_length()</A
+> which sets the length of a vector, may modify the actual value of the vector pointer. References created using the equal sign are then <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>invalid</I
+></SPAN
+>. Unless you know what you're doing, it is generally better never to use the equal sign on a vector and prefer the <A
+HREF="man.vec-clone.html"
+>vec_clone()</A
+> call instead.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.VEC-COPY"
+></A
+><P
+><B
+>Example 1-3. Copy, reference, and test for equality</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec v = vec_new(2);   /* create a new vector of 2 double elements */
+v[0] = 0.0;
+v[1] = 0.5;
+vec v1 = v;            /* create a reference to the vector v */
+vec v2 = vec_clone(v); /* create a copy of the vector v */
+if(v2 == v)            /* v2 == v ? false */
+  printf("same object\n");  
+if(vec_eq(v2,v))       /* content of v2 same as v ? true */
+  printf("same vector\n");  
+v1[0] = 1.0;
+v2[1] = 2.0;
+/* v contains [ 1.0 0.5 ] */
+/* v1 contains [ 1.0 0.5 ] (always the same as v) */
+/* v2 contains [ 0.0 2.0 ] */
+  </PRE
+></DIV
+><P
+>    Many common vectors are created easily. Constant vectors, containing the same element repeated over the length of the vector, are created using the <A
+HREF="man.vec-new-set.html"
+>vec_new_set()</A
+> call. In particular a vector full of zero or full of one is created using the <A
+HREF="man.vec-new-zeros.html"
+>vec_new_zeros()</A
+> or <A
+HREF="man.vec-new-ones.html"
+>vec_new_ones()</A
+> call respectively. Arithmetic series are created using the <A
+HREF="man.vec-new-arithm.html"
+>vec_new_arithm()</A
+> call. In particular the vector 0...N-1 is created with vec_new_range(N) and the vector 1...N is created using vec_new_1N(N). Similarly, the <A
+HREF="man.vec-new-geom.html"
+>vec_new_geom()</A
+> function allows to create geometric series. One particular case is the complex vectors of the roots of unity, created using <A
+HREF="man.cvec-new-unit-roots.html"
+>cvec_new_unit_roots()</A
+>.
+  </P
+><P
+>    Vectors can also be created directly from a string using <A
+HREF="man.vec-new-string.html"
+>vec_new_string()</A
+> by specifying the value of each element. For more information on parsing and initialization from strings see <A
+HREF="inputoutput.html"
+>Input/Output</A
+>.
+  </P
+><P
+>    All vector creation functions exist in a direct form allowing their use on an already created vector. They generally have the same function names, except for the '_new'. For example <A
+HREF="man.vec-set.html"
+>vec_set()</A
+> sets the value of an existing vector to a constant value.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.VEC-NEW-SERIES"
+></A
+><P
+><B
+>Example 1-4. Common vectors</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec v0 = vec_new_zeros(5);    /* create the vector [ 0 0 0 0 0 ]   */
+vec v1 = vec_new_ones(5);     /* create the vector [ 1 1 1 1 1 ]   */
+vec v2 = vec_new_set(2.3, 3); /* create the vector [ 2.3 2.3 2.3 ] */
+vec v3 = vec_new_1N(5);       /* create the vector [ 1 2 3 4 5 ]   */
+vec v4 = vec_new_range(5);    /* create the vector [ 0 1 2 3 4 ]   */
+vec v5 = vec_new_arithm(1.5, 0.1, 3); /* vector [ 1.5 1.6 1.7 ]    */
+vec v6 = vec_new_geom(1.5, 0.1, 3);   /* vector [ 1.5 0.15 0.015 ] */
+cvec v7 = cvec_new_unit_roots(4);     /* vector [ 1 i -1 -i ]      */
+vec v8 = vec_new_string("0.1 0.3 0.4"); /* vector [ 0.1 0.3 0.4 ]  */
+
+vec_ones(v3);                           /* set v3 to [ 1 1 1 1 1 ] */
+  </PRE
+></DIV
+><P
+>    Some common arithmetic operations are defined on vectors. Scalar operations include <A
+HREF="man.vec-incr.html"
+>vec_incr()</A
+>, <A
+HREF="man.vec-decr.html"
+>vec_decr()</A
+>, <A
+HREF="man.vec-mul-by.html"
+>vec_mul_by()</A
+> and <A
+HREF="man.vec-div-by.html"
+>vec_div_by()</A
+>, which respectively add, subtract, multiply or divide each element of a vector with a scalar element. Elementwise operations between vectors are performed using the <A
+HREF="man.vec-add.html"
+>vec_add()</A
+>, <A
+HREF="man.vec-sub.html"
+>vec_sub()</A
+>, <A
+HREF="man.vec-mul.html"
+>vec_mul()</A
+>, <A
+HREF="man.vec-div.html"
+>vec_div()</A
+> functions which respectively add, subtract, multiply or divide each element of a first vector with the corresponding element in the second vector. The inner product between two vectors is computed with <A
+HREF="man.vec-inner-product.html"
+>vec_inner_product()</A
+>. The concatenation of two vectors is performed using <A
+HREF="man.vec-concat.html"
+>vec_concat()</A
+>.</P
+><P
+>    Mathematical functions can be applied to vectors using the <A
+HREF="man.vec-apply-function.html"
+>vec_apply_function()</A
+> call. Functions are defined using the it_function_t type, for more information see <A
+HREF="functions.html"
+>Section 1.4</A
+>. Commonly used functions, such as the exponential, natural logarithm, base-10 logarithm, negation, square, absolute value, and power can be applied using the <A
+HREF="man.vec-exp.html"
+>vec_exp()</A
+>, <A
+HREF="man.vec-log.html"
+>vec_log()</A
+>, vec_log10(), <A
+HREF="man.vec-neg.html"
+>vec_neg()</A
+>, <A
+HREF="man.vec-sqr.html"
+>vec_sqr()</A
+>, <A
+HREF="man.vec-abs.html"
+>vec_abs()</A
+> or <A
+HREF="man.vec-pow.html"
+>vec_pow()</A
+> functions respectively.
+  </P
+><P
+>    The sum of a vector is computed using <A
+HREF="man.vec-sum.html"
+>vec_sum()</A
+>. It can be computed partially between two indexes using the <A
+HREF="man.vec-sum-between.html"
+>vec_sum_between()</A
+> call. Vectors are normalized using <A
+HREF="man.vec-normalize.html"
+>vec_normalize()</A
+>, resulting in a vector whose sum is equal to one. The mean of a vector is obtained using <A
+HREF="man.vec-mean.html"
+>vec_mean()</A
+>, while the median is obtained using <A
+HREF="man.vec-median.html"
+>vec_median()</A
+>. The unbiased variance of a vector can be computed with the <A
+HREF="man.vec-variance.html"
+>vec_variance()</A
+> function, whereas the norm of a vector is computed with <A
+HREF="man.vec-norm.html"
+>vec_norm()</A
+>.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.VEC-OPERATIONS"
+></A
+><P
+><B
+>Example 1-5. Operations on vectors</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec v1 = vec_new_string("0.3 0.5 1");  /* vector [ 0.3 0.5 1 ]     */
+vec v2 = vec_new_string("2 -0.7 1.5"); /* vector [ 2 -0.7 1.5 ]    */
+vec_incr(v1, 1.3);                     /* v1 = [ 1.6 1.8 2.3 ]     */
+vec_mul_by(v1, 2);                     /* v1 = [ 3.2 3.6 4.6 ]     */
+vec_add(v1, v2);                       /* v1 = [ 5.2 2.9 2.5 ]     */
+double p = vec_inner_product(v1, v2);  /* p = 12.12                */
+vec_range(v1);                         /* v1 = [ 1 2 3 ]           */
+vec_exp(v1);                           /* v1 = [ 2.72 7.39 20.09 ] */
+vec_log(v1);                           /* v1 = [ 1 2 3 ]           */
+vec_neg(v1);                           /* v1 = [ -1 -2 -3 ]        */
+vec_sqr(v1);                           /* v1 = [ 1 4 9 ]           */
+double s = vec_sum(v1);                /* s = 1+4+9 = 14           */
+s = vec_sum_between(v1, 1, end);       /* s =   4+9 = 13           */
+double mean = vec_mean(v1);            /* mean = 14/3 = 4.67       */
+double var = vec_variance(v1);         /* var = 16.33              */
+  </PRE
+></DIV
+><P
+>    Minimum and maximum values of a vector are obtained with the <A
+HREF="man.vec-min.html"
+>vec_min()</A
+> and <A
+HREF="man.vec-max.html"
+>vec_max()</A
+> calls respectively. The index in the vector where the minimum or maximum occurs (argmin, argmax) are obtained with the <A
+HREF="man.vec-min-index.html"
+>vec_min_index()</A
+> and <A
+HREF="man.vec-max-index.html"
+>vec_max_index()</A
+> functions.
+  </P
+><P
+>    Vectors are sorted in increasing order using the <A
+HREF="man.vec-qsort.html"
+>vec_qsort()</A
+> call. A vector containing the indexes corresponding to increasing values of the input vector can be created using the <A
+HREF="man.vec-qsort-index.html"
+>vec_qsort_index()</A
+> function. Since complex numbers are unordered, these functions are not defined for cvec. The current algorithm for sorting is the quick sort. Vectors can be reversed using <A
+HREF="man.vec-reverse.html"
+>vec_reverse()</A
+> function, the first element being exchanged with the last element and so forth. The number of occurences of a value in a vector is available through the <A
+HREF="man.vec-count.html"
+>vec_count()</A
+> function. Searching is performed using vec_find or <A
+HREF="man.vec-find-first.html"
+>vec_find_first()</A
+> which respectively return a vector of indexes of the search value or the index of the first occurence of the value. Similarly, <A
+HREF="man.vec-replace.html"
+>vec_replace()</A
+> replaces each occurences of a given value with another, returning the vector of indexes of the replaced positions. The <A
+HREF="man.vec-index-by.html"
+>vec_index_by()</A
+> functions allows to shuffle a vector by creating a new vectors composed of elements of the input vector indexed by the index vector. Note that indexes can appear more than once in the indexing vector. This function is particularly useful for interleaving or dequantizing.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.VEC-SORTING"
+></A
+><P
+><B
+>Example 1-6. Sorting vectors</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec v = vec_new_string("2 -0.7 1.5");  /* vector [ 2 -0.7 1.5 ]         */
+double min = vec_min(v);               /* min = -0.7                    */
+int idx = vec_min_index(v);            /* idx = 1                       */
+ivec iv = vec_qsort_index(v);          /* iv = [ 1 2 0 ]                */
+vec_qsort(v);                          /* v = [ -0.7 1.5 2 ]            */
+vec_reverse(v);                        /* v = [ 2 1.5 -0.7 ]            */
+iv = vec_replace(v, 1.5, -1);          /* v = [ 2 -1 -0.7 ]; iv = [ 1 ] */
+iv = ivec_new_string("1 1 2");         /* iv = [ 1 1 2 ] */
+v = vec_index_by(v, iv);               /* v = [ -1 -1 -0.7 ] */
+  </PRE
+></DIV
+><P
+>    Stacks are implemented efficiently using vectors. A new element is added on top the stack using the <A
+HREF="man.vec-push.html"
+>vec_push()</A
+> call and removed using the <A
+HREF="man.vec-pop.html"
+>vec_pop()</A
+> call. The topmost element is accessed using <A
+HREF="man.vec-head.html"
+>vec_head()</A
+>. Due to the use of geometric reallocation, this operation is implemented in O(N) time, where N is the size of the vector. Similarly, vectors can be used as lists using the <A
+HREF="man.vec-ins.html"
+>vec_ins()</A
+> call to insert an element and <A
+HREF="man.vec-del.html"
+>vec_del()</A
+> call to delete an element. Insertion and deletion are in O(N) time, with access in O(1) time. Finally, vectors can be used to represent sets, where a value is appearing only once in the vector. The <A
+HREF="man.vec-unique.html"
+>vec_unique()</A
+> call creates a vector with exactly one element for each value present in the input vector. The <A
+HREF="man.vec-union.html"
+>vec_union()</A
+> and <A
+HREF="man.vec-intersection.html"
+>vec_intersection()</A
+> call create a vector where each element is a value appearing exactly once in either or both vectors respectively.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="EXAMPLE.VEC-STACKS"
+></A
+><P
+><B
+>Example 1-7. Stacks, lists and sets</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec v = vec_new(0);             /* empty vector */
+vec_push(v, 1.0);               /* v = [ 1.0 ]             */
+vec_push(v, 1.1);               /* v = [ 1.0 1.1 ]         */
+vec_push(v, 3.0);               /* v = [ 1.0 1.1 3.0 ]     */
+double h = vec_head(v);         /* h = 3.0                 */
+vec_pop(v);                     /* v = [ 1.0 1.1 ]         */
+vec_ins(v, 1, 2.0);             /* v = [ 1.0 2.0 1.1 ]     */
+vec_ins(v, 3, 2.0);             /* v = [ 1.0 2.0 1.1 2.0 ] */
+vec_del(v, 2);                  /* v = [ 1.0 2.0 2.0 ]     */
+vec s = vec_unique(v);          /* s = [ 1.0 2.0 ]         */
+v = vec_new_string("0.8 1.0");  /* v = [ 0.8 1.0 ]         */
+vec u = vec_union(s, v);        /* u = [ 0.8 1.0 2.0 ]     */
+vec i = vec_intersection(s, v); /* i = [ 1.0 ]             */
+  </PRE
+></DIV
+><P
+>    Vectors are displayed using the <A
+HREF="man.it-printf.html"
+>it_printf()</A
+> family of functions. For more information on how to display the new types see <A
+HREF="inputoutput.html"
+>Input/Output</A
+>.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="VEC-PRINT"
+></A
+><P
+><B
+>Example 1-8. Printing</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>cvec v = cvec_new_unit_roots(4);       /* vector [ 1 i -1 -i ]      */
+it_printf("$z\n", v); /* [1.000000 +1.000000i -1.000000 -1.000000i] */
+  </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="basictypes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="matrices.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Basic Types</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="basictypes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Matrices</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_wavelet_split</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_wavelet_new"
+HREF="man.it-wavelet-new.html"><LINK
+REL="NEXT"
+TITLE="it_dwt2D"
+HREF="man.it-dwt2d.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet-new.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-dwt2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-WAVELET-SPLIT"
+></A
+>it_wavelet_split</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN20949"
+></A
+><H2
+>Name</H2
+>it_wavelet_split&nbsp;--&nbsp;split the vector of wavelet coefficients</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN20952"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN20953"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>vec * it_wavelet_split</CODE
+>( vec wav, int nb_levels
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function splits the vector of wavelet coefficients <CODE
+CLASS="PARAMETER"
+>wav</CODE
+> to a set of subband vectors. The number of levels <CODE
+CLASS="PARAMETER"
+>nb_level</CODE
+> must be given. The returned array of vectors is an array of <CODE
+CLASS="PARAMETER"
+>nb_level</CODE
+>+1 vectors with the first vector representing the low-frequency subband.
+  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet.h&gt;
+
+...
+
+vec vt = it_dwt(v, 5); /* perform a wavelet decomposition on 5 levels);
+vec *subbands = it_wavelet_split(vt, 5); /* split the transformed vector */
+vec_zero(subbands[0]); /* clear the low pass band */
+vt = it_wavelet_merge(vt, 5); /* merge the subbands to the transformed vector */
+v = it_idwt(vt, 5);     /* recompose the vector 'v' */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-wavelet-new.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-dwt2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_wavelet_new</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_dwt2D</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

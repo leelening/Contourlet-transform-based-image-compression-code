@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>source_estim_GG_from_histo</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="is_valid_pdf"
+HREF="man.is-valid-pdf.html"><LINK
+REL="NEXT"
+TITLE="source_pdf_GG"
+HREF="man.source-pdf-gg.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.is-valid-pdf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.source-pdf-gg.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.SOURCE-ESTIM-GG-FROM-HISTO"
+></A
+>source_estim_GG_from_histo</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN11391"
+></A
+><H2
+>Name</H2
+>source_estim_GG_from_histo&nbsp;--&nbsp;estimate the parameters of a generalized Gaussian</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN11394"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN11395"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/source_fit.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void source_estim_GG_from_histo</CODE
+>( vec pdf, vec symbols, double * alpha, double * beta
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>This function estimates the parameters of a generalized Gaussian distribution (GGD) by minimizing the Kullback-Leibler distance between the estimated GGD and the histogram <CODE
+CLASS="PARAMETER"
+>pdf</CODE
+>. The values associated to each symbol of the alphabet are given in <CODE
+CLASS="PARAMETER"
+>symbols</CODE
+>. Therefore, <CODE
+CLASS="PARAMETER"
+>symbols</CODE
+> has the same size as <CODE
+CLASS="PARAMETER"
+>pdf</CODE
+>, which must sum to one. The estimated alpha and beta parameters of the GGD are returned at the address pointed by the <CODE
+CLASS="PARAMETER"
+>alpha</CODE
+> and <CODE
+CLASS="PARAMETER"
+>beta</CODE
+> arguments. These arguments are also used as the initial GGD parameters for the minimization.</P
+><P
+>The generalized Gaussian distribution is defined as GGD(x) = exp(-(|x| / <CODE
+CLASS="PARAMETER"
+>alpha</CODE
+>)**<CODE
+CLASS="PARAMETER"
+>beta</CODE
+>).</P
+><H2
+>RETURN VALUE</H2
+><P
+>    
+   </P
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.is-valid-pdf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.source-pdf-gg.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>is_valid_pdf</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>source_pdf_GG</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

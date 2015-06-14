@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>imat_new_alloc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="mat_new_alloc"
+HREF="man.mat-new-alloc.html"><LINK
+REL="NEXT"
+TITLE="bmat_new_alloc"
+HREF="man.bmat-new-alloc.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.mat-new-alloc.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.bmat-new-alloc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IMAT-NEW-ALLOC"
+></A
+>imat_new_alloc</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN4854"
+></A
+><H2
+>Name</H2
+>imat_new_alloc&nbsp;--&nbsp;create a matrix and specify the maximum dimensions</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN4857"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN4858"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/mat.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>imat imat_new_alloc</CODE
+>( size_t h, size_t w, size_t hmax, size_t wmax
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>imat_new_alloc</CODE
+> creates a matrix of size <CODE
+CLASS="PARAMETER"
+>h</CODE
+>x<CODE
+CLASS="PARAMETER"
+>w</CODE
+>, but allocate the memory for a matrix of size <CODE
+CLASS="PARAMETER"
+>hmax</CODE
+>x<CODE
+CLASS="PARAMETER"
+>wmax</CODE
+>. This will allow the matrix to grow up to this size without any re-allocation of the matrix.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The new matrix
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;mat.h&gt;
+
+...
+
+imat m = imat_new_alloc (1,2,3,4);   /* m of size 1x2  */
+
+int h  = imat_height (m);            /* h = 1          */
+int w  = imat_width (m);             /* w = 2          */
+int hm = imat_height_max (m);        /* hm = 3         */
+int wm = imat_width_max (m);         /* wm = 4         */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.mat-new-alloc.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.bmat-new-alloc.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mat_new_alloc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>bmat_new_alloc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,19 @@
+function a=PSNR(X,XX)
+
+
+M=double(X);
+N=double(XX);
+
+sum1=0;
+  for i=2:4
+      for m=1:32
+          for n=1:32
+          sum=sum+(M{1,2}{1,i}(m,n)-N{1,2}{1,i}(m,n))*M{1,2}{1,i}(m,n)-N{1,2}{1,i}(m,n)));
+      end
+  end
+ end  
+  MSE1=double(sum1/(32*32));
+  
+  a=10*log10((255*255)/MSE);
+  
+          

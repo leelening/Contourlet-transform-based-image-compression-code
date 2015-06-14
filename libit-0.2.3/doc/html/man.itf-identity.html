@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>itf_identity</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="ivec_to_imat"
+HREF="man.ivec-to-imat.html"><LINK
+REL="NEXT"
+TITLE="itf_differentiate"
+HREF="man.itf-differentiate.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.ivec-to-imat.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.itf-differentiate.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.ITF-IDENTITY"
+></A
+>itf_identity</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN9483"
+></A
+><H2
+>Name</H2
+>itf_identity&nbsp;--&nbsp;the identity function</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN9486"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN9487"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/math.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double itf_identity</CODE
+>( double x, void *args
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The <CODE
+CLASS="FUNCTION"
+>itf_identity</CODE
+> function is a very simple it_function which returns the value of the argument <CODE
+CLASS="PARAMETER"
+>x</CODE
+>. It does not have any parameters, therefore, when called directly, <CODE
+CLASS="PARAMETER"
+>args</CODE
+> should be set to NULL. </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The same value as 'x'
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;math.h&gt;
+
+...
+
+/* this simply returns 2.0 and assign it to x */
+double x = itf_identity(2.0, NULL);
+
+/* create the function x-&gt;x^2 by multiplying two identity functions */
+it_function_args(itf_mul) mul_args;
+
+/* multiply the identity function with itself */
+mul_args.f = itf_identity;
+mul_args.f_args = NULL;
+mul_args.g = itf_identity;
+mul_args.g_args = NULL;
+
+/* compute the value of the product in 1.0 */
+itf_mul(1.0, &#38;mul_args);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.ivec-to-imat.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.itf-differentiate.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ivec_to_imat</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>itf_differentiate</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

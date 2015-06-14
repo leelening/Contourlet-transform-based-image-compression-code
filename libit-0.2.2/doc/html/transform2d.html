@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>2D Transforms</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Signal Processing Tools"
+HREF="signal.html"><LINK
+REL="PREVIOUS"
+TITLE="Signal Processing Tools"
+HREF="signal.html"><LINK
+REL="NEXT"
+TITLE="Objects"
+HREF="objects.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="signal.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. Signal Processing Tools</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="objects.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="TRANSFORM2D"
+>6.2. 2D Transforms</A
+></H1
+><P
+>    Similarly to the 1D case, 2D transforms share the same framework. They are objects taking a generic matrix (Mat) as input and output a transformed generic matrix, which may be of different type, width or height as the original matrix (e.g. for redundant transforms). Declaring new 2D transforms is done by inheriting from the it_transform2D_t object and defining the transform and inverse transform methods. For more details on objects and object oriented programming in C with libit, see <A
+HREF="objects.html"
+>Appendix A</A
+>. Here is the set of 2D transforms provided by libit (which is currently quite limited too).
+  </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SEPARABLE2D"
+>6.2.1. Generic Separable 2D Transform</A
+></H2
+><P
+>    A generic 2D separable transform is provided. This transform takes a 1D transform and applies it on the row, then the columns of the input matrix. Here is an example on how to perform a 2D Fourier transform by combining the 1D Fourier transform with the separable transform.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SIGNAL.TRAN2D.DWT.EXAMPLE-SEPARABLE"
+></A
+><P
+><B
+>Example 6-3. Separable transform example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* create a Fourier transform */
+it_fourier_t fourier = <A
+HREF="man.it-fourier-new.html"
+>it_fourier_new()</A
+>;
+/* create a separable transform out of it */
+it_separable2D_t fourier2D = it_separable2D_new(fourier);
+
+/* apply the 2D discrete Fourier transform on a matrix */
+cmat mt = (cmat) it_transform2D(fourier2D, (Mat) m);
+
+/* inverse the 2D discrete Fourier transform */
+cmat mr = (cmat) it_itransform2D(fourier2D, (Mat) mt);</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="WAVELETS2D"
+>6.2.2. Separable 2D Wavelets</A
+></H2
+><P
+>     Bidimensional separable wavelet decomposition is provided using the lifting implementation. The lifting procedure guarantees perfect reconstruction and provides an efficient way of filtering. Currently only the 9/7 and 5/3 wavelets are provided.</P
+><P
+>     A new 2D wavelet transform is created from the lifting steps, the width and height of the image to transform and the number of decomposition levels. As a particular kind of 2D transform, transform and inverse transform are provided using the it_transform2D() and it_itransform2D() calls. Here is an example using the 9/7 wavelet:</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SIGPROC-EXAMPLE-WAVELET2D"
+></A
+><P
+><B
+>Example 6-4. 2D wavelet transform example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* read your favorite version of lena */
+  mat m = mat_pgm_read("lena.pgm");
+
+  /* create a new 9/7 wavelet object for a decomposition on 5 levels */
+  it_wavelet2D_t *wavelet2D = it_wavelet2D_new(it_wavelet_lifting_97, 5);
+
+  /* transform the image */
+  mat mt = it_transform2D(wavelet2D, m);
+
+  /* reconstruct the image */
+  mat mr = it_itransform2D(wavelet2D, mt);
+  </PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="signal.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="objects.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Signal Processing Tools</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="signal.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Objects</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

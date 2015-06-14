@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_dwt</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="vlc_is_node"
+HREF="man.vlc-is-node.html"><LINK
+REL="NEXT"
+TITLE="it_idwt"
+HREF="man.it-idwt.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.vlc-is-node.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-idwt.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-DWT"
+></A
+>it_dwt</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN20821"
+></A
+><H2
+>Name</H2
+>it_dwt&nbsp;--&nbsp;discrete wavelet transform</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN20824"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN20825"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>vec it_dwt</CODE
+>( vec v, it_wavelet_lifting_t const *lifting, int levels
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the <CODE
+CLASS="PARAMETER"
+>levels</CODE
+>-level discrete wavelet transform of <CODE
+CLASS="PARAMETER"
+>v</CODE
+> using the lifting steps described by <CODE
+CLASS="PARAMETER"
+>lifting</CODE
+>. Currently the lifting steps for the usual 5/3 and 9/7 biorthogonal filters are predefined as "it_wavelet_lifting_53" and "it_wavelet_lifting_97", although you can provide your own lifting steps.
+This transform is critically sampled, therefore the output vector of coefficients has the same size as the input vector <CODE
+CLASS="PARAMETER"
+>v</CODE
+>.
+  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The set of wavelet coefficients
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet.h&gt;
+
+...
+
+/* analyse a signal 'v' using a 5-level 9/7 wavelet decomposition */
+vec vt = it_dwt(v, it_wavelet_lifting_97, 5);
+
+/* clear the high subband */
+vec_set_between(vt, (vec_length(v) + 1) / 2, end, 0);
+
+/* recompose the vector by inverse transform */
+vec vr = it_idwt(vt, it_wavelet_lifting_97, 5);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.vlc-is-node.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-idwt.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>vlc_is_node</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_idwt</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>itf_mul</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="itf_expectation"
+HREF="man.itf-expectation.html"><LINK
+REL="NEXT"
+TITLE="itf_integrate"
+HREF="man.itf-integrate.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.itf-expectation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.itf-integrate.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.ITF-MUL"
+></A
+>itf_mul</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN9604"
+></A
+><H2
+>Name</H2
+>itf_mul&nbsp;--&nbsp;multiplication operator</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN9607"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN9608"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/math.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double itf_mul</CODE
+>( double x, it_function_args(itf_sum) *args
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>The function <CODE
+CLASS="FUNCTION"
+>itf_mul</CODE
+> defines the product of two it_function_t. The product of the functions is obtained by computing the value of each function at position <CODE
+CLASS="PARAMETER"
+>x</CODE
+> and returning their product. The product operator has the following parameters, passed through the <CODE
+CLASS="PARAMETER"
+>args</CODE
+> argument.</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN9620"
+></A
+><H3
+>Function parameters</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>f</DT
+><DD
+><P
+>         The first function to multiply.
+      </P
+></DD
+><DT
+>f_args</DT
+><DD
+><P
+>         The parameters of the first function to multiply.
+      </P
+></DD
+><DT
+>g</DT
+><DD
+><P
+>         The second function to multiply.
+      </P
+></DD
+><DT
+>g_args</DT
+><DD
+><P
+>         The parameters of the second function to multiply.
+      </P
+></DD
+></DL
+></DIV
+></DIV
+><H2
+>RETURN VALUE</H2
+><P
+>    The product for a given value 'x'
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;math.h&gt;
+
+...
+
+/* declare the integration parameters */
+it_function_args(itf_mul) mul_args;
+/* multiply the identity function with itself */
+mul_args.f = itf_identity;
+mul_args.f_args = NULL;
+mul_args.g = itf_identity;
+mul_args.g_args = NULL;
+/* compute the value of the product in 1.0 */
+itf_mul(1.0, &#38;mul_args);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.itf-expectation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.itf-integrate.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>itf_expectation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>itf_integrate</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

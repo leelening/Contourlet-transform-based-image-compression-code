@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Basic Types</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Programming with libit"
+HREF="programming.html"><LINK
+REL="PREVIOUS"
+TITLE="Programming with libit"
+HREF="programming.html"><LINK
+REL="NEXT"
+TITLE="Vectors"
+HREF="vectors.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="programming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="vectors.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="BASICTYPES"
+></A
+>Chapter 1. Basic Types</H1
+><P
+>      Libit defines some new basic types to extend the standard C 
+      types (char, int, double, float). They are used to handle
+      some commonly used mathematical objects such as:
+      <P
+></P
+><UL
+><LI
+><P
+>        complex numbers (cplx)
+        </P
+></LI
+><LI
+><P
+>        vectors (Vec, vec, ivec, bvec, cvec)
+        </P
+></LI
+><LI
+><P
+>        matrices (Mat, mat, imat, bmat, cmat)
+        </P
+></LI
+><LI
+><P
+>        functions (it_function_t, it_ifunction_t)
+        </P
+></LI
+></UL
+>
+  </P
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="COMPLEXS"
+>1.1. Complex numbers</A
+></H1
+><P
+>      A new type cplx is used to represents complex numbers. For a given
+      complex number c, the real part is accessed using creal(c), while the
+      imaginary part is accessed with cimag(c). Both the real and imaginary
+      parts are stored as double precision floating point numbers (double).
+  </P
+><P
+>     During declaration, a complex number can be initialized using the cplx
+     macro. The first argument of the macro is the real part, the second is the
+     imaginary part.
+  </P
+><P
+>     Basic operations are defined on complex numbers such as the addition
+     (cadd), the subtraction (csub), the multiplication (cmul), and the
+     division (cdiv). The inversion (cinv) can also be used instead of
+     dividing one by a complex. The module of a complex is obtained using
+     cnorm. To test a complex for equality with another complex, the ceq macro
+     is defined, as the == operator is not available.
+  </P
+><P
+>  All operations available on complex numbers are summarized in the following table, where a,b are reals and x,y,z are complexs:
+  </P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN57"
+></A
+><P
+><B
+>Table 1-1. Complex operations</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Operation</TH
+><TH
+>Expression</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>z = cplx(a,b)</TD
+><TD
+>z = a + i b</TD
+></TR
+><TR
+><TD
+>a = creal(x)</TD
+><TD
+>a = Re(x)</TD
+></TR
+><TR
+><TD
+>b = cimag(x)</TD
+><TD
+>b = Im(x)</TD
+></TR
+><TR
+><TD
+>z = cadd(x,y)</TD
+><TD
+>z = x + y</TD
+></TR
+><TR
+><TD
+>z = csub(x,y)</TD
+><TD
+>z = x - y</TD
+></TR
+><TR
+><TD
+>z = cmul(x,y)</TD
+><TD
+>z = x * y</TD
+></TR
+><TR
+><TD
+>z = cdiv(x,y)</TD
+><TD
+>z = x / y</TD
+></TR
+><TR
+><TD
+>z = cinv(x)</TD
+><TD
+>z = 1 / x</TD
+></TR
+><TR
+><TD
+>z = cconj(x)</TD
+><TD
+>z = x*</TD
+></TR
+><TR
+><TD
+>z = cnorm(x)</TD
+><TD
+>z = |x|</TD
+></TR
+><TR
+><TD
+>ceq(x,y)</TD
+><TD
+>x == y</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>     The following commonly used constant complex numbers are also defined:
+  </P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN99"
+></A
+><P
+><B
+>Table 1-2. Complex constants</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Identifier</TH
+><TH
+>Value</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>cplx_0</TD
+><TD
+>0</TD
+></TR
+><TR
+><TD
+>cplx_1</TD
+><TD
+>1</TD
+></TR
+><TR
+><TD
+>cplx_I</TD
+><TD
+>i</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>    The following example illustrates how to declare and use complex numbers:
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="CPLX-EXAMPLE"
+></A
+><P
+><B
+>Example 1-1. Complex number example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  cplx x = cplx(1.5, 2.5), y = cplx(1.7, 2.1), z;
+
+  z = cmul(x, y); /* multiply x by y and store the result in z */
+  z = cconj(x);   /* conjugate of x */</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="vectors.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Programming with libit</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Vectors</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Channels</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Channel Coding Tools"
+HREF="channel.html"><LINK
+REL="PREVIOUS"
+TITLE="Channel Coding Tools"
+HREF="channel.html"><LINK
+REL="NEXT"
+TITLE="Convolutional Codes"
+HREF="convcodes.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="channel.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Channel Coding Tools</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="convcodes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CHANNELS"
+>5.2. Channels</A
+></H1
+><P
+>     Channels are used to simulate transmission noise. Currently the additive white gaussian noise (AWGN) and binary symetric (BSC) channels are defined.
+  </P
+><P
+>     The binary symetric channel is used simply by knowing the cross-over probablity, that is the probability for a bit to be inverted during transmission. To simulate transmission over a BSC channel, use the <A
+HREF="man.channel-bsc.html"
+>channel_bsc()</A
+> function.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="CHANNEL-EXAMPLE-BSC"
+></A
+><P
+><B
+>Example 5-2. BSC channel example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* generate a random message of ten equiprobable bits */
+  bvec message = source_binary(10, 0.5);
+
+  /* send over a BSC channel of cross-over probability 0.1 */ 
+  bvec received = channel_bsc(message, 0.1);
+  </PRE
+></DIV
+><P
+>     The AWGN channel is parametrized by the standard deviation of the additive white noise added during transmission. To simulate transmission over an AWGN channel, use the <A
+HREF="man.channel-awgn.html"
+>channel_awgn()</A
+> function.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="CHANNEL-EXAMPLE-AWGN"
+></A
+><P
+><B
+>Example 5-3. AWGN channel example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* generate a random message of ten equiprobable bits */
+  bvec message = source_binary(10, 0.5);
+  /* modulate the message using BPSK (0 =&#62; -1, 1 =&#62; +1) */
+  vec modulated = modulate_bpsk(output);
+  /* send over an AWGN channel of standard deviation 0.5 */ 
+  vec received = channel_awgn(message, 0.5);
+  </PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="channel.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="convcodes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Channel Coding Tools</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="channel.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Convolutional Codes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

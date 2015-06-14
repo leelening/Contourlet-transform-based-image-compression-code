@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Input/Output</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Programming with libit"
+HREF="programming.html"><LINK
+REL="PREVIOUS"
+TITLE="Functions"
+HREF="functions.html"><LINK
+REL="NEXT"
+TITLE="Image reading and writing"
+HREF="pnm.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pnm.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="INPUTOUTPUT"
+></A
+>Chapter 2. Input/Output</H1
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ITPRINTF"
+>2.1. Printing vector, matrices and complex numbers</A
+></H1
+><P
+>      libit provides a new set of printf functions to handle the vector and
+      matrix types easily. Since the it_printf function is based on the C
+      printf function, it supports all the basic types (%c,%d,%s,...) and
+      modifiers (%.03f). The it_fprintf and it_vfprintf functions are also
+      provided as extensions to the fprintf and vfprintf functions.
+  </P
+><P
+>      An additional complex type (cplx) is defined in libit and can be printed
+      using letter z. Complex numbers are printed as a pair of floats in the 
+      form 'a + b * i' and therefore accept the same modifiers as floats.
+  </P
+><P
+>      Vectors of any type can be printed by substituting the character '$' to
+      the character '%' in the format string. For example a vector of complex
+      (cvec) is printed by using the format string "$z". Vectors are printed as
+      a sequence of elements, enclosed in brackets. Modifiers in the vector 
+      format string are applied to all printed elements of the vector. For 
+      example "$.3f" prints a vector of floats all limited to 3 decimals.
+      Additionally, there is a default type 'v' to print floats similarly to
+      MATLAB (tm). The default is to limit floats to 3 decimals. It can be 
+      changed using the <A
+HREF="man.it-set-vec-default-fmt.html"
+>it_set_vec_default_fmt()</A
+> call. In the default setting, 
+      "$v" is therefore equivalent to "$.3f".
+  </P
+><P
+>      Similarly, matrices are printed by substituting the character '#' to the
+      character '%' in the format string. Therefore, a matrix of double (mat),
+      is printed using the "#f" format string. Matrices are printed with each
+      row on a line, printed as a vector (with brackets), with all lines
+      enclosed in two additional brackets. All modifiers apply to the matrix
+      elements as in vectors. Besides, a default format 'm' is defined.
+      It is equivaled to "9.3f" in the default setting and can be changed with
+      the <A
+HREF="man.it-set-mat-default-fmt.html"
+>it_set_mat_default_fmt()</A
+> call.
+  </P
+><P
+>      In order to print the character '#' or '$', the format string "##" or "$$" can be used respectively.
+  </P
+><P
+>      Here is an example of the various extensions to the printf call.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="ITPRINTF-EXAMPLE"
+></A
+><P
+><B
+>Example 2-1. Printing example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec v = vec_new_ones(5);     /* create a new vector of 5 elements set to 1 */
+it_printf("$v\n", v);        /* print this vector as
+                                  [ 1.000 1.000 1.000 1.000 1.000 ]        */
+
+mat m = mat_new_zeros(2, 3); /* create a new matrix of 2 rows and 3 columns */
+it_printf("#m\n", m);        /* print the matrix as 
+                                  [[    0.000    0.000    0.000]
+                                   [    0.000    0.000    0.000]]           */
+
+cplx c = cplx(2, 3);         /* create the complex number 2 + 3i */
+it_printf("%z\n", c);        /* print the complex as
+                                  2.000000 + 3.000000 * i                   */
+  </PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pnm.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Image reading and writing</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

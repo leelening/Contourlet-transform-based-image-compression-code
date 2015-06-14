@@ -1,0 +1,6 @@
+file name = ../data/test.pgm
+pnm type = 5
+708x402 -> maxval=255
+comments=
+height(m) = 402	maxheight(m) = 402
+width(m) = 708	maxwidth(m) = 708

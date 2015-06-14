@@ -1,0 +1,49 @@
+This file lists the tasks that should be done 
+___________________________________________________________
+
+
+
+No. Task                                                       
+
+001 Documentation for all implemented functions             	
+    - huge work to do there
+
+002 Factorization of FIR filters into lifting steps(wavelet)	
+
+003 Fast Fourier instead of DFT for vectors of size r*2^q  -> OK    
+
+004 Discrete (Co)Sine Transform                                 
+
+005 Shannon VLC construction method                             
+
+006 Quasi-arithmetic coder                                      
+
+008 Channel Emitter/Receiver (emission of waves from 
+    modulated vectors, receiving with phase lock loop)          
+
+009 QPSK modulation                                             
+
+010 Rayleigh channel                                            
+
+011 Cryptographic tools (*)                                     
+
+012 Watermarking tools (*)                                         
+
+013 Recursive systematic convolutional codes                    
+
+014 Turbo-Codes                                                 
+
+015 Reed-Solomon codes                                          
+
+016 Soft decoding of VLC codes (MAP and MPM) -> to be integrated                   
+
+017 RLE compression                                             
+
+018 Interpolating functions (vec -> it_function)                
+
+019 More vector functions (it_vfunction)                             
+
+022 Tunstall codes                                              
+
+(*): authors are not competent in this domain. 
+     External contributions are particularly welcome. 

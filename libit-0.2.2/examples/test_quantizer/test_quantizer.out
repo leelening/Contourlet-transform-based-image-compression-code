@@ -1,0 +1,61 @@
+[Quantizer]
+	dequantize(0) = 0.001953
+	step size: 0.003906
+	cardinal: 256
+	index range: [0, 255]
+quantizing
+dequantizing
+used range: [ 0, 255 ]
+entropy = 7.980069
+SNR = 48.159941 dB
+quantizing
+dequantizing
+used range: [ 0, 255 ]
+entropy = 7.980069
+SNR = 48.159941 dB
+quantize[1/257] = 0
+quantize[-1/257] = 0
+quantize[-1/255] = -1
+dequantize[-1] = -0.005859
+codebook = [-0.041 -0.037 -0.033 -0.029 -0.025 -0.021 -0.018 -0.014 -0.010 -0.006 0.000 0.006 0.010 0.014 0.018 0.021 0.025 0.029 0.033 0.037 0.041]
+[Quantizer]
+	dequantize(0) = 0.000000
+	step size: 0.003906
+	cardinal: 1024
+	index range: [0, 1023]
+quantizing
+dequantizing
+used range: [ 0, 255 ]
+entropy = 7.980069
+SNR = 48.099221 dB
+quantizing
+dequantizing
+used range: [ 1, 255 ]
+entropy = 7.971700
+SNR = 47.938447 dB
+quantizing
+dequantizing
+used range: [ 0, 255 ]
+entropy = 7.981400
+SNR = 49.446132 dB
+bound = 49.697730 dB
+quantizing
+dequantizing
+used range: [ 0, 3 ]
+entropy = 1.907769
+SNR = 9.181572 dB
+quantizing
+dequantizing
+used range: [ 0, 3 ]
+entropy = 1.721461
+SNR = 7.535942 dB
+quantizing
+dequantizing
+used range: [ 0, 15 ]
+entropy = 3.763765
+SNR = 20.114583 dB
+quantizing
+dequantizing
+used range: [ 0, 7 ]
+entropy = 2.841567
+SNR = 16.122448 dB

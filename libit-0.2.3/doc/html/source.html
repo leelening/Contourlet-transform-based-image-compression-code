@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Source Coding Tools</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Programming with libit"
+HREF="programming.html"><LINK
+REL="PREVIOUS"
+TITLE="Information measures"
+HREF="information.html"><LINK
+REL="NEXT"
+TITLE="Quantization"
+HREF="quantization.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="information.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="quantization.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="SOURCE"
+></A
+>Chapter 4. Source Coding Tools</H1
+><P
+>      Here is a description of the various source coding tools provided by the library.
+  </P
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="SOURCE.GENERATION"
+>4.1. Random source generation</A
+></H1
+><P
+>    The library provides various source generation functions. Memoryless sources include discrete sources such as a binary source, and a generic discrete source generator from the discrete p.d.f. (probability density function). Memoryless continous sources include a uniform source, a gaussian source and a generic continuous source generator from the continuous p.d.f.. No correlated source generators are provided yet.
+  </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SOURCE.GENERATION.RNG"
+>4.1.1. Random number generator</A
+></H2
+><P
+>    The pseudo-random number generator provided by libit is based on the MT19937 algorithm. It has a large period of 10^623 which is much better than the standard C function rand(). It should <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not</I
+></SPAN
+> be used for cryptography without proper secure hashing of the generated words. For more information on this generator, see  M. Matsumoto and T. Nishimura, "Mersenne Twister: A 623-Dimensionally Equidistributed Uniform Pseudo-Random Number Generator", ACM Transactions on Modeling and Computer Simulation, Vol. 8, No. 1, January 1998, pp 3--30.
+  </P
+><P
+>    A random number uniformly distributed in [0,1) is generated using <A
+HREF="man.it-rand.html"
+>it_rand()</A
+>, which returns a double. Note that the resolution of this number is actually 32-bit (therefore the term 'uniform' is not strictly correct). The random number generator need not be seeded if you want to produce the same sequence of pseudo-random numbers at each execution. Otherwise, the function <A
+HREF="man.it-seed.html"
+>it_seed()</A
+> is provided which initializes the random number generator with a given 32-bit seed. The generator can also be initialized from the system clock using <A
+HREF="man.it-randomize.html"
+>it_randomize()</A
+>. All these initialization procedures are <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not secure</I
+></SPAN
+> enough for any cryptographic use.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOURCE.GEN.SINGLE.EXAMPLE-UNIFORM"
+></A
+><P
+><B
+>Example 4-1. Random number generation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* initialize the pseudo-random generator from the system clock */
+it_randomize();
+
+/* generate a random number uniformly distributed in [0,1) */
+double s = <A
+HREF="man.it-rand.html"
+>it_rand()</A
+>;</PRE
+></DIV
+><P
+>    Non-uniform random number generation is provided in the form of a normal (Gaussian) generator and a generic generator from the probability distribution function. The normal generator returns a sample of a normally distributed source, that is a Gaussian source of zero mean and variance one. The method used for generating such a sample is the Box-Mueller method.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOURCE.GEN.SINGLE.EXAMPLE-NORMAL"
+></A
+><P
+><B
+>Example 4-2. Normally distributed random number generation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* initialize the pseudo-random generator from an integer */
+it_seed(0xdeadbeef);
+
+/* generate a normally distributed random number */
+double s = <A
+HREF="man.it-randn.html"
+>it_randn()</A
+>;</PRE
+></DIV
+><P
+>    The generic random number generator <A
+HREF="man.it-randpdf.html"
+>it_randpdf()</A
+> returns a sample of a source distributed according to the specified p.d.f.. This p.d.f. is defined using an it_function, assuming it is null outside a specified range and that it's maximum value is taken in zero. For more information on functions, see <A
+HREF="functions.html"
+>Section 1.4</A
+>. The method used to generate a sample is the acceptance-rejection method.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOURCE.GEN.SINGLE.EXAMPLE-GENERIC"
+></A
+><P
+><B
+>Example 4-3. Generic random number generation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/*-- probability density function declaration --*/
+
+/* parameters of the Laplacian distribution */
+it_function_args(laplacian_pdf) {
+  double lambda;
+};
+/* Laplacian probability density function definition (symmetric) */
+it_function(laplacian_pdf)
+{
+  double lambda = it_this-&#62;lambda;
+
+  return(1. / (2.*lambda) * exp(-fabs(x) / lambda));
+}
+
+/*-- generate a random number according to this p.d.f. --*/
+
+/* declare the Laplacian parameters */
+it_function_args(laplacian_pdf) laplacian_args;
+
+/* set the Laplacian parameter lambda to 1/sqrt(2) (variance equal to 1) */
+laplacian_args.lambda = 1/sqrt(2.0);
+
+/* generate laplacian source of 20 samples, assuming the distribution is */
+/* null outside the range [-10,10]                                       */
+double s = it_randpdf(-10, 10, laplacian_pdf, &#38;laplacian_args);</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SOURCE.GENERATION.DISCRETE"
+>4.1.2. Discrete sources</A
+></H2
+><P
+>    To generate a binary random vector, the function <A
+HREF="man.source-binary.html"
+>source_binary()</A
+> is provided. It creates a random bvec of zeroes and ones according to the probability of the zero bit. The generic memoryless discrete source generator takes a vector representing the probability of each symbol. The length of the vector corresponds to the number of discrete symbols, where each element represents the probability of drawing the corresponding symbol. Therefore, this p.d.f. vector must sum to one. The random vector is generated by drawing a uniform random number and taking the inverse of the cumulative density function.
+  </P
+><P
+>    The following example shows how to generate such random vectors.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOURCE.GEN.DISCRETE.EXAMPLE-GENERATION"
+></A
+><P
+><B
+>Example 4-4. Discrete random source generation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* generate a binary source of 20 samples with more zeroes than ones */
+bvec B = source_binary(20, 0.7);
+
+/* generate a 4-ary discrete source of 20 samples according to the p.d.f. */
+vec pdf = vec_new_string("0.5 0.3 0.1 0.1"); /* probability density function */
+S = source_memoryless(20, pdf );</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="GENERATION.CONTINUOUS"
+>4.1.3. Continuous sources</A
+></H2
+><P
+> A vector of uniformly distributed samples taken in the range [a,b) is generated using <A
+HREF="man.source-uniform.html"
+>source_uniform()</A
+> and specifying the bounds <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>a</I
+></SPAN
+> and <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>b</I
+></SPAN
+>. Similarly, a vector of normally (Gaussian) distributed samples is generated using <A
+HREF="man.source-gaussian.html"
+>source_gaussian()</A
+> and specifying the mean and variance of the distribution. The following example shows how to generate these random vectors.</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOURCE.GEN.CONT.EXAMPLE-UNIFORMGAUSSIAN"
+></A
+><P
+><B
+>Example 4-5. Uniform and Gaussian random source generation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* generate a uniform source of 20 samples distributed in [0,1] */
+vec v = source_binary(20, 0, 1);
+
+/* generate a gaussian source of 20 samples with mean 0 and variance 1 */
+vec g = source_gaussian(20, 0, 1);</PRE
+></DIV
+><P
+>    Other memoryless random sources can be generated by providing the p.d.f as an it_function and calling <A
+HREF="man.source-pdf.html"
+>source_pdf()</A
+>. For more information on functions, see <A
+HREF="functions.html"
+>Section 1.4</A
+>. The pdf must be centered on its maximum value and bounds must be provided where the pdf may be assumed to be zero. The following example shows how to draw a random memoryless vector from a Laplacian distribution, using the function definition from <A
+HREF="source.html#SOURCE.GEN.SINGLE.EXAMPLE-GENERIC"
+>Example 4-3</A
+>.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOURCE.GEN.CONTINUOUS.EXAMPLE-GENERIC"
+></A
+><P
+><B
+>Example 4-6. Generic random source generation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* declare the Laplacian parameters */
+it_function_args(laplacian_pdf) laplacian_args;
+
+/* set the Laplacian parameter lambda to 1/sqrt(2) (variance equal to 1) */
+laplacian_args.lambda = 1/sqrt(2.0);
+
+/* generate laplacian source of 20 samples, assuming the distribution is */
+/* null outside the range [-10,10]                                       */
+source = source_pdf(20, -10, 10, laplacian_pdf, &#38;laplacian_args);</PRE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="information.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="quantization.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Information measures</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Quantization</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,135 @@
+<!--
+Copyright (c) 2005-2006 François Cayre, Vivien Chappelier, Hervé Jégou
+
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.1 or any later version published by the Free Software
+Foundation; with no Invariant Sections, with no Front-Cover
+Texts, and with no Back-Cover Texts. A copy of the license can
+be found at http://www.fsf.org/copyleft/fdl.html.
+
+-->
+
+<!DOCTYPE book SYSTEM "libit.dtd" [
+
+<!--
+<!ENTITY chapter.intro   SYSTEM "intro.sgml">
+<!ENTITY chapter.vecmat  SYSTEM "vecmat.sgml">
+<!ENTITY chapter.io      SYSTEM "io.sgml">
+<!ENTITY chapter.measure SYSTEM "measure.sgml">
+<!ENTITY chapter.source  SYSTEM "source.sgml">
+<!ENTITY chapter.channel SYSTEM "channel.sgml">
+<!ENTITY chapter.signal  SYSTEM "signal.sgml">
+<!ENTITY appendix.objects SYSTEM "objects.sgml">
+-->
+
+<!ENTITY appendix.manpages SYSTEM "manpages.sgml"> 
+]>
+
+ 
+<book id="libitdoc">
+
+ <bookinfo>
+  <title>LIBIT Documentation</title>
+  
+  <authorgroup>
+   <author>
+    <firstname>François</firstname>
+    <surname>Cayre</surname>
+    <affiliation>
+     <address>
+      <email>cayre@lis.inpg.fr</email>
+     </address>
+    </affiliation>
+   </author>
+   <author>
+    <firstname>Vivien</firstname>
+    <surname>Chappelier</surname>
+    <affiliation>
+     <address>
+      <email>vivien.chappelier@free.fr</email>
+     </address>
+    </affiliation>
+   </author>
+   <author>
+    <firstname>Hervé</firstname>
+    <surname>Jégou</surname>
+    <affiliation>
+     <address>
+      <email>herve.jegou@irisa.fr</email>
+     </address>
+    </affiliation>
+   </author>
+  </authorgroup>
+
+  <copyright>
+   <year>2006</year>
+   <holder>François Cayre, Vivien Chappelier, Hervé Jégou</holder>
+  </copyright>
+
+  <legalnotice>
+   <para>
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with no Front-Cover
+     Texts, and with no Back-Cover Texts. A copy of the license can
+     be found at http://www.fsf.org/copyleft/fdl.html.
+   </para>
+
+  </legalnotice>
+
+  <revhistory>
+      <revision>
+      <revnumber>v1</revnumber>
+      <date>01 February 2005</date>
+      <authorinitials>vc</authorinitials>
+      <revremark>
+      initial release
+      </revremark>
+      </revision>
+   </revhistory>
+
+ </bookinfo>
+
+
+<toc></toc>
+
+<!--
+<part id="programming">
+<title>Programming with libit</title>
+  &chapter.intro;
+  &chapter.vecmat;
+  &chapter.io;
+  &chapter.measure;
+  &chapter.source;
+  &chapter.channel;
+  &chapter.signal;
+  &appendix.objects;
+</part>
+-->
+
+<reference label="Reference Manual" id="refmanual">
+<title></title>
+  &appendix.manpages;
+</reference>
+
+</book>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

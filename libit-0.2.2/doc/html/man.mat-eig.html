@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>mat_eig</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="imat_col_set"
+HREF="man.imat-col-set.html"><LINK
+REL="NEXT"
+TITLE="mat_det"
+HREF="man.mat-det.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.imat-col-set.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.mat-det.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.MAT-EIG"
+></A
+>mat_eig</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN17591"
+></A
+><H2
+>Name</H2
+>mat_eig&nbsp;--&nbsp;computes eigen decomposition of the input matrix</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN17594"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN17595"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/linalg.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>cvec mat_eig</CODE
+>( mat a, cmat evec
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>mat_eig</CODE
+> performs eigen-decomposition of a real matrix <CODE
+CLASS="PARAMETER"
+>a</CODE
+>. Eigenvectors are stored in <CODE
+CLASS="PARAMETER"
+>evec</CODE
+>. Be sure to make proper memory allocation beforehand. Eigenvalues are the output of the function.  </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;linalg.h&gt;
+
+...
+
+mat m1 = mat_new( 3, 3 ); 
+cmat evec = mat_new (3, 3); 
+cvec eval; 
+
+m1[0][0] = 1;   m1[0][1] = 5;   m1[0][2] = 2; 
+m1[1][0] = 2;   m1[1][1] = 3;   m1[1][2] = 5; 
+m1[2][0] = 3;   m1[2][1] = 7;   m1[2][2] = 3; 
+
+eval = mat_eig ( m1, evec ); 
+
+/*
+eval = [10.639722 -1.054185 -2.585537]
+evec = 
+[[0.439543 0.933471 0.627446]
+ [0.569608 -0.346546 -0.631927]
+ [0.694513 -0.092396 0.454952]]
+*/</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.imat-col-set.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.mat-det.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imat_col_set</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mat_det</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

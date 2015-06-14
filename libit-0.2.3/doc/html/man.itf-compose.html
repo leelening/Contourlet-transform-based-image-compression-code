@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>itf_compose</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="itf_integrate_trapezoid"
+HREF="man.itf-integrate-trapezoid.html"><LINK
+REL="NEXT"
+TITLE="itf_sum"
+HREF="man.itf-sum.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.itf-integrate-trapezoid.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.itf-sum.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.ITF-COMPOSE"
+></A
+>itf_compose</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN9806"
+></A
+><H2
+>Name</H2
+>itf_compose&nbsp;--&nbsp;function composition</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN9809"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN9810"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/math.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double itf_compose</CODE
+>( double x, it_function_args(itf_compose) *args
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>The function <CODE
+CLASS="FUNCTION"
+>itf_compose</CODE
+> defines the composition of two it_function_t. The composition of the functions is obtained by computing the value of the function <CODE
+CLASS="FUNCTION"
+>g</CODE
+> at position <CODE
+CLASS="PARAMETER"
+>x</CODE
+> and the value of the function <CODE
+CLASS="FUNCTION"
+>f</CODE
+> at the position <CODE
+CLASS="PARAMETER"
+>g(x)</CODE
+>. The composition operator has the following parameters, passed through the <CODE
+CLASS="PARAMETER"
+>args</CODE
+> argument.</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN9825"
+></A
+><H3
+>Function parameters</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>f</DT
+><DD
+><P
+>         The function called last.
+      </P
+></DD
+><DT
+>f_args</DT
+><DD
+><P
+>         The  parameters of the function called last.
+      </P
+></DD
+><DT
+>g</DT
+><DD
+><P
+>         The function called first.
+      </P
+></DD
+><DT
+>g_args</DT
+><DD
+><P
+>         The parameters of the function called first.
+      </P
+></DD
+></DL
+></DIV
+></DIV
+><H2
+>RETURN VALUE</H2
+><P
+>    The value of the composed function for a given 'x'
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;math.h&gt;
+
+...
+
+/* declare the integration parameters */
+it_function_args(itf_compose) compose_args;
+/* compose the identity function with itself */
+compose_args.f = itf_identity;
+compose_args.f_args = NULL;
+compose_args.g = itf_identity;
+compose_args.g_args = NULL;
+/* compute the value of the composition in 1.0 */
+itf_compose(1.0, &#38;compose_args);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.itf-integrate-trapezoid.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.itf-sum.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>itf_integrate_trapezoid</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>itf_sum</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

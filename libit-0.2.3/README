@@ -1,0 +1,44 @@
+libit version 0.2.3
+
+DESCRIPTION
+===========
+
+libit provides easy to use yet efficient tools related to information theory and signal processing. 
+It includes basic vector, matrix and function types, some common source and channel coding tools such as quantization, entropy coding, etc...	
+
+HOMEPAGE
+========
+	http://libit.sourceforge.net
+
+MAINTAINERS
+===========
+
+	Vivien Chappelier <vivien.chappelier@irisa.fr> 
+	(http://www.irisa.fr/temics/Equipe/Chappelier)
+
+
+	Herve Jegou <herve.jegou@irisa.fr> 
+	(http://www.irisa.fr/temics/Equipe/Jegou)
+
+REQUIREMENTS
+============
+	glibc and libm
+
+
+INSTALLATION/SETUP
+==================
+
+	See the INSTALL file.
+
+USAGE
+=====
+
+
+FILE FORMATS
+============
+
+
+BUGS
+====
+
+        For bug list and bug submittal instructions, use the sourceforge bugtracker.

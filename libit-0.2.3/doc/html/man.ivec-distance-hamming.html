@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>ivec_distance_hamming</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="vec_distance_hamming"
+HREF="man.vec-distance-hamming.html"><LINK
+REL="NEXT"
+TITLE="bvec_distance_hamming"
+HREF="man.bvec-distance-hamming.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.vec-distance-hamming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.bvec-distance-hamming.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IVEC-DISTANCE-HAMMING"
+></A
+>ivec_distance_hamming</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN694"
+></A
+><H2
+>Name</H2
+>ivec_distance_hamming&nbsp;--&nbsp;Hamming distance between two sequences</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN697"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN698"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/distance.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>int ivec_distance_hamming</CODE
+>( ivec v1, ivec v2
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>ivec_distance_hamming</CODE
+> returns the Hamming distance between two sequences, i.e. the number of positions such that the component of <CODE
+CLASS="PARAMETER"
+>v1</CODE
+> is not equal to the one of <CODE
+CLASS="PARAMETER"
+>v2</CODE
+>. 
+The Hamming distance is only defined between two sequences of the same length. In the proposed implementation, the function returns an integer for sequences of different length. This value is computed assuming that the vector <CODE
+CLASS="PARAMETER"
+>v1</CODE
+> is the reference. If the sequences are not of the same length, there are two cases: either the sequence <CODE
+CLASS="PARAMETER"
+>v2</CODE
+> is shorter than the sequence <CODE
+CLASS="PARAMETER"
+>v1</CODE
+>. In that case missing symbols are assumed to be in error. If the sequence <CODE
+CLASS="PARAMETER"
+>v2</CODE
+> is longer, extra symbols are discarded but do not increase the distance. Hence, if <CODE
+CLASS="PARAMETER"
+>v1</CODE
+> is a prefix of <CODE
+CLASS="PARAMETER"
+>v2</CODE
+>, then this function returns 0.   </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The Hamming distance
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;distance.h&gt;
+
+...
+
+ivec v1 = ivec_new_string("0 3 0 1");
+ivec v2 = ivec_new_string("0 1 0 2");
+/* compute the hamming distance between v1 and v2 */
+int distance = ivec_distance_hamming(v1, v2);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.vec-distance-hamming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.bvec-distance-hamming.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>vec_distance_hamming</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>bvec_distance_hamming</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

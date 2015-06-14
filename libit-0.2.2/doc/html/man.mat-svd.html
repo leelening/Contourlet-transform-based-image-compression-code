@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>mat_svd</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="mat_is_symmetric"
+HREF="man.mat-is-symmetric.html"><LINK
+REL="NEXT"
+TITLE="mat_rank"
+HREF="man.mat-rank.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.mat-is-symmetric.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.mat-rank.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.MAT-SVD"
+></A
+>mat_svd</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN17420"
+></A
+><H2
+>Name</H2
+>mat_svd&nbsp;--&nbsp;computes the SVD of the input matrix</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN17423"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN17424"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/linalg.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>vec mat_svd</CODE
+>( mat M, mat U, mat V
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> The function <CODE
+CLASS="FUNCTION"
+>mat_svd</CODE
+> computes the singular value decomposition of the matrix <CODE
+CLASS="PARAMETER"
+>M</CODE
+>. If singular subspaces are not needed, simply set <CODE
+CLASS="PARAMETER"
+>U</CODE
+> and/or <CODE
+CLASS="PARAMETER"
+>V</CODE
+> to NULL. If <CODE
+CLASS="PARAMETER"
+>U</CODE
+> and/or <CODE
+CLASS="PARAMETER"
+>V</CODE
+> are needed, be sure to make proper memory allocation beforehand. 
+
+This function is borrowed from the JAMA Java puyblic-domain package. 
+See: http://math.nist.gov/javanumerics/jama/  </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;linalg.h&gt;
+
+...
+
+mat m = mat_new( 3, 3 ); 
+mat u = mat_new( 3, 3 ); 
+mat v = mat_new( 3, 3 ); 
+
+vec sv; 
+
+m[0][0] = 1;   m[0][1] = 5;   m[0][2] = 2; 
+m[1][0] = 2;   m[1][1] = 3;   m[1][2] = 5; 
+m[2][0] = 3;   m[2][1] = 7;   m[2][2] = 3; 
+
+sv = mat_svd (m1, u, v); 
+
+/* 
+sv = [11.176 3.061 0.848] 
+u =  
+[[    0.477     0.338    -0.811]
+ [    0.498    -0.865    -0.067]
+ [    0.724     0.372     0.581]]
+v = 
+[[    0.326    -0.090     0.941]
+ [    0.801     0.555    -0.224]
+ [    0.503    -0.827    -0.253]]
+*/</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.mat-is-symmetric.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.mat-rank.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mat_is_symmetric</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mat_rank</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,12 @@
+file name = ../data/test.wav
+channels = 1
+sampling rate = 22050
+depth = 16
+length = 39192 samples/channel
+PGM 402x708
+file name = ../data/test.pgm
+pnm type = 5
+708x402 -> maxval=255
+comments=
+height(m) = 402	maxheight(m) = 402
+width(m) = 708	maxwidth(m) = 708

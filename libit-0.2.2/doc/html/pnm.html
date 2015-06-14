@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Image reading and writing</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Input/Output"
+HREF="inputoutput.html"><LINK
+REL="PREVIOUS"
+TITLE="Input/Output"
+HREF="inputoutput.html"><LINK
+REL="NEXT"
+TITLE="Sound reading and writing"
+HREF="wav.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Input/Output</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="wav.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="PNM"
+>2.2. Image reading and writing</A
+></H1
+><P
+>      Images can be read in the PGM format as matrices using the <A
+HREF="man.mat-pgm-read.html"
+>mat_pgm_read()</A
+> or <A
+HREF="man.imat-pgm-read.html"
+>imat_pgm_read()</A
+>. Both these functions return the matrix of pixels, representing intensities between 0 and the maximum value specified in the PGM (generally 255). Similarly, images can be written to disk using <A
+HREF="man.mat-pgm-write.html"
+>mat_pgm_write()</A
+> or <A
+HREF="man.imat-pgm-write.html"
+>imat_pgm_write()</A
+>.The sample values are read as integers and written with proper rounding and clipping. Some information can be retrieved from any PNM file using <A
+HREF="man.pnm-info.html"
+>pnm_info()</A
+>, for example to check the image is in a supported format (PGM type 5 currently).
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="IMAGEIO-EXAMPLE"
+></A
+><P
+><B
+>Example 2-2. Image input/output</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  imat m;
+
+  m = imat_pgm_read("image.pgm");  /* read the image      */
+  mat_transpose(m);                /* transpose the image */
+  imat_pgm_write(m, "image.pgm");  /* write the image     */
+
+  char comments[1000]; /* the comments in the PNM       */
+  int width, height;   /* width and height of the image */
+  int pnm_type;        /* type of the PNM file          */
+  int maxval;          /* maximum intensity value       */
+  pnm_info("image.pgm",  &#38;pnm_type,  &#38;width,  &#38;height, &#38;maxval, comments, 1000);</PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="wav.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Input/Output</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Sound reading and writing</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

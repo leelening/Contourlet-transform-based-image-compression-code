@@ -1,0 +1,3910 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>LIBIT Documentation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+HREF="refmanual.html"></HEAD
+><BODY
+CLASS="BOOK"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="LIBITDOC"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>LIBIT Documentation</A
+></H1
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+></A
+>François Cayre</H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:cayre@lis.inpg.fr"
+>cayre@lis.inpg.fr</A
+>&#62;</CODE
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN11"
+></A
+>Vivien Chappelier</H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:vivien.chappelier@free.fr"
+>vivien.chappelier@free.fr</A
+>&#62;</CODE
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN17"
+></A
+>Hervé Jégou</H3
+><DIV
+CLASS="AFFILIATION"
+><DIV
+CLASS="ADDRESS"
+><P
+CLASS="ADDRESS"
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:herve.jegou@irisa.fr"
+>herve.jegou@irisa.fr</A
+>&#62;</CODE
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></DIV
+><P
+CLASS="COPYRIGHT"
+>Copyright &copy; 2006 François Cayre, Vivien Chappelier, Hervé Jégou</P
+><DIV
+CLASS="LEGALNOTICE"
+><P
+></P
+><A
+NAME="AEN26"
+></A
+><P
+>     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with no Front-Cover
+     Texts, and with no Back-Cover Texts. A copy of the license can
+     be found at http://www.fsf.org/copyleft/fdl.html.
+   </P
+><P
+></P
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>Reference Manual. <A
+HREF="refmanual.html"
+></A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="man.channel-awgn.html"
+>channel_awgn</A
+>&nbsp;--&nbsp;AWGN channel simulation</DT
+><DT
+><A
+HREF="man.channel-bsc.html"
+>channel_bsc</A
+>&nbsp;--&nbsp;BSC channel simulation</DT
+><DT
+><A
+HREF="man.mat-to-imat.html"
+>mat_to_imat</A
+>&nbsp;--&nbsp;convert a matrix of double into a integer matrix</DT
+><DT
+><A
+HREF="man.modulate-bpsk.html"
+>modulate_bpsk</A
+>&nbsp;--&nbsp;BPSK modulation</DT
+><DT
+><A
+HREF="man.it-convolutional-code-encode.html"
+>it_convolutional_code_encode</A
+>&nbsp;--&nbsp;convolutional encoding</DT
+><DT
+><A
+HREF="man.it-convolutional-code-encode-symbolic.html"
+>it_convolutional_code_encode_symbolic</A
+>&nbsp;--&nbsp;convolutional encoding (symbolic)</DT
+><DT
+><A
+HREF="man.it-convolutional-code-new.html"
+>it_convolutional_code_new</A
+>&nbsp;--&nbsp;convolutional code constructor</DT
+><DT
+><A
+HREF="man.it-viterbi-decode.html"
+>it_viterbi_decode</A
+>&nbsp;--&nbsp;Viterbi decoding of convolutional codes</DT
+><DT
+><A
+HREF="man.it-viterbi-decode-symbolic.html"
+>it_viterbi_decode_symbolic</A
+>&nbsp;--&nbsp;Viterbi decoding of convolutional codes (symbolic)</DT
+><DT
+><A
+HREF="man.cadd.html"
+>cadd</A
+>&nbsp;--&nbsp;Addition of two complex numbers</DT
+><DT
+><A
+HREF="man.cdiv.html"
+>cdiv</A
+>&nbsp;--&nbsp;Division of two complex numbers</DT
+><DT
+><A
+HREF="man.ceq.html"
+>ceq</A
+>&nbsp;--&nbsp;Check if two complex numbers are equal</DT
+><DT
+><A
+HREF="man.cmul.html"
+>cmul</A
+>&nbsp;--&nbsp;Multiply two complex numbers</DT
+><DT
+><A
+HREF="man.cneg.html"
+>cneg</A
+>&nbsp;--&nbsp;Opposite of a complex number</DT
+><DT
+><A
+HREF="man.cnorm.html"
+>cnorm</A
+>&nbsp;--&nbsp;modulus of a complex number</DT
+><DT
+><A
+HREF="man.cinv.html"
+>cinv</A
+>&nbsp;--&nbsp;Inverse a complex number</DT
+><DT
+><A
+HREF="man.cconj.html"
+>cconj</A
+>&nbsp;--&nbsp;Conjuguate of a complex number</DT
+><DT
+><A
+HREF="man.csub.html"
+>csub</A
+>&nbsp;--&nbsp;Substract two complex numbers</DT
+><DT
+><A
+HREF="man.mat-distance-mse.html"
+>mat_distance_mse</A
+>&nbsp;--&nbsp;mean square error between two images</DT
+><DT
+><A
+HREF="man.imat-distance-mse.html"
+>imat_distance_mse</A
+>&nbsp;--&nbsp;mean square error between two images</DT
+><DT
+><A
+HREF="man.mat-distance-norm.html"
+>mat_distance_norm</A
+>&nbsp;--&nbsp;norm distance between two matrices</DT
+><DT
+><A
+HREF="man.vec-distance-hamming.html"
+>vec_distance_hamming</A
+>&nbsp;--&nbsp;Hamming distance between two sequences</DT
+><DT
+><A
+HREF="man.ivec-distance-hamming.html"
+>ivec_distance_hamming</A
+>&nbsp;--&nbsp;Hamming distance between two sequences</DT
+><DT
+><A
+HREF="man.bvec-distance-hamming.html"
+>bvec_distance_hamming</A
+>&nbsp;--&nbsp;Hamming distance between two sequences</DT
+><DT
+><A
+HREF="man.vec-distance-kullback-leibler.html"
+>vec_distance_kullback_leibler</A
+>&nbsp;--&nbsp;Kullback-Leibler distance</DT
+><DT
+><A
+HREF="man.ivec-distance-levenshtein.html"
+>ivec_distance_levenshtein</A
+>&nbsp;--&nbsp;Levenshtein distance between two sequences</DT
+><DT
+><A
+HREF="man.vec-distance-mse.html"
+>vec_distance_mse</A
+>&nbsp;--&nbsp;mean square error between two sequences</DT
+><DT
+><A
+HREF="man.ivec-distance-mse.html"
+>ivec_distance_mse</A
+>&nbsp;--&nbsp;mean square error between two sequences</DT
+><DT
+><A
+HREF="man.vec-distance-norm.html"
+>vec_distance_norm</A
+>&nbsp;--&nbsp;norm distance between two vectors</DT
+><DT
+><A
+HREF="man.bvec-ber.html"
+>bvec_ber</A
+>&nbsp;--&nbsp;bit error rate between two sequences</DT
+><DT
+><A
+HREF="man.vec-ser.html"
+>vec_ser</A
+>&nbsp;--&nbsp;symbol error rate between two sequences</DT
+><DT
+><A
+HREF="man.ivec-ser.html"
+>ivec_ser</A
+>&nbsp;--&nbsp;symbol error rate between two sequences</DT
+><DT
+><A
+HREF="man.it-dft.html"
+>it_dft</A
+>&nbsp;--&nbsp;discrete Fourier transform</DT
+><DT
+><A
+HREF="man.it-idft.html"
+>it_idft</A
+>&nbsp;--&nbsp;inverse discrete Fourier transform</DT
+><DT
+><A
+HREF="man.it-fourier-new.html"
+>it_fourier_new</A
+>&nbsp;--&nbsp;Fourier transform constructor</DT
+><DT
+><A
+HREF="man.mat-pgm-read.html"
+>mat_pgm_read</A
+>&nbsp;--&nbsp;Read an image (PGM) file as a matrix</DT
+><DT
+><A
+HREF="man.imat-pgm-read.html"
+>imat_pgm_read</A
+>&nbsp;--&nbsp;Read an image (PGM) file as a matrix</DT
+><DT
+><A
+HREF="man.mat-pgm-write.html"
+>mat_pgm_write</A
+>&nbsp;--&nbsp;Write an integer matrix as an image (PGM)</DT
+><DT
+><A
+HREF="man.imat-pgm-write.html"
+>imat_pgm_write</A
+>&nbsp;--&nbsp;Write an integer matrix as an image (PGM)</DT
+><DT
+><A
+HREF="man.mat-wav-read.html"
+>mat_wav_read</A
+>&nbsp;--&nbsp;Read a wav file into a multi-channel matrix</DT
+><DT
+><A
+HREF="man.imat-wav-read.html"
+>imat_wav_read</A
+>&nbsp;--&nbsp;Read a wav file into a multi-channel matrix</DT
+><DT
+><A
+HREF="man.mat-wav-write.html"
+>mat_wav_write</A
+>&nbsp;--&nbsp;Write a wav sound file</DT
+><DT
+><A
+HREF="man.imat-wav-write.html"
+>imat_wav_write</A
+>&nbsp;--&nbsp;Write a wav sound file</DT
+><DT
+><A
+HREF="man.pnm-info.html"
+>pnm_info</A
+>&nbsp;--&nbsp;Get information from a PNM image file</DT
+><DT
+><A
+HREF="man.pnm-type.html"
+>pnm_type</A
+>&nbsp;--&nbsp;Type of a pnm file</DT
+><DT
+><A
+HREF="man.it-error.html"
+>it_error</A
+>&nbsp;--&nbsp;print an error</DT
+><DT
+><A
+HREF="man.it-fprintf.html"
+>it_fprintf</A
+>&nbsp;--&nbsp;formatted output to a stream</DT
+><DT
+><A
+HREF="man.it-printf.html"
+>it_printf</A
+>&nbsp;--&nbsp;formatted output</DT
+><DT
+><A
+HREF="man.it-read-double.html"
+>it_read_double</A
+>&nbsp;--&nbsp;read a real value from a string</DT
+><DT
+><A
+HREF="man.it-read-int.html"
+>it_read_int</A
+>&nbsp;--&nbsp;read an integer from a string</DT
+><DT
+><A
+HREF="man.it-read-cplx.html"
+>it_read_cplx</A
+>&nbsp;--&nbsp;read a complex from a string</DT
+><DT
+><A
+HREF="man.it-read-vec.html"
+>it_read_vec</A
+>&nbsp;--&nbsp;read a real vector from a string</DT
+><DT
+><A
+HREF="man.it-read-ivec.html"
+>it_read_ivec</A
+>&nbsp;--&nbsp;read an integer vector from a string</DT
+><DT
+><A
+HREF="man.it-read-bvec.html"
+>it_read_bvec</A
+>&nbsp;--&nbsp;read a byte vector from a string</DT
+><DT
+><A
+HREF="man.it-read-cvec.html"
+>it_read_cvec</A
+>&nbsp;--&nbsp;read a complex vector from a string</DT
+><DT
+><A
+HREF="man.it-set-mat-default-fmt.html"
+>it_set_mat_default_fmt</A
+>&nbsp;--&nbsp;set the default format string for matrices</DT
+><DT
+><A
+HREF="man.it-set-vec-default-fmt.html"
+>it_set_vec_default_fmt</A
+>&nbsp;--&nbsp;set the default format string for vectors</DT
+><DT
+><A
+HREF="man.it-vfprintf.html"
+>it_vfprintf</A
+>&nbsp;--&nbsp;formatted output to a stream, variable args</DT
+><DT
+><A
+HREF="man.it-vprintf.html"
+>it_vprintf</A
+>&nbsp;--&nbsp;formatted output, variable args</DT
+><DT
+><A
+HREF="man.it-warning.html"
+>it_warning</A
+>&nbsp;--&nbsp;print an warning</DT
+><DT
+><A
+HREF="man.vec-new-string.html"
+>vec_new_string</A
+>&nbsp;--&nbsp;Create a vector from a string</DT
+><DT
+><A
+HREF="man.ivec-new-string.html"
+>ivec_new_string</A
+>&nbsp;--&nbsp;Create a vector from a string</DT
+><DT
+><A
+HREF="man.bvec-new-string.html"
+>bvec_new_string</A
+>&nbsp;--&nbsp;Create a vector from a string</DT
+><DT
+><A
+HREF="man.cvec-new-string.html"
+>cvec_new_string</A
+>&nbsp;--&nbsp;Create a vector from a string</DT
+><DT
+><A
+HREF="man.wav-info.html"
+>wav_info</A
+>&nbsp;--&nbsp;Get information from a WAV sound file</DT
+><DT
+><A
+HREF="man.mat-det.html"
+>mat_det</A
+>&nbsp;--&nbsp;computes the determinant of the input matrix</DT
+><DT
+><A
+HREF="man.mat-eig.html"
+>mat_eig</A
+>&nbsp;--&nbsp;computes eigen decomposition of the input matrix</DT
+><DT
+><A
+HREF="man.mat-eig-sym.html"
+>mat_eig_sym</A
+>&nbsp;--&nbsp;computes eigen decomposition of a symmetrix matrix</DT
+><DT
+><A
+HREF="man.mat-gs.html"
+>mat_gs</A
+>&nbsp;--&nbsp;performs Gram-Schmidt orthogonalization of matrix</DT
+><DT
+><A
+HREF="man.mat-cholesky.html"
+>mat_cholesky</A
+>&nbsp;--&nbsp;performs in-place Cholesky decomposition</DT
+><DT
+><A
+HREF="man.mat-ls.html"
+>mat_ls</A
+>&nbsp;--&nbsp;solves Least-Square system AX=B</DT
+><DT
+><A
+HREF="man.mat-lu.html"
+>mat_lu</A
+>&nbsp;--&nbsp;performs in-place LU decomposition of input matrix</DT
+><DT
+><A
+HREF="man.mat-new-inv.html"
+>mat_new_inv</A
+>&nbsp;--&nbsp;computes the inverse of the input matrix</DT
+><DT
+><A
+HREF="man.cmat-new-inv.html"
+>cmat_new_inv</A
+>&nbsp;--&nbsp;computes the inverse of the input matrix</DT
+><DT
+><A
+HREF="man.mat-norm2.html"
+>mat_norm2</A
+>&nbsp;--&nbsp;computes the 2-norm of the input matrix</DT
+><DT
+><A
+HREF="man.mat-inv.html"
+>mat_inv</A
+>&nbsp;--&nbsp;computes the inverse of the input matrix</DT
+><DT
+><A
+HREF="man.cmat-inv.html"
+>cmat_inv</A
+>&nbsp;--&nbsp;computes inverse of complex matrix</DT
+><DT
+><A
+HREF="man.mat-cond.html"
+>mat_cond</A
+>&nbsp;--&nbsp;computes the condition number of the input matrix</DT
+><DT
+><A
+HREF="man.mat-qr.html"
+>mat_qr</A
+>&nbsp;--&nbsp;performs in-place QR decomposition of input matrix</DT
+><DT
+><A
+HREF="man.mat-rank.html"
+>mat_rank</A
+>&nbsp;--&nbsp;computes the rank of the input matrix</DT
+><DT
+><A
+HREF="man.mat-solve-mat.html"
+>mat_solve_mat</A
+>&nbsp;--&nbsp;outputs X such that AX=B</DT
+><DT
+><A
+HREF="man.mat-solve-vec.html"
+>mat_solve_vec</A
+>&nbsp;--&nbsp;returns x such that Ax=b</DT
+><DT
+><A
+HREF="man.mat-svd.html"
+>mat_svd</A
+>&nbsp;--&nbsp;computes the SVD of the input matrix</DT
+><DT
+><A
+HREF="man.mat-is-symmetric.html"
+>mat_is_symmetric</A
+>&nbsp;--&nbsp;tests whether input matrix is symmetric or not</DT
+><DT
+><A
+HREF="man.mat-add.html"
+>mat_add</A
+>&nbsp;--&nbsp;add a matrix to another</DT
+><DT
+><A
+HREF="man.imat-add.html"
+>imat_add</A
+>&nbsp;--&nbsp;add a matrix to another</DT
+><DT
+><A
+HREF="man.mat-apply-function.html"
+>mat_apply_function</A
+>&nbsp;--&nbsp;Apply a function element-wise to input matrix</DT
+><DT
+><A
+HREF="man.imat-apply-function.html"
+>imat_apply_function</A
+>&nbsp;--&nbsp;apply a function to every element of a matrix</DT
+><DT
+><A
+HREF="man.mat-diag.html"
+>mat_diag</A
+>&nbsp;--&nbsp;Set a matrix to a diagonal matrix</DT
+><DT
+><A
+HREF="man.imat-diag.html"
+>imat_diag</A
+>&nbsp;--&nbsp;Set a matrix to a diagonal matrix</DT
+><DT
+><A
+HREF="man.bmat-diag.html"
+>bmat_diag</A
+>&nbsp;--&nbsp;Set a matrix to a diagonal matrix</DT
+><DT
+><A
+HREF="man.-mat-delete.html"
+>Mat_delete</A
+>&nbsp;--&nbsp;Free a matrix</DT
+><DT
+><A
+HREF="man.mat-delete.html"
+>mat_delete</A
+>&nbsp;--&nbsp;Free a matrix</DT
+><DT
+><A
+HREF="man.imat-delete.html"
+>imat_delete</A
+>&nbsp;--&nbsp;Free a matrix</DT
+><DT
+><A
+HREF="man.bmat-delete.html"
+>bmat_delete</A
+>&nbsp;--&nbsp;Free a matrix</DT
+><DT
+><A
+HREF="man.cmat-delete.html"
+>cmat_delete</A
+>&nbsp;--&nbsp;Free a matrix</DT
+><DT
+><A
+HREF="man.mat-decr.html"
+>mat_decr</A
+>&nbsp;--&nbsp;Decrease the elements of a matrix by a constant</DT
+><DT
+><A
+HREF="man.imat-decr.html"
+>imat_decr</A
+>&nbsp;--&nbsp;Decrease the elements of a matrix by a constant</DT
+><DT
+><A
+HREF="man.mat-div-by.html"
+>mat_div_by</A
+>&nbsp;--&nbsp;Divide elements of input matrix by some value</DT
+><DT
+><A
+HREF="man.imat-div-by.html"
+>imat_div_by</A
+>&nbsp;--&nbsp;Divide elements of input matrix by some value</DT
+><DT
+><A
+HREF="man.mat-elem-add.html"
+>mat_elem_add</A
+>&nbsp;--&nbsp;Performs matrix addition</DT
+><DT
+><A
+HREF="man.imat-elem-add.html"
+>imat_elem_add</A
+>&nbsp;--&nbsp;Performs matrix addition</DT
+><DT
+><A
+HREF="man.mat-elem-div.html"
+>mat_elem_div</A
+>&nbsp;--&nbsp;Performs element-wise matrix division</DT
+><DT
+><A
+HREF="man.imat-elem-div.html"
+>imat_elem_div</A
+>&nbsp;--&nbsp;Performs element-wise matrix division</DT
+><DT
+><A
+HREF="man.mat-elem-mul.html"
+>mat_elem_mul</A
+>&nbsp;--&nbsp;Performs element-wise matrix multiplication</DT
+><DT
+><A
+HREF="man.imat-elem-mul.html"
+>imat_elem_mul</A
+>&nbsp;--&nbsp;Performs element-wise matrix multiplication</DT
+><DT
+><A
+HREF="man.mat-elem-sub.html"
+>mat_elem_sub</A
+>&nbsp;--&nbsp;Performs element-wise matrix substraction</DT
+><DT
+><A
+HREF="man.imat-elem-sub.html"
+>imat_elem_sub</A
+>&nbsp;--&nbsp;Performs element-wise matrix substraction</DT
+><DT
+><A
+HREF="man.mat-eq.html"
+>mat_eq</A
+>&nbsp;--&nbsp;Test matrices for equality</DT
+><DT
+><A
+HREF="man.imat-eq.html"
+>imat_eq</A
+>&nbsp;--&nbsp;Test matrices for equality</DT
+><DT
+><A
+HREF="man.bmat-eq.html"
+>bmat_eq</A
+>&nbsp;--&nbsp;Test matrices for equality</DT
+><DT
+><A
+HREF="man.cmat-eq.html"
+>cmat_eq</A
+>&nbsp;--&nbsp;Test matrices for equality</DT
+><DT
+><A
+HREF="man.mat-eye.html"
+>mat_eye</A
+>&nbsp;--&nbsp;Set a matrix to identity</DT
+><DT
+><A
+HREF="man.imat-eye.html"
+>imat_eye</A
+>&nbsp;--&nbsp;Set a matrix to identity</DT
+><DT
+><A
+HREF="man.bmat-eye.html"
+>bmat_eye</A
+>&nbsp;--&nbsp;Set a matrix to identity</DT
+><DT
+><A
+HREF="man.cmat-eye.html"
+>cmat_eye</A
+>&nbsp;--&nbsp;Set a matrix to identity</DT
+><DT
+><A
+HREF="man.mat-get-col.html"
+>mat_get_col</A
+>&nbsp;--&nbsp;Get new vector from given column of input matrix</DT
+><DT
+><A
+HREF="man.imat-get-col.html"
+>imat_get_col</A
+>&nbsp;--&nbsp;Get new vector from given column of input matrix</DT
+><DT
+><A
+HREF="man.bmat-get-col.html"
+>bmat_get_col</A
+>&nbsp;--&nbsp;Get new vector from given column of input matrix</DT
+><DT
+><A
+HREF="man.cmat-get-col.html"
+>cmat_get_col</A
+>&nbsp;--&nbsp;Get new vector from given column of input matrix</DT
+><DT
+><A
+HREF="man.mat-get-row.html"
+>mat_get_row</A
+>&nbsp;--&nbsp;Get new vector from given row of input matrix</DT
+><DT
+><A
+HREF="man.imat-get-row.html"
+>imat_get_row</A
+>&nbsp;--&nbsp;Get new vector from given row of input matrix</DT
+><DT
+><A
+HREF="man.bmat-get-row.html"
+>bmat_get_row</A
+>&nbsp;--&nbsp;Get new vector from given row of input matrix</DT
+><DT
+><A
+HREF="man.cmat-get-row.html"
+>cmat_get_row</A
+>&nbsp;--&nbsp;Get new vector from given row of input matrix</DT
+><DT
+><A
+HREF="man.mat-get-submatrix.html"
+>mat_get_submatrix</A
+>&nbsp;--&nbsp;Extract submatrix from input matrix</DT
+><DT
+><A
+HREF="man.imat-get-submatrix.html"
+>imat_get_submatrix</A
+>&nbsp;--&nbsp;Extract submatrix from input matrix</DT
+><DT
+><A
+HREF="man.bmat-get-submatrix.html"
+>bmat_get_submatrix</A
+>&nbsp;--&nbsp;Extract submatrix from input matrix</DT
+><DT
+><A
+HREF="man.mat-height.html"
+>mat_height</A
+>&nbsp;--&nbsp;get the height of a matrix</DT
+><DT
+><A
+HREF="man.imat-height.html"
+>imat_height</A
+>&nbsp;--&nbsp;get the height of a matrix</DT
+><DT
+><A
+HREF="man.bmat-height.html"
+>bmat_height</A
+>&nbsp;--&nbsp;get the height of a matrix</DT
+><DT
+><A
+HREF="man.cmat-height.html"
+>cmat_height</A
+>&nbsp;--&nbsp;Get the height of a matrix</DT
+><DT
+><A
+HREF="man.-mat-height.html"
+>Mat_height</A
+>&nbsp;--&nbsp;Get the height of a matrix</DT
+><DT
+><A
+HREF="man.mat-height-max.html"
+>mat_height_max</A
+>&nbsp;--&nbsp;Get current maximum height of input matrix</DT
+><DT
+><A
+HREF="man.imat-height-max.html"
+>imat_height_max</A
+>&nbsp;--&nbsp;Get current maximum height of input matrix</DT
+><DT
+><A
+HREF="man.bmat-height-max.html"
+>bmat_height_max</A
+>&nbsp;--&nbsp;Get current maximum height of input matrix</DT
+><DT
+><A
+HREF="man.cmat-height-max.html"
+>cmat_height_max</A
+>&nbsp;--&nbsp;Get current maximum height of input matrix</DT
+><DT
+><A
+HREF="man.mat-clone.html"
+>mat_clone</A
+>&nbsp;--&nbsp;Creates a new matrix with elements of input matrix</DT
+><DT
+><A
+HREF="man.imat-clone.html"
+>imat_clone</A
+>&nbsp;--&nbsp;Creates a new matrix with elements of input matrix</DT
+><DT
+><A
+HREF="man.bmat-clone.html"
+>bmat_clone</A
+>&nbsp;--&nbsp;Creates a new matrix with elements of input matrix</DT
+><DT
+><A
+HREF="man.cmat-clone.html"
+>cmat_clone</A
+>&nbsp;--&nbsp;Creates a new matrix with elements of input matrix</DT
+><DT
+><A
+HREF="man.mat-max.html"
+>mat_max</A
+>&nbsp;--&nbsp;Return the maximum value of input matrix</DT
+><DT
+><A
+HREF="man.imat-max.html"
+>imat_max</A
+>&nbsp;--&nbsp;Return the maximum value of input matrix</DT
+><DT
+><A
+HREF="man.mat-mean.html"
+>mat_mean</A
+>&nbsp;--&nbsp;Returns the mean of the input matrix elements</DT
+><DT
+><A
+HREF="man.imat-mean.html"
+>imat_mean</A
+>&nbsp;--&nbsp;Returns the mean of the input matrix elements</DT
+><DT
+><A
+HREF="man.cmat-mean.html"
+>cmat_mean</A
+>&nbsp;--&nbsp;Returns the mean of the input matrix elements</DT
+><DT
+><A
+HREF="man.mat-min.html"
+>mat_min</A
+>&nbsp;--&nbsp;Return the minimum value of input matrix</DT
+><DT
+><A
+HREF="man.imat-min.html"
+>imat_min</A
+>&nbsp;--&nbsp;Return the minimum value of input matrix</DT
+><DT
+><A
+HREF="man.mat-mul.html"
+>mat_mul</A
+>&nbsp;--&nbsp;matrix multiplication with memory allocation</DT
+><DT
+><A
+HREF="man.mat-mul-transpose-left.html"
+>mat_mul_transpose_left</A
+>&nbsp;--&nbsp;matrix multiplication with memory allocation</DT
+><DT
+><A
+HREF="man.mat-mul-transpose-leftright.html"
+>mat_mul_transpose_leftright</A
+>&nbsp;--&nbsp;matrix multiplication with memory allocation</DT
+><DT
+><A
+HREF="man.mat-mul-transpose-right.html"
+>mat_mul_transpose_right</A
+>&nbsp;--&nbsp;matrix multiplication with memory allocation</DT
+><DT
+><A
+HREF="man.mat-mul-by.html"
+>mat_mul_by</A
+>&nbsp;--&nbsp;Performs element-wise matrix multiplication</DT
+><DT
+><A
+HREF="man.imat-mul-by.html"
+>imat_mul_by</A
+>&nbsp;--&nbsp;Performs element-wise matrix multiplication</DT
+><DT
+><A
+HREF="man.-mat-new.html"
+>Mat_new</A
+>&nbsp;--&nbsp;create a new matrix</DT
+><DT
+><A
+HREF="man.mat-new.html"
+>mat_new</A
+>&nbsp;--&nbsp;Create a new matrix of doubles</DT
+><DT
+><A
+HREF="man.imat-new.html"
+>imat_new</A
+>&nbsp;--&nbsp;create a new matrix of integers</DT
+><DT
+><A
+HREF="man.bmat-new.html"
+>bmat_new</A
+>&nbsp;--&nbsp;Create a new matrix of bits</DT
+><DT
+><A
+HREF="man.cmat-new.html"
+>cmat_new</A
+>&nbsp;--&nbsp;Create a new matrix of complexes</DT
+><DT
+><A
+HREF="man.-mat-new-alloc.html"
+>Mat_new_alloc</A
+>&nbsp;--&nbsp;create a matrix and specify the maximum dimensions</DT
+><DT
+><A
+HREF="man.mat-new-alloc.html"
+>mat_new_alloc</A
+>&nbsp;--&nbsp;create a matrix and specify the maximum dimensions</DT
+><DT
+><A
+HREF="man.imat-new-alloc.html"
+>imat_new_alloc</A
+>&nbsp;--&nbsp;create a matrix and specify the maximum dimensions</DT
+><DT
+><A
+HREF="man.bmat-new-alloc.html"
+>bmat_new_alloc</A
+>&nbsp;--&nbsp;create a matrix and specify the maximum dimensions</DT
+><DT
+><A
+HREF="man.cmat-new-alloc.html"
+>cmat_new_alloc</A
+>&nbsp;--&nbsp;create a matrix and specify the maximum dimensions</DT
+><DT
+><A
+HREF="man.mat-new-apply-function.html"
+>mat_new_apply_function</A
+>&nbsp;--&nbsp;matrix from element-wise function to input matrix</DT
+><DT
+><A
+HREF="man.imat-new-apply-function.html"
+>imat_new_apply_function</A
+>&nbsp;--&nbsp;matrix from element-wise function to input matrix</DT
+><DT
+><A
+HREF="man.mat-new-diag.html"
+>mat_new_diag</A
+>&nbsp;--&nbsp;Creates a diagonal matrix from input vector</DT
+><DT
+><A
+HREF="man.imat-new-diag.html"
+>imat_new_diag</A
+>&nbsp;--&nbsp;Creates a diagonal matrix from input vector</DT
+><DT
+><A
+HREF="man.bmat-new-diag.html"
+>bmat_new_diag</A
+>&nbsp;--&nbsp;Creates a diagonal matrix from input vector</DT
+><DT
+><A
+HREF="man.mat-new-eye.html"
+>mat_new_eye</A
+>&nbsp;--&nbsp;Return the identity matrix</DT
+><DT
+><A
+HREF="man.imat-new-eye.html"
+>imat_new_eye</A
+>&nbsp;--&nbsp;Return the identity matrix</DT
+><DT
+><A
+HREF="man.bmat-new-eye.html"
+>bmat_new_eye</A
+>&nbsp;--&nbsp;Return the identity matrix</DT
+><DT
+><A
+HREF="man.cmat-new-eye.html"
+>cmat_new_eye</A
+>&nbsp;--&nbsp;Return the identity matrix</DT
+><DT
+><A
+HREF="man.mat-new-mul.html"
+>mat_new_mul</A
+>&nbsp;--&nbsp;Performs matrix multiplication</DT
+><DT
+><A
+HREF="man.imat-new-mul.html"
+>imat_new_mul</A
+>&nbsp;--&nbsp;Performs matrix multiplication</DT
+><DT
+><A
+HREF="man.mat-new-ones.html"
+>mat_new_ones</A
+>&nbsp;--&nbsp;Return a matrix of ones</DT
+><DT
+><A
+HREF="man.imat-new-ones.html"
+>imat_new_ones</A
+>&nbsp;--&nbsp;Return a new matrix of ones</DT
+><DT
+><A
+HREF="man.bmat-new-ones.html"
+>bmat_new_ones</A
+>&nbsp;--&nbsp;Return new matrix of ones</DT
+><DT
+><A
+HREF="man.cmat-new-ones.html"
+>cmat_new_ones</A
+>&nbsp;--&nbsp;new matrix of ones</DT
+><DT
+><A
+HREF="man.mat-new-set.html"
+>mat_new_set</A
+>&nbsp;--&nbsp;Return a matrix initialized with a value</DT
+><DT
+><A
+HREF="man.imat-new-set.html"
+>imat_new_set</A
+>&nbsp;--&nbsp;new matrix of integers set to a given value</DT
+><DT
+><A
+HREF="man.bmat-new-set.html"
+>bmat_new_set</A
+>&nbsp;--&nbsp;new matrix whose elements are set to a given value</DT
+><DT
+><A
+HREF="man.cmat-new-set.html"
+>cmat_new_set</A
+>&nbsp;--&nbsp;new matrix with a given value</DT
+><DT
+><A
+HREF="man.mat-new-transpose.html"
+>mat_new_transpose</A
+>&nbsp;--&nbsp;Return the transpose of a matrix</DT
+><DT
+><A
+HREF="man.imat-new-transpose.html"
+>imat_new_transpose</A
+>&nbsp;--&nbsp;return the transposed matrix of a given matrix</DT
+><DT
+><A
+HREF="man.bmat-new-transpose.html"
+>bmat_new_transpose</A
+>&nbsp;--&nbsp;Return the transpose of a matrix</DT
+><DT
+><A
+HREF="man.mat-new-void.html"
+>mat_new_void</A
+>&nbsp;--&nbsp;Return a new void matrix</DT
+><DT
+><A
+HREF="man.imat-new-void.html"
+>imat_new_void</A
+>&nbsp;--&nbsp;Return a new void matrix</DT
+><DT
+><A
+HREF="man.bmat-new-void.html"
+>bmat_new_void</A
+>&nbsp;--&nbsp;New void matrix</DT
+><DT
+><A
+HREF="man.cmat-new-void.html"
+>cmat_new_void</A
+>&nbsp;--&nbsp;Allocate a void matrix</DT
+><DT
+><A
+HREF="man.mat-new-zeros.html"
+>mat_new_zeros</A
+>&nbsp;--&nbsp;Return a matrix of zeros</DT
+><DT
+><A
+HREF="man.imat-new-zeros.html"
+>imat_new_zeros</A
+>&nbsp;--&nbsp;New matrix of zeros</DT
+><DT
+><A
+HREF="man.bmat-new-zeros.html"
+>bmat_new_zeros</A
+>&nbsp;--&nbsp;New matrix of zeros</DT
+><DT
+><A
+HREF="man.cmat-new-zeros.html"
+>cmat_new_zeros</A
+>&nbsp;--&nbsp;New matrix of zeros</DT
+><DT
+><A
+HREF="man.mat-normalize.html"
+>mat_normalize</A
+>&nbsp;--&nbsp;Normalisation of the matrix (sum=1)</DT
+><DT
+><A
+HREF="man.mat-norm-1.html"
+>mat_norm_1</A
+>&nbsp;--&nbsp;return the norm 1 of a given matrix</DT
+><DT
+><A
+HREF="man.mat-norm-inf.html"
+>mat_norm_inf</A
+>&nbsp;--&nbsp;return the infinity norm of a given matrix</DT
+><DT
+><A
+HREF="man.mat-incr.html"
+>mat_incr</A
+>&nbsp;--&nbsp;add a value to the elements of a matrix</DT
+><DT
+><A
+HREF="man.imat-incr.html"
+>imat_incr</A
+>&nbsp;--&nbsp;add a value to the elements of a matrix</DT
+><DT
+><A
+HREF="man.mat-init.html"
+>mat_init</A
+>&nbsp;--&nbsp;init a matrix from a buffer</DT
+><DT
+><A
+HREF="man.imat-init.html"
+>imat_init</A
+>&nbsp;--&nbsp;init a matrix from a buffer</DT
+><DT
+><A
+HREF="man.bmat-init.html"
+>bmat_init</A
+>&nbsp;--&nbsp;Init a matrix from a buffer</DT
+><DT
+><A
+HREF="man.cmat-init.html"
+>cmat_init</A
+>&nbsp;--&nbsp;init a matrix from a buffer</DT
+><DT
+><A
+HREF="man.mat-cols-sum.html"
+>mat_cols_sum</A
+>&nbsp;--&nbsp;summation of the columns of a matrix</DT
+><DT
+><A
+HREF="man.imat-cols-sum.html"
+>imat_cols_sum</A
+>&nbsp;--&nbsp;summation of the columns of a matrix</DT
+><DT
+><A
+HREF="man.cmat-cols-sum.html"
+>cmat_cols_sum</A
+>&nbsp;--&nbsp;summation of the columns of a matrix</DT
+><DT
+><A
+HREF="man.mat-col-decr.html"
+>mat_col_decr</A
+>&nbsp;--&nbsp;substract a value to elements of a given column</DT
+><DT
+><A
+HREF="man.imat-col-decr.html"
+>imat_col_decr</A
+>&nbsp;--&nbsp;substract a value to elements of a given column</DT
+><DT
+><A
+HREF="man.mat-col-div-by.html"
+>mat_col_div_by</A
+>&nbsp;--&nbsp;divide the elements of a column by a given value</DT
+><DT
+><A
+HREF="man.imat-col-div-by.html"
+>imat_col_div_by</A
+>&nbsp;--&nbsp;divide the elements of a column by a given value</DT
+><DT
+><A
+HREF="man.mat-col-mul-by.html"
+>mat_col_mul_by</A
+>&nbsp;--&nbsp;multiply the elements of a column by a given value</DT
+><DT
+><A
+HREF="man.imat-col-mul-by.html"
+>imat_col_mul_by</A
+>&nbsp;--&nbsp;multiply a column by a value</DT
+><DT
+><A
+HREF="man.mat-col-incr.html"
+>mat_col_incr</A
+>&nbsp;--&nbsp;add a value to the elements of a given column</DT
+><DT
+><A
+HREF="man.imat-col-incr.html"
+>imat_col_incr</A
+>&nbsp;--&nbsp;add a value to the elements of a given column</DT
+><DT
+><A
+HREF="man.mat-col-set.html"
+>mat_col_set</A
+>&nbsp;--&nbsp;Set a column of the matrix to a given value</DT
+><DT
+><A
+HREF="man.imat-col-set.html"
+>imat_col_set</A
+>&nbsp;--&nbsp;Set a column of the matrix to a given value</DT
+><DT
+><A
+HREF="man.mat-col-sum.html"
+>mat_col_sum</A
+>&nbsp;--&nbsp;return the sum of a given column in a matrix</DT
+><DT
+><A
+HREF="man.imat-col-sum.html"
+>imat_col_sum</A
+>&nbsp;--&nbsp;summation of the columns of a matrix</DT
+><DT
+><A
+HREF="man.cmat-col-sum.html"
+>cmat_col_sum</A
+>&nbsp;--&nbsp;Compute the summation of a columns of a matrix</DT
+><DT
+><A
+HREF="man.mat-ones.html"
+>mat_ones</A
+>&nbsp;--&nbsp;set all the elements of a matrix to 1</DT
+><DT
+><A
+HREF="man.imat-ones.html"
+>imat_ones</A
+>&nbsp;--&nbsp;set all the elements of a matrix to 1</DT
+><DT
+><A
+HREF="man.bmat-ones.html"
+>bmat_ones</A
+>&nbsp;--&nbsp;Set the elements of a matrix to 1</DT
+><DT
+><A
+HREF="man.cmat-ones.html"
+>cmat_ones</A
+>&nbsp;--&nbsp;set all the elements of a matrix to 1</DT
+><DT
+><A
+HREF="man.mat-copy.html"
+>mat_copy</A
+>&nbsp;--&nbsp;Copy matrix elements to another</DT
+><DT
+><A
+HREF="man.imat-copy.html"
+>imat_copy</A
+>&nbsp;--&nbsp;Copy a matrix from another</DT
+><DT
+><A
+HREF="man.bmat-copy.html"
+>bmat_copy</A
+>&nbsp;--&nbsp;Copy a matrix</DT
+><DT
+><A
+HREF="man.cmat-copy.html"
+>cmat_copy</A
+>&nbsp;--&nbsp;Copy a matrix from another</DT
+><DT
+><A
+HREF="man.mat-copy-col.html"
+>mat_copy_col</A
+>&nbsp;--&nbsp;Copy the column of a matrix into a vector</DT
+><DT
+><A
+HREF="man.imat-copy-col.html"
+>imat_copy_col</A
+>&nbsp;--&nbsp;Copy the column of a matrix into a vector</DT
+><DT
+><A
+HREF="man.bmat-copy-col.html"
+>bmat_copy_col</A
+>&nbsp;--&nbsp;Copy the column of a matrix into a vector</DT
+><DT
+><A
+HREF="man.cmat-copy-col.html"
+>cmat_copy_col</A
+>&nbsp;--&nbsp;Copy the column of a matrix into a vector</DT
+><DT
+><A
+HREF="man.mat-copy-row.html"
+>mat_copy_row</A
+>&nbsp;--&nbsp;copy a row of a matrix into a vector</DT
+><DT
+><A
+HREF="man.imat-copy-row.html"
+>imat_copy_row</A
+>&nbsp;--&nbsp;copy a row of a matrix into a vector</DT
+><DT
+><A
+HREF="man.bmat-copy-row.html"
+>bmat_copy_row</A
+>&nbsp;--&nbsp;copy a row of a matrix into a vector</DT
+><DT
+><A
+HREF="man.cmat-copy-row.html"
+>cmat_copy_row</A
+>&nbsp;--&nbsp;copy a row of a matrix into a vector</DT
+><DT
+><A
+HREF="man.mat-rows-sum.html"
+>mat_rows_sum</A
+>&nbsp;--&nbsp;sum of rows of a matrix</DT
+><DT
+><A
+HREF="man.imat-rows-sum.html"
+>imat_rows_sum</A
+>&nbsp;--&nbsp;sum of rows of a matrix</DT
+><DT
+><A
+HREF="man.cmat-rows-sum.html"
+>cmat_rows_sum</A
+>&nbsp;--&nbsp;sum of rows of a matrix</DT
+><DT
+><A
+HREF="man.mat-row-decr.html"
+>mat_row_decr</A
+>&nbsp;--&nbsp;substract a value to elements of a given row</DT
+><DT
+><A
+HREF="man.imat-row-decr.html"
+>imat_row_decr</A
+>&nbsp;--&nbsp;substract a value to elements of a given row</DT
+><DT
+><A
+HREF="man.mat-row-div-by.html"
+>mat_row_div_by</A
+>&nbsp;--&nbsp;multiply the elements of a column by a given value</DT
+><DT
+><A
+HREF="man.imat-row-div-by.html"
+>imat_row_div_by</A
+>&nbsp;--&nbsp;multiply the elements of a column by a given value</DT
+><DT
+><A
+HREF="man.mat-row-mul-by.html"
+>mat_row_mul_by</A
+>&nbsp;--&nbsp;multiply a row by a value</DT
+><DT
+><A
+HREF="man.imat-row-mul-by.html"
+>imat_row_mul_by</A
+>&nbsp;--&nbsp;multiply a row by a value</DT
+><DT
+><A
+HREF="man.mat-row-incr.html"
+>mat_row_incr</A
+>&nbsp;--&nbsp;add a value to the elements of a given row</DT
+><DT
+><A
+HREF="man.imat-row-incr.html"
+>imat_row_incr</A
+>&nbsp;--&nbsp;add a value to the elements of a given row</DT
+><DT
+><A
+HREF="man.mat-row-sum.html"
+>mat_row_sum</A
+>&nbsp;--&nbsp;sum of a matrix row</DT
+><DT
+><A
+HREF="man.imat-row-sum.html"
+>imat_row_sum</A
+>&nbsp;--&nbsp;sum of a matrix row</DT
+><DT
+><A
+HREF="man.cmat-row-sum.html"
+>cmat_row_sum</A
+>&nbsp;--&nbsp;sum of a matrix row</DT
+><DT
+><A
+HREF="man.mat-set.html"
+>mat_set</A
+>&nbsp;--&nbsp;Set the elements of a matrix to a given value</DT
+><DT
+><A
+HREF="man.imat-set.html"
+>imat_set</A
+>&nbsp;--&nbsp;Set the elements of a matrix to a given value</DT
+><DT
+><A
+HREF="man.bmat-set.html"
+>bmat_set</A
+>&nbsp;--&nbsp;Set the elements of a matrix to a given value</DT
+><DT
+><A
+HREF="man.cmat-set.html"
+>cmat_set</A
+>&nbsp;--&nbsp;Set the elements of a matrix to a given value</DT
+><DT
+><A
+HREF="man.mat-set-between.html"
+>mat_set_between</A
+>&nbsp;--&nbsp;Set some matrix components to a value</DT
+><DT
+><A
+HREF="man.bmat-set-between.html"
+>bmat_set_between</A
+>&nbsp;--&nbsp;Set some matrix components to a value</DT
+><DT
+><A
+HREF="man.imat-set-between.html"
+>imat_set_between</A
+>&nbsp;--&nbsp;Set some matrix components to a value</DT
+><DT
+><A
+HREF="man.cmat-set-between.html"
+>cmat_set_between</A
+>&nbsp;--&nbsp;Set some matrix components to a value</DT
+><DT
+><A
+HREF="man.-mat-set-height.html"
+>Mat_set_height</A
+>&nbsp;--&nbsp;set the height of a matrix</DT
+><DT
+><A
+HREF="man.imat-set-height.html"
+>imat_set_height</A
+>&nbsp;--&nbsp;set the height of a matrix</DT
+><DT
+><A
+HREF="man.bmat-set-height.html"
+>bmat_set_height</A
+>&nbsp;--&nbsp;set the height of a matrix</DT
+><DT
+><A
+HREF="man.cmat-set-height.html"
+>cmat_set_height</A
+>&nbsp;--&nbsp;set the height of a matrix</DT
+><DT
+><A
+HREF="man.mat-set-height.html"
+>mat_set_height</A
+>&nbsp;--&nbsp;set the height of a matrix</DT
+><DT
+><A
+HREF="man.mat-set-height-max.html"
+>mat_set_height_max</A
+>&nbsp;--&nbsp;Change the maximum height of a matrix</DT
+><DT
+><A
+HREF="man.imat-set-height-max.html"
+>imat_set_height_max</A
+>&nbsp;--&nbsp;set the maximum height of a matrix</DT
+><DT
+><A
+HREF="man.bmat-set-height-max.html"
+>bmat_set_height_max</A
+>&nbsp;--&nbsp;Change the maximum height of a matrix</DT
+><DT
+><A
+HREF="man.cmat-set-height-max.html"
+>cmat_set_height_max</A
+>&nbsp;--&nbsp;specify the new maximum height of a matrix</DT
+><DT
+><A
+HREF="man.-mat-set-col.html"
+>Mat_set_col</A
+>&nbsp;--&nbsp;modify a column of a matrix with a vector</DT
+><DT
+><A
+HREF="man.mat-set-col.html"
+>mat_set_col</A
+>&nbsp;--&nbsp;modify a column of a matrix with a vector</DT
+><DT
+><A
+HREF="man.imat-set-col.html"
+>imat_set_col</A
+>&nbsp;--&nbsp;modify a column of a matrix with a vector</DT
+><DT
+><A
+HREF="man.bmat-set-col.html"
+>bmat_set_col</A
+>&nbsp;--&nbsp;modify a column of a matrix with a vector</DT
+><DT
+><A
+HREF="man.cmat-set-col.html"
+>cmat_set_col</A
+>&nbsp;--&nbsp;modify a column of a matrix with a vector</DT
+><DT
+><A
+HREF="man.mat-set-row.html"
+>mat_set_row</A
+>&nbsp;--&nbsp;modify a row of a matrix with a vector</DT
+><DT
+><A
+HREF="man.imat-set-row.html"
+>imat_set_row</A
+>&nbsp;--&nbsp;modify a row of a matrix with a vector</DT
+><DT
+><A
+HREF="man.bmat-set-row.html"
+>bmat_set_row</A
+>&nbsp;--&nbsp;modify a row of a matrix with a vector</DT
+><DT
+><A
+HREF="man.cmat-set-row.html"
+>cmat_set_row</A
+>&nbsp;--&nbsp;modify a row of a matrix with a vector</DT
+><DT
+><A
+HREF="man.mat-set-submatrix.html"
+>mat_set_submatrix</A
+>&nbsp;--&nbsp;set a submatrix of a matrix with a matrix</DT
+><DT
+><A
+HREF="man.imat-set-submatrix.html"
+>imat_set_submatrix</A
+>&nbsp;--&nbsp;set a submatrix of a matrix with a matrix</DT
+><DT
+><A
+HREF="man.bmat-set-submatrix.html"
+>bmat_set_submatrix</A
+>&nbsp;--&nbsp;set a submatrix of a matrix with a matrix</DT
+><DT
+><A
+HREF="man.-mat-set-width.html"
+>Mat_set_width</A
+>&nbsp;--&nbsp;set the width of a matrix</DT
+><DT
+><A
+HREF="man.mat-sub.html"
+>mat_sub</A
+>&nbsp;--&nbsp;Substract a matrix from another</DT
+><DT
+><A
+HREF="man.imat-sub.html"
+>imat_sub</A
+>&nbsp;--&nbsp;Substract a matrix from another</DT
+><DT
+><A
+HREF="man.mat-sum.html"
+>mat_sum</A
+>&nbsp;--&nbsp;Sum of the matrix elements</DT
+><DT
+><A
+HREF="man.imat-sum.html"
+>imat_sum</A
+>&nbsp;--&nbsp;Sum of a matrix</DT
+><DT
+><A
+HREF="man.cmat-sum.html"
+>cmat_sum</A
+>&nbsp;--&nbsp;Sum of a matrix</DT
+><DT
+><A
+HREF="man.mat-swap-cols.html"
+>mat_swap_cols</A
+>&nbsp;--&nbsp;swaps two columns in input matrix</DT
+><DT
+><A
+HREF="man.bmat-swap-cols.html"
+>bmat_swap_cols</A
+>&nbsp;--&nbsp;swaps two columns in input matrix</DT
+><DT
+><A
+HREF="man.imat-swap-cols.html"
+>imat_swap_cols</A
+>&nbsp;--&nbsp;swaps two columns in input matrix</DT
+><DT
+><A
+HREF="man.cmat-swap-cols.html"
+>cmat_swap_cols</A
+>&nbsp;--&nbsp;swaps two columns in input matrix</DT
+><DT
+><A
+HREF="man.imat-swap-rows.html"
+>imat_swap_rows</A
+>&nbsp;--&nbsp;swaps two rows in input matrix</DT
+><DT
+><A
+HREF="man.mat-swap-rows.html"
+>mat_swap_rows</A
+>&nbsp;--&nbsp;swaps two rows in input matrix</DT
+><DT
+><A
+HREF="man.bmat-swap-rows.html"
+>bmat_swap_rows</A
+>&nbsp;--&nbsp;swaps two rows in input matrix</DT
+><DT
+><A
+HREF="man.cmat-swap-rows.html"
+>cmat_swap_rows</A
+>&nbsp;--&nbsp;swaps two rows in input matrix</DT
+><DT
+><A
+HREF="man.imat-to-mat.html"
+>imat_to_mat</A
+>&nbsp;--&nbsp;convert a integer matrix to a matrix of double</DT
+><DT
+><A
+HREF="man.mat-to-vec.html"
+>mat_to_vec</A
+>&nbsp;--&nbsp;vectorize a matrix into a vector</DT
+><DT
+><A
+HREF="man.imat-to-ivec.html"
+>imat_to_ivec</A
+>&nbsp;--&nbsp;vectorize a matrix into a vector</DT
+><DT
+><A
+HREF="man.mat-transpose.html"
+>mat_transpose</A
+>&nbsp;--&nbsp;Transpose a matrix</DT
+><DT
+><A
+HREF="man.imat-transpose.html"
+>imat_transpose</A
+>&nbsp;--&nbsp;Transpose a matrix</DT
+><DT
+><A
+HREF="man.bmat-transpose.html"
+>bmat_transpose</A
+>&nbsp;--&nbsp;Transpose a matrix</DT
+><DT
+><A
+HREF="man.mat-variance.html"
+>mat_variance</A
+>&nbsp;--&nbsp;return the variance of the values in a matrix</DT
+><DT
+><A
+HREF="man.mat-vec-mul.html"
+>mat_vec_mul</A
+>&nbsp;--&nbsp;return the product of a vector by a matrix</DT
+><DT
+><A
+HREF="man.mat-ivec-mul.html"
+>mat_ivec_mul</A
+>&nbsp;--&nbsp;return the product of a vector by a matrix</DT
+><DT
+><A
+HREF="man.imat-vec-mul.html"
+>imat_vec_mul</A
+>&nbsp;--&nbsp;return the product of a vector by a matrix</DT
+><DT
+><A
+HREF="man.imat-ivec-mul.html"
+>imat_ivec_mul</A
+>&nbsp;--&nbsp;return the product of a vector by a matrix</DT
+><DT
+><A
+HREF="man.mat-void.html"
+>mat_void</A
+>&nbsp;--&nbsp;Set a matrix to void</DT
+><DT
+><A
+HREF="man.imat-void.html"
+>imat_void</A
+>&nbsp;--&nbsp;Set a matrix to void</DT
+><DT
+><A
+HREF="man.bmat-void.html"
+>bmat_void</A
+>&nbsp;--&nbsp;Set a matrix to void</DT
+><DT
+><A
+HREF="man.cmat-void.html"
+>cmat_void</A
+>&nbsp;--&nbsp;Set a matrix to void</DT
+><DT
+><A
+HREF="man.mat-width.html"
+>mat_width</A
+>&nbsp;--&nbsp;get the width of a matrix</DT
+><DT
+><A
+HREF="man.imat-width.html"
+>imat_width</A
+>&nbsp;--&nbsp;get the width of a matrix</DT
+><DT
+><A
+HREF="man.bmat-width.html"
+>bmat_width</A
+>&nbsp;--&nbsp;get the width of a matrix</DT
+><DT
+><A
+HREF="man.cmat-width.html"
+>cmat_width</A
+>&nbsp;--&nbsp;get the width of a matrix</DT
+><DT
+><A
+HREF="man.-mat-width.html"
+>Mat_width</A
+>&nbsp;--&nbsp;get the width of a matrix</DT
+><DT
+><A
+HREF="man.mat-width-max.html"
+>mat_width_max</A
+>&nbsp;--&nbsp;Maximum width of a matrix</DT
+><DT
+><A
+HREF="man.imat-width-max.html"
+>imat_width_max</A
+>&nbsp;--&nbsp;Maximum width of a matrix</DT
+><DT
+><A
+HREF="man.bmat-width-max.html"
+>bmat_width_max</A
+>&nbsp;--&nbsp;Maximum width of a matrix</DT
+><DT
+><A
+HREF="man.cmat-width-max.html"
+>cmat_width_max</A
+>&nbsp;--&nbsp;Maximum width of a matrix</DT
+><DT
+><A
+HREF="man.mat-zeros.html"
+>mat_zeros</A
+>&nbsp;--&nbsp;Set the elements of a matrix to 0</DT
+><DT
+><A
+HREF="man.imat-zeros.html"
+>imat_zeros</A
+>&nbsp;--&nbsp;Set the elements of a matrix to 0</DT
+><DT
+><A
+HREF="man.bmat-zeros.html"
+>bmat_zeros</A
+>&nbsp;--&nbsp;Set the elements of a matrix to 0</DT
+><DT
+><A
+HREF="man.cmat-zeros.html"
+>cmat_zeros</A
+>&nbsp;--&nbsp;set a matrix to 0</DT
+><DT
+><A
+HREF="man.vec-mat-mul.html"
+>vec_mat_mul</A
+>&nbsp;--&nbsp;return the product of a vector by a matrix</DT
+><DT
+><A
+HREF="man.ivec-imat-mul.html"
+>ivec_imat_mul</A
+>&nbsp;--&nbsp;return the product of a vector by a matrix</DT
+><DT
+><A
+HREF="man.vec-to-mat.html"
+>vec_to_mat</A
+>&nbsp;--&nbsp;convert a vector into a matrix</DT
+><DT
+><A
+HREF="man.ivec-to-imat.html"
+>ivec_to_imat</A
+>&nbsp;--&nbsp;convert a vector into a matrix</DT
+><DT
+><A
+HREF="man.itf-identity.html"
+>itf_identity</A
+>&nbsp;--&nbsp;the identity function</DT
+><DT
+><A
+HREF="man.itf-differentiate.html"
+>itf_differentiate</A
+>&nbsp;--&nbsp;differentiation operator</DT
+><DT
+><A
+HREF="man.itf-expectation.html"
+>itf_expectation</A
+>&nbsp;--&nbsp;expectation operator</DT
+><DT
+><A
+HREF="man.itf-mul.html"
+>itf_mul</A
+>&nbsp;--&nbsp;multiplication operator</DT
+><DT
+><A
+HREF="man.itf-integrate.html"
+>itf_integrate</A
+>&nbsp;--&nbsp;integration operator</DT
+><DT
+><A
+HREF="man.itf-integrate-romberg.html"
+>itf_integrate_romberg</A
+>&nbsp;--&nbsp;integration operator (Romberg)</DT
+><DT
+><A
+HREF="man.itf-integrate-trapezoid.html"
+>itf_integrate_trapezoid</A
+>&nbsp;--&nbsp;integration operator (trapezoid)</DT
+><DT
+><A
+HREF="man.itf-compose.html"
+>itf_compose</A
+>&nbsp;--&nbsp;function composition</DT
+><DT
+><A
+HREF="man.itf-sum.html"
+>itf_sum</A
+>&nbsp;--&nbsp;sum operator</DT
+><DT
+><A
+HREF="man.parser-delete.html"
+>parser_delete</A
+>&nbsp;--&nbsp;free a parser object</DT
+><DT
+><A
+HREF="man.parser-exists.html"
+>parser_exists</A
+>&nbsp;--&nbsp;check if a variable exists</DT
+><DT
+><A
+HREF="man.parser-get-double.html"
+>parser_get_double</A
+>&nbsp;--&nbsp;read a double</DT
+><DT
+><A
+HREF="man.parser-get-mat.html"
+>parser_get_mat</A
+>&nbsp;--&nbsp;read a matrix</DT
+><DT
+><A
+HREF="man.parser-get-imat.html"
+>parser_get_imat</A
+>&nbsp;--&nbsp;read a matrix</DT
+><DT
+><A
+HREF="man.parser-get-bmat.html"
+>parser_get_bmat</A
+>&nbsp;--&nbsp;read a matrix of byte</DT
+><DT
+><A
+HREF="man.parser-get-cmat.html"
+>parser_get_cmat</A
+>&nbsp;--&nbsp;read a matrix of complexes</DT
+><DT
+><A
+HREF="man.parser-get-int.html"
+>parser_get_int</A
+>&nbsp;--&nbsp;read an integer</DT
+><DT
+><A
+HREF="man.parser-get-cplx.html"
+>parser_get_cplx</A
+>&nbsp;--&nbsp;read a complex</DT
+><DT
+><A
+HREF="man.parser-get-string.html"
+>parser_get_string</A
+>&nbsp;--&nbsp;read a string</DT
+><DT
+><A
+HREF="man.parser-get-vec.html"
+>parser_get_vec</A
+>&nbsp;--&nbsp;read a vector</DT
+><DT
+><A
+HREF="man.parser-get-ivec.html"
+>parser_get_ivec</A
+>&nbsp;--&nbsp;read a vector</DT
+><DT
+><A
+HREF="man.parser-get-bvec.html"
+>parser_get_bvec</A
+>&nbsp;--&nbsp;read a vector of bytes</DT
+><DT
+><A
+HREF="man.parser-get-cvec.html"
+>parser_get_cvec</A
+>&nbsp;--&nbsp;read a complex vector</DT
+><DT
+><A
+HREF="man.parser-get-byte.html"
+>parser_get_byte</A
+>&nbsp;--&nbsp;read a byte with a parser</DT
+><DT
+><A
+HREF="man.parser-init.html"
+>parser_init</A
+>&nbsp;--&nbsp;Allocation and initialization of a parser</DT
+><DT
+><A
+HREF="man.parser-print.html"
+>parser_print</A
+>&nbsp;--&nbsp;print the content parsed by a parser</DT
+><DT
+><A
+HREF="man.lloyd-max.html"
+>lloyd_max</A
+>&nbsp;--&nbsp;generate the Lloyd-Max quantizer codebook</DT
+><DT
+><A
+HREF="man.it-dequantize.html"
+>it_dequantize</A
+>&nbsp;--&nbsp;dequantize a single index</DT
+><DT
+><A
+HREF="man.it-dequantize-mat.html"
+>it_dequantize_mat</A
+>&nbsp;--&nbsp;dequantize a matrix</DT
+><DT
+><A
+HREF="man.it-dequantize-vec.html"
+>it_dequantize_vec</A
+>&nbsp;--&nbsp;dequantize a vector</DT
+><DT
+><A
+HREF="man.it-quantize.html"
+>it_quantize</A
+>&nbsp;--&nbsp;quantize a single value</DT
+><DT
+><A
+HREF="man.it-quantize-mat.html"
+>it_quantize_mat</A
+>&nbsp;--&nbsp;quantize a matrix</DT
+><DT
+><A
+HREF="man.it-quantize-vec.html"
+>it_quantize_vec</A
+>&nbsp;--&nbsp;quantize a vector</DT
+><DT
+><A
+HREF="man.it-uniform-quantizer-new-from-center.html"
+>it_uniform_quantizer_new_from_center</A
+>&nbsp;--&nbsp;create a uniform scalar quantizer from center</DT
+><DT
+><A
+HREF="man.it-uniform-quantizer-new-from-range.html"
+>it_uniform_quantizer_new_from_range</A
+>&nbsp;--&nbsp;create a uniform scalar quantizer from range</DT
+><DT
+><A
+HREF="man.mt19937-rand-int31.html"
+>mt19937_rand_int31</A
+>&nbsp;--&nbsp;generates an uniform pseudo-random number (31 bit)</DT
+><DT
+><A
+HREF="man.mt19937-rand-int32.html"
+>mt19937_rand_int32</A
+>&nbsp;--&nbsp;generates an uniform pseudo-random number (32 bit)</DT
+><DT
+><A
+HREF="man.mt19937-rand-real1.html"
+>mt19937_rand_real1</A
+>&nbsp;--&nbsp;generates an uniform pseudo-random real number </DT
+><DT
+><A
+HREF="man.mt19937-rand-real2.html"
+>mt19937_rand_real2</A
+>&nbsp;--&nbsp;generates an uniform pseudo-random real number </DT
+><DT
+><A
+HREF="man.mt19937-rand-real3.html"
+>mt19937_rand_real3</A
+>&nbsp;--&nbsp;generates an uniform pseudo-random real number </DT
+><DT
+><A
+HREF="man.mt19937-rand-res53.html"
+>mt19937_rand_res53</A
+>&nbsp;--&nbsp;generates an uniform pseudo-random real number </DT
+><DT
+><A
+HREF="man.mt19937-srand.html"
+>mt19937_srand</A
+>&nbsp;--&nbsp;seeds the MT19937 PRNG</DT
+><DT
+><A
+HREF="man.mt19937-srand-by-array.html"
+>mt19937_srand_by_array</A
+>&nbsp;--&nbsp;seeds the MT19937 PRNG with an array</DT
+><DT
+><A
+HREF="man.it-rand.html"
+>it_rand</A
+>&nbsp;--&nbsp;uniform random number generator</DT
+><DT
+><A
+HREF="man.it-randn.html"
+>it_randn</A
+>&nbsp;--&nbsp;normal pseudo-random number generator</DT
+><DT
+><A
+HREF="man.it-randomize.html"
+>it_randomize</A
+>&nbsp;--&nbsp;initialize the random number generator</DT
+><DT
+><A
+HREF="man.it-randpdf.html"
+>it_randpdf</A
+>&nbsp;--&nbsp;generic random number generator</DT
+><DT
+><A
+HREF="man.it-seed.html"
+>it_seed</A
+>&nbsp;--&nbsp;initialize the random number generator from a seed</DT
+><DT
+><A
+HREF="man.it-separable2d.html"
+>it_separable2D</A
+>&nbsp;--&nbsp;apply a transform separably</DT
+><DT
+><A
+HREF="man.it-iseparable2d.html"
+>it_iseparable2D</A
+>&nbsp;--&nbsp;apply an inverse transform separably</DT
+><DT
+><A
+HREF="man.entropy-markov.html"
+>entropy_markov</A
+>&nbsp;--&nbsp;Return the entropy rate of a Markov source</DT
+><DT
+><A
+HREF="man.histogram.html"
+>histogram</A
+>&nbsp;--&nbsp;Process the histogram of a vector</DT
+><DT
+><A
+HREF="man.histogram-normalized.html"
+>histogram_normalized</A
+>&nbsp;--&nbsp;Process the normalized histogram of a source</DT
+><DT
+><A
+HREF="man.histogram-cond.html"
+>histogram_cond</A
+>&nbsp;--&nbsp;Process the conditional histogram of a vector</DT
+><DT
+><A
+HREF="man.source-gaussian.html"
+>source_gaussian</A
+>&nbsp;--&nbsp;gaussian source generator</DT
+><DT
+><A
+HREF="man.source-memoryless.html"
+>source_memoryless</A
+>&nbsp;--&nbsp;generic dicrete source generator</DT
+><DT
+><A
+HREF="man.source-binary.html"
+>source_binary</A
+>&nbsp;--&nbsp;binary source generator</DT
+><DT
+><A
+HREF="man.source-pdf.html"
+>source_pdf</A
+>&nbsp;--&nbsp;generic continuous source generator</DT
+><DT
+><A
+HREF="man.source-uniform.html"
+>source_uniform</A
+>&nbsp;--&nbsp;uniform source generator</DT
+><DT
+><A
+HREF="man.is-valid-markov-matrix.html"
+>is_valid_markov_matrix</A
+>&nbsp;--&nbsp;Verify that a matrix is a valid markov matrix</DT
+><DT
+><A
+HREF="man.is-valid-pdf.html"
+>is_valid_pdf</A
+>&nbsp;--&nbsp;Check if a vector defines a valid pdf</DT
+><DT
+><A
+HREF="man.source-estim-gg-from-histo.html"
+>source_estim_GG_from_histo</A
+>&nbsp;--&nbsp;estimate the parameters of a generalized Gaussian</DT
+><DT
+><A
+HREF="man.source-pdf-gg.html"
+>source_pdf_GG</A
+>&nbsp;--&nbsp;discrete GGD generator</DT
+><DT
+><A
+HREF="man.entropy.html"
+>entropy</A
+>&nbsp;--&nbsp;first-order entropy rate of a discrete source</DT
+><DT
+><A
+HREF="man.entropy-bin.html"
+>entropy_bin</A
+>&nbsp;--&nbsp;first-order entropy rate of a binary source</DT
+><DT
+><A
+HREF="man.markov-marg-pdf.html"
+>markov_marg_pdf</A
+>&nbsp;--&nbsp;stationary distribution of a Markov chain</DT
+><DT
+><A
+HREF="man.source-expectation.html"
+>source_expectation</A
+>&nbsp;--&nbsp;compute the expectation of a discrete source</DT
+><DT
+><A
+HREF="man.source-variance.html"
+>source_variance</A
+>&nbsp;--&nbsp;compute the variance of a discrete source</DT
+><DT
+><A
+HREF="man.it-transform2d.html"
+>it_transform2D</A
+>&nbsp;--&nbsp;generic 2D transform</DT
+><DT
+><A
+HREF="man.it-itransform2d.html"
+>it_itransform2D</A
+>&nbsp;--&nbsp;generic 2D inverse transform</DT
+><DT
+><A
+HREF="man.it-function.html"
+>it_function</A
+>&nbsp;--&nbsp;continuous function declaration macro</DT
+><DT
+><A
+HREF="man.it-function-args.html"
+>it_function_args</A
+>&nbsp;--&nbsp;continuous function parameters declaration macro</DT
+><DT
+><A
+HREF="man.vec-1n.html"
+>vec_1N</A
+>&nbsp;--&nbsp;set the vector to [1 2 3 ...]</DT
+><DT
+><A
+HREF="man.ivec-1n.html"
+>ivec_1N</A
+>&nbsp;--&nbsp;set the vector to [1 2 3 ...]</DT
+><DT
+><A
+HREF="man.bvec-1n.html"
+>bvec_1N</A
+>&nbsp;--&nbsp;set the vector to [1 2 3 ...]</DT
+><DT
+><A
+HREF="man.cvec-1n.html"
+>cvec_1N</A
+>&nbsp;--&nbsp;Set a vector to the values 1, 2, ..., N</DT
+><DT
+><A
+HREF="man.vec-add.html"
+>vec_add</A
+>&nbsp;--&nbsp;add a vector to another</DT
+><DT
+><A
+HREF="man.ivec-add.html"
+>ivec_add</A
+>&nbsp;--&nbsp;add a vector to another</DT
+><DT
+><A
+HREF="man.cvec-add.html"
+>cvec_add</A
+>&nbsp;--&nbsp;add a vector to another</DT
+><DT
+><A
+HREF="man.vec-apply-function.html"
+>vec_apply_function</A
+>&nbsp;--&nbsp;Apply a function to all the elements of a vector</DT
+><DT
+><A
+HREF="man.ivec-apply-function.html"
+>ivec_apply_function</A
+>&nbsp;--&nbsp;Apply a function to all the elements of a vector</DT
+><DT
+><A
+HREF="man.vec-arithm.html"
+>vec_arithm</A
+>&nbsp;--&nbsp;set the vector to an arithmetic sequence</DT
+><DT
+><A
+HREF="man.ivec-arithm.html"
+>ivec_arithm</A
+>&nbsp;--&nbsp;set the vector to an arithmetic sequence</DT
+><DT
+><A
+HREF="man.bvec-arithm.html"
+>bvec_arithm</A
+>&nbsp;--&nbsp;set the vector to an arithmetic sequence</DT
+><DT
+><A
+HREF="man.cvec-arithm.html"
+>cvec_arithm</A
+>&nbsp;--&nbsp;Define a arithmetic sequence within a vector</DT
+><DT
+><A
+HREF="man.vec-abs.html"
+>vec_abs</A
+>&nbsp;--&nbsp;absolute value for the components of a vector</DT
+><DT
+><A
+HREF="man.ivec-abs.html"
+>ivec_abs</A
+>&nbsp;--&nbsp;absolute value for the components of a vector</DT
+><DT
+><A
+HREF="man.vec-del.html"
+>vec_del</A
+>&nbsp;--&nbsp;Delete an element of a vector</DT
+><DT
+><A
+HREF="man.ivec-del.html"
+>ivec_del</A
+>&nbsp;--&nbsp;Delete an element of a vector</DT
+><DT
+><A
+HREF="man.bvec-del.html"
+>bvec_del</A
+>&nbsp;--&nbsp;Delete an element of a vector</DT
+><DT
+><A
+HREF="man.cvec-del.html"
+>cvec_del</A
+>&nbsp;--&nbsp;Delete an element of a vector</DT
+><DT
+><A
+HREF="man.-vec-delete.html"
+>Vec_delete</A
+>&nbsp;--&nbsp;free a vector</DT
+><DT
+><A
+HREF="man.vec-delete.html"
+>vec_delete</A
+>&nbsp;--&nbsp;free a vector</DT
+><DT
+><A
+HREF="man.ivec-delete.html"
+>ivec_delete</A
+>&nbsp;--&nbsp;free a vector of integers</DT
+><DT
+><A
+HREF="man.bvec-delete.html"
+>bvec_delete</A
+>&nbsp;--&nbsp;free a vector of bytes</DT
+><DT
+><A
+HREF="man.cvec-delete.html"
+>cvec_delete</A
+>&nbsp;--&nbsp;Free a vector</DT
+><DT
+><A
+HREF="man.vec-decr.html"
+>vec_decr</A
+>&nbsp;--&nbsp;Substract a value to the vector components</DT
+><DT
+><A
+HREF="man.ivec-decr.html"
+>ivec_decr</A
+>&nbsp;--&nbsp;Substract a value to the vector components</DT
+><DT
+><A
+HREF="man.cvec-decr.html"
+>cvec_decr</A
+>&nbsp;--&nbsp;Substract a value to the vector components</DT
+><DT
+><A
+HREF="man.cvec-decr-real.html"
+>cvec_decr_real</A
+>&nbsp;--&nbsp;Substract a real value to the vector components</DT
+><DT
+><A
+HREF="man.vec-div.html"
+>vec_div</A
+>&nbsp;--&nbsp;component per component division of 2 vec</DT
+><DT
+><A
+HREF="man.ivec-div.html"
+>ivec_div</A
+>&nbsp;--&nbsp;component per component division of 2 vec</DT
+><DT
+><A
+HREF="man.cvec-div.html"
+>cvec_div</A
+>&nbsp;--&nbsp;component per component division of 2 vec</DT
+><DT
+><A
+HREF="man.vec-div-by.html"
+>vec_div_by</A
+>&nbsp;--&nbsp;divide the vector by a constant</DT
+><DT
+><A
+HREF="man.ivec-div-by.html"
+>ivec_div_by</A
+>&nbsp;--&nbsp;divide the vector by a constant</DT
+><DT
+><A
+HREF="man.cvec-div-by.html"
+>cvec_div_by</A
+>&nbsp;--&nbsp;divide a complex vector by a complex value</DT
+><DT
+><A
+HREF="man.cvec-div-by-real.html"
+>cvec_div_by_real</A
+>&nbsp;--&nbsp;divide a complex vector by a double value</DT
+><DT
+><A
+HREF="man.vec-eq.html"
+>vec_eq</A
+>&nbsp;--&nbsp;check if two vectors are equal</DT
+><DT
+><A
+HREF="man.ivec-eq.html"
+>ivec_eq</A
+>&nbsp;--&nbsp;check if two vectors are equal</DT
+><DT
+><A
+HREF="man.bvec-eq.html"
+>bvec_eq</A
+>&nbsp;--&nbsp;test if two vectors are equal</DT
+><DT
+><A
+HREF="man.cvec-eq.html"
+>cvec_eq</A
+>&nbsp;--&nbsp;check if two complex vectors are equal</DT
+><DT
+><A
+HREF="man.vec-exp.html"
+>vec_exp</A
+>&nbsp;--&nbsp;Exponentation of the components</DT
+><DT
+><A
+HREF="man.vec-find.html"
+>vec_find</A
+>&nbsp;--&nbsp;positions of the vector equal to a given value</DT
+><DT
+><A
+HREF="man.ivec-find.html"
+>ivec_find</A
+>&nbsp;--&nbsp;positions of the vector equal to a given value</DT
+><DT
+><A
+HREF="man.bvec-find.html"
+>bvec_find</A
+>&nbsp;--&nbsp;positions of the vector equal to a given value</DT
+><DT
+><A
+HREF="man.cvec-find.html"
+>cvec_find</A
+>&nbsp;--&nbsp;positions of the vector equal to a given value</DT
+><DT
+><A
+HREF="man.vec-find-first.html"
+>vec_find_first</A
+>&nbsp;--&nbsp;first position where a given value is encountered</DT
+><DT
+><A
+HREF="man.ivec-find-first.html"
+>ivec_find_first</A
+>&nbsp;--&nbsp;first position where a given value is encountered</DT
+><DT
+><A
+HREF="man.bvec-find-first.html"
+>bvec_find_first</A
+>&nbsp;--&nbsp;first position where a given value is encountered</DT
+><DT
+><A
+HREF="man.cvec-find-first.html"
+>cvec_find_first</A
+>&nbsp;--&nbsp;first position where a given value is encountered</DT
+><DT
+><A
+HREF="man.vec-find-sorted.html"
+>vec_find_sorted</A
+>&nbsp;--&nbsp;find the position of a value in a sorted vector</DT
+><DT
+><A
+HREF="man.ivec-find-sorted.html"
+>ivec_find_sorted</A
+>&nbsp;--&nbsp;find the position of a value in a sorted vector</DT
+><DT
+><A
+HREF="man.bvec-find-sorted.html"
+>bvec_find_sorted</A
+>&nbsp;--&nbsp;find the position of a value in a sorted vector</DT
+><DT
+><A
+HREF="man.vec-geom.html"
+>vec_geom</A
+>&nbsp;--&nbsp;set the vector to a geometric sequence</DT
+><DT
+><A
+HREF="man.ivec-geom.html"
+>ivec_geom</A
+>&nbsp;--&nbsp;set the vector to a geometric sequence</DT
+><DT
+><A
+HREF="man.bvec-geom.html"
+>bvec_geom</A
+>&nbsp;--&nbsp;set the vector to a geometric sequence</DT
+><DT
+><A
+HREF="man.cvec-geom.html"
+>cvec_geom</A
+>&nbsp;--&nbsp;set the vector to a geometric sequence</DT
+><DT
+><A
+HREF="man.vec-geq.html"
+>vec_geq</A
+>&nbsp;--&nbsp;vector greater than another for all the values?</DT
+><DT
+><A
+HREF="man.ivec-geq.html"
+>ivec_geq</A
+>&nbsp;--&nbsp;vector greater than another for all the values?</DT
+><DT
+><A
+HREF="man.bvec-geq.html"
+>bvec_geq</A
+>&nbsp;--&nbsp;vector greater than another for all the values?</DT
+><DT
+><A
+HREF="man.vec-get-subvector.html"
+>vec_get_subvector</A
+>&nbsp;--&nbsp;get a subvector from a vector</DT
+><DT
+><A
+HREF="man.ivec-get-subvector.html"
+>ivec_get_subvector</A
+>&nbsp;--&nbsp;get a subvector from a vector</DT
+><DT
+><A
+HREF="man.bvec-get-subvector.html"
+>bvec_get_subvector</A
+>&nbsp;--&nbsp;get a subvector from a vector</DT
+><DT
+><A
+HREF="man.cvec-get-subvector.html"
+>cvec_get_subvector</A
+>&nbsp;--&nbsp;get a subvector from a vector</DT
+><DT
+><A
+HREF="man.vec-head.html"
+>vec_head</A
+>&nbsp;--&nbsp;retrieve the head of a vector</DT
+><DT
+><A
+HREF="man.ivec-head.html"
+>ivec_head</A
+>&nbsp;--&nbsp;retrieve the head of a vector</DT
+><DT
+><A
+HREF="man.bvec-head.html"
+>bvec_head</A
+>&nbsp;--&nbsp;retrieve the head of a vector</DT
+><DT
+><A
+HREF="man.cvec-head.html"
+>cvec_head</A
+>&nbsp;--&nbsp;retrieve the head of a vector</DT
+><DT
+><A
+HREF="man.vec-length.html"
+>vec_length</A
+>&nbsp;--&nbsp;get the length of a vector</DT
+><DT
+><A
+HREF="man.ivec-length.html"
+>ivec_length</A
+>&nbsp;--&nbsp;get the length of a vector</DT
+><DT
+><A
+HREF="man.bvec-length.html"
+>bvec_length</A
+>&nbsp;--&nbsp;get the length of a vector</DT
+><DT
+><A
+HREF="man.cvec-length.html"
+>cvec_length</A
+>&nbsp;--&nbsp;get the length of a vector</DT
+><DT
+><A
+HREF="man.vec-length-max.html"
+>vec_length_max</A
+>&nbsp;--&nbsp;get the number of elements allocated to a vector</DT
+><DT
+><A
+HREF="man.ivec-length-max.html"
+>ivec_length_max</A
+>&nbsp;--&nbsp;get the number of elements allocated to a vector</DT
+><DT
+><A
+HREF="man.bvec-length-max.html"
+>bvec_length_max</A
+>&nbsp;--&nbsp;get the number of elements allocated to a vector</DT
+><DT
+><A
+HREF="man.cvec-length-max.html"
+>cvec_length_max</A
+>&nbsp;--&nbsp;get the number of elements allocated to a vector</DT
+><DT
+><A
+HREF="man.vec-log.html"
+>vec_log</A
+>&nbsp;--&nbsp;Apply logarithm to the components of a vector</DT
+><DT
+><A
+HREF="man.vec-log10.html"
+>vec_log10</A
+>&nbsp;--&nbsp;logarithm base 10 to the components of a vector</DT
+><DT
+><A
+HREF="man.-vec-clone.html"
+>Vec_clone</A
+>&nbsp;--&nbsp;create a copy of a vector</DT
+><DT
+><A
+HREF="man.vec-clone.html"
+>vec_clone</A
+>&nbsp;--&nbsp;create a copy of a vector</DT
+><DT
+><A
+HREF="man.ivec-clone.html"
+>ivec_clone</A
+>&nbsp;--&nbsp;create a copy of a vector</DT
+><DT
+><A
+HREF="man.bvec-clone.html"
+>bvec_clone</A
+>&nbsp;--&nbsp;create a copy of a vector</DT
+><DT
+><A
+HREF="man.cvec-clone.html"
+>cvec_clone</A
+>&nbsp;--&nbsp;create a copy of a complex vector</DT
+><DT
+><A
+HREF="man.vec-max.html"
+>vec_max</A
+>&nbsp;--&nbsp;Maximum of a vector</DT
+><DT
+><A
+HREF="man.ivec-max.html"
+>ivec_max</A
+>&nbsp;--&nbsp;Maximum of a vector</DT
+><DT
+><A
+HREF="man.vec-max-index.html"
+>vec_max_index</A
+>&nbsp;--&nbsp;Position of the maximum of a vector</DT
+><DT
+><A
+HREF="man.ivec-max-index.html"
+>ivec_max_index</A
+>&nbsp;--&nbsp;Position of the maximum of a vector</DT
+><DT
+><A
+HREF="man.vec-mean.html"
+>vec_mean</A
+>&nbsp;--&nbsp;mean value of a vector</DT
+><DT
+><A
+HREF="man.ivec-mean.html"
+>ivec_mean</A
+>&nbsp;--&nbsp;mean value of a vector</DT
+><DT
+><A
+HREF="man.vec-mean-robust.html"
+>vec_mean_robust</A
+>&nbsp;--&nbsp;robust computation of the mean of a vector</DT
+><DT
+><A
+HREF="man.vec-median.html"
+>vec_median</A
+>&nbsp;--&nbsp;median value of a vector</DT
+><DT
+><A
+HREF="man.ivec-median.html"
+>ivec_median</A
+>&nbsp;--&nbsp;median value of a vector</DT
+><DT
+><A
+HREF="man.vec-min.html"
+>vec_min</A
+>&nbsp;--&nbsp;Minimum of a vector</DT
+><DT
+><A
+HREF="man.ivec-min.html"
+>ivec_min</A
+>&nbsp;--&nbsp;Minimum of a vector</DT
+><DT
+><A
+HREF="man.vec-min-index.html"
+>vec_min_index</A
+>&nbsp;--&nbsp;Position of the minimum in a vector</DT
+><DT
+><A
+HREF="man.ivec-min-index.html"
+>ivec_min_index</A
+>&nbsp;--&nbsp;Position of the minimum in a vector</DT
+><DT
+><A
+HREF="man.vec-mul.html"
+>vec_mul</A
+>&nbsp;--&nbsp;component per component multiplication of 2 vec</DT
+><DT
+><A
+HREF="man.ivec-mul.html"
+>ivec_mul</A
+>&nbsp;--&nbsp;component per component multiplication of 2 ivec</DT
+><DT
+><A
+HREF="man.cvec-mul.html"
+>cvec_mul</A
+>&nbsp;--&nbsp;component per component multiplication of 2 cvec</DT
+><DT
+><A
+HREF="man.vec-mul-by.html"
+>vec_mul_by</A
+>&nbsp;--&nbsp;multiply a vector by a constant</DT
+><DT
+><A
+HREF="man.ivec-mul-by.html"
+>ivec_mul_by</A
+>&nbsp;--&nbsp;multiply a vector by a constant</DT
+><DT
+><A
+HREF="man.cvec-mul-by.html"
+>cvec_mul_by</A
+>&nbsp;--&nbsp;multiply a complex vector by a complex value</DT
+><DT
+><A
+HREF="man.cvec-mul-by-real.html"
+>cvec_mul_by_real</A
+>&nbsp;--&nbsp;multiply a complex vector by a real constant</DT
+><DT
+><A
+HREF="man.vec-index-by.html"
+>vec_index_by</A
+>&nbsp;--&nbsp;create a vector from a vector indexed by another</DT
+><DT
+><A
+HREF="man.ivec-index-by.html"
+>ivec_index_by</A
+>&nbsp;--&nbsp;create a vector from a vector indexed by another</DT
+><DT
+><A
+HREF="man.bvec-index-by.html"
+>bvec_index_by</A
+>&nbsp;--&nbsp;create a vector from a vector indexed by another</DT
+><DT
+><A
+HREF="man.cvec-index-by.html"
+>cvec_index_by</A
+>&nbsp;--&nbsp;create a vector from a vector indexed by another</DT
+><DT
+><A
+HREF="man.vec-neg.html"
+>vec_neg</A
+>&nbsp;--&nbsp;Opposite of a vector</DT
+><DT
+><A
+HREF="man.ivec-neg.html"
+>ivec_neg</A
+>&nbsp;--&nbsp;Opposite of a vector</DT
+><DT
+><A
+HREF="man.cvec-neg.html"
+>cvec_neg</A
+>&nbsp;--&nbsp;Opposite of a vector</DT
+><DT
+><A
+HREF="man.-vec-new.html"
+>Vec_new</A
+>&nbsp;--&nbsp;create a new vector</DT
+><DT
+><A
+HREF="man.vec-new.html"
+>vec_new</A
+>&nbsp;--&nbsp;create a new real vector</DT
+><DT
+><A
+HREF="man.ivec-new.html"
+>ivec_new</A
+>&nbsp;--&nbsp;create a new integer vector</DT
+><DT
+><A
+HREF="man.bvec-new.html"
+>bvec_new</A
+>&nbsp;--&nbsp;create a new byte vector</DT
+><DT
+><A
+HREF="man.cvec-new.html"
+>cvec_new</A
+>&nbsp;--&nbsp;create a new complex vector</DT
+><DT
+><A
+HREF="man.vec-new-1n.html"
+>vec_new_1N</A
+>&nbsp;--&nbsp;create the vector 1, 2, ...</DT
+><DT
+><A
+HREF="man.ivec-new-1n.html"
+>ivec_new_1N</A
+>&nbsp;--&nbsp;create a vector of integers 1, 2, ...</DT
+><DT
+><A
+HREF="man.bvec-new-1n.html"
+>bvec_new_1N</A
+>&nbsp;--&nbsp;create a vector of bytes 1, 2, ...</DT
+><DT
+><A
+HREF="man.cvec-new-1n.html"
+>cvec_new_1N</A
+>&nbsp;--&nbsp;create the vector 1, 2, ...</DT
+><DT
+><A
+HREF="man.vec-new-add.html"
+>vec_new_add</A
+>&nbsp;--&nbsp;Add two vectors</DT
+><DT
+><A
+HREF="man.ivec-new-add.html"
+>ivec_new_add</A
+>&nbsp;--&nbsp;Add two vectors</DT
+><DT
+><A
+HREF="man.-vec-new-alloc.html"
+>Vec_new_alloc</A
+>&nbsp;--&nbsp;create a new generic vector</DT
+><DT
+><A
+HREF="man.vec-new-alloc.html"
+>vec_new_alloc</A
+>&nbsp;--&nbsp;create a new vector</DT
+><DT
+><A
+HREF="man.ivec-new-alloc.html"
+>ivec_new_alloc</A
+>&nbsp;--&nbsp;create a new vector of integers</DT
+><DT
+><A
+HREF="man.bvec-new-alloc.html"
+>bvec_new_alloc</A
+>&nbsp;--&nbsp;create a new vector of bytes</DT
+><DT
+><A
+HREF="man.cvec-new-alloc.html"
+>cvec_new_alloc</A
+>&nbsp;--&nbsp;create a new vector</DT
+><DT
+><A
+HREF="man.vec-new-apply-function.html"
+>vec_new_apply_function</A
+>&nbsp;--&nbsp;Apply a function to a vector</DT
+><DT
+><A
+HREF="man.ivec-new-apply-function.html"
+>ivec_new_apply_function</A
+>&nbsp;--&nbsp;Apply a function to a vector</DT
+><DT
+><A
+HREF="man.vec-new-arithm.html"
+>vec_new_arithm</A
+>&nbsp;--&nbsp;create an arithmetic sequence</DT
+><DT
+><A
+HREF="man.ivec-new-arithm.html"
+>ivec_new_arithm</A
+>&nbsp;--&nbsp;create an arithmetic sequence</DT
+><DT
+><A
+HREF="man.bvec-new-arithm.html"
+>bvec_new_arithm</A
+>&nbsp;--&nbsp;create an arithmetic sequence</DT
+><DT
+><A
+HREF="man.cvec-new-arithm.html"
+>cvec_new_arithm</A
+>&nbsp;--&nbsp;create an arithmetic sequence</DT
+><DT
+><A
+HREF="man.cvec-new-abs.html"
+>cvec_new_abs</A
+>&nbsp;--&nbsp;vector constructed from the modules of a vector</DT
+><DT
+><A
+HREF="man.vec-new-div.html"
+>vec_new_div</A
+>&nbsp;--&nbsp;Divides two vectors (comp. per component)</DT
+><DT
+><A
+HREF="man.ivec-new-div.html"
+>ivec_new_div</A
+>&nbsp;--&nbsp;Divides two vectors (comp. per component)</DT
+><DT
+><A
+HREF="man.vec-new-geom.html"
+>vec_new_geom</A
+>&nbsp;--&nbsp;create a geometric sequence of double values</DT
+><DT
+><A
+HREF="man.ivec-new-geom.html"
+>ivec_new_geom</A
+>&nbsp;--&nbsp;create a geometric sequence</DT
+><DT
+><A
+HREF="man.bvec-new-geom.html"
+>bvec_new_geom</A
+>&nbsp;--&nbsp;create a geometric sequence</DT
+><DT
+><A
+HREF="man.cvec-new-geom.html"
+>cvec_new_geom</A
+>&nbsp;--&nbsp;create a geometric sequence</DT
+><DT
+><A
+HREF="man.vec-new-mul.html"
+>vec_new_mul</A
+>&nbsp;--&nbsp;Multiply two vectors (comp. per component)</DT
+><DT
+><A
+HREF="man.ivec-new-mul.html"
+>ivec_new_mul</A
+>&nbsp;--&nbsp;Multiply two vectors (comp. per component)</DT
+><DT
+><A
+HREF="man.vec-new-intersection.html"
+>vec_new_intersection</A
+>&nbsp;--&nbsp;Intersection of two vectors</DT
+><DT
+><A
+HREF="man.ivec-new-intersection.html"
+>ivec_new_intersection</A
+>&nbsp;--&nbsp;Intersection of two vectors</DT
+><DT
+><A
+HREF="man.bvec-new-intersection.html"
+>bvec_new_intersection</A
+>&nbsp;--&nbsp;Compute the intersection of two vectors</DT
+><DT
+><A
+HREF="man.cvec-new-intersection.html"
+>cvec_new_intersection</A
+>&nbsp;--&nbsp;Intersection of two vectors</DT
+><DT
+><A
+HREF="man.vec-new-concat.html"
+>vec_new_concat</A
+>&nbsp;--&nbsp;concatenation of two vectors</DT
+><DT
+><A
+HREF="man.ivec-new-concat.html"
+>ivec_new_concat</A
+>&nbsp;--&nbsp;concatenation of two vectors</DT
+><DT
+><A
+HREF="man.bvec-new-concat.html"
+>bvec_new_concat</A
+>&nbsp;--&nbsp;concatenation of two vectors</DT
+><DT
+><A
+HREF="man.cvec-new-concat.html"
+>cvec_new_concat</A
+>&nbsp;--&nbsp;concatenation of two vectors</DT
+><DT
+><A
+HREF="man.vec-new-ones.html"
+>vec_new_ones</A
+>&nbsp;--&nbsp;create a vector of ones</DT
+><DT
+><A
+HREF="man.ivec-new-ones.html"
+>ivec_new_ones</A
+>&nbsp;--&nbsp;create a vector of ones</DT
+><DT
+><A
+HREF="man.bvec-new-ones.html"
+>bvec_new_ones</A
+>&nbsp;--&nbsp;create a byte vector of ones</DT
+><DT
+><A
+HREF="man.cvec-new-ones.html"
+>cvec_new_ones</A
+>&nbsp;--&nbsp;create a vector of ones</DT
+><DT
+><A
+HREF="man.ivec-new-perm.html"
+>ivec_new_perm</A
+>&nbsp;--&nbsp;generates an uniformly shuffled ivec</DT
+><DT
+><A
+HREF="man.vec-new-range.html"
+>vec_new_range</A
+>&nbsp;--&nbsp;create the vector [0, 1, 2, ...N-1]</DT
+><DT
+><A
+HREF="man.ivec-new-range.html"
+>ivec_new_range</A
+>&nbsp;--&nbsp;create the vector [0, 1, 2, ...N-1]</DT
+><DT
+><A
+HREF="man.bvec-new-range.html"
+>bvec_new_range</A
+>&nbsp;--&nbsp;create the vector [0, 1, 2, ...N-1]</DT
+><DT
+><A
+HREF="man.cvec-new-range.html"
+>cvec_new_range</A
+>&nbsp;--&nbsp;create the vector [0, 1, 2, ...N-1]</DT
+><DT
+><A
+HREF="man.vec-new-reverse.html"
+>vec_new_reverse</A
+>&nbsp;--&nbsp;Reverse the elements of a vector</DT
+><DT
+><A
+HREF="man.ivec-new-reverse.html"
+>ivec_new_reverse</A
+>&nbsp;--&nbsp;Reverse a vector</DT
+><DT
+><A
+HREF="man.bvec-new-reverse.html"
+>bvec_new_reverse</A
+>&nbsp;--&nbsp;Reverse a vector</DT
+><DT
+><A
+HREF="man.cvec-new-reverse.html"
+>cvec_new_reverse</A
+>&nbsp;--&nbsp;Reverse a vector</DT
+><DT
+><A
+HREF="man.vec-new-set.html"
+>vec_new_set</A
+>&nbsp;--&nbsp;new vector with a fixed value</DT
+><DT
+><A
+HREF="man.ivec-new-set.html"
+>ivec_new_set</A
+>&nbsp;--&nbsp;new vector with a fixed value</DT
+><DT
+><A
+HREF="man.bvec-new-set.html"
+>bvec_new_set</A
+>&nbsp;--&nbsp;new vector with a fixed value</DT
+><DT
+><A
+HREF="man.cvec-new-set.html"
+>cvec_new_set</A
+>&nbsp;--&nbsp;new vector with a fixed value</DT
+><DT
+><A
+HREF="man.vec-new-sub.html"
+>vec_new_sub</A
+>&nbsp;--&nbsp;Substract two vectors</DT
+><DT
+><A
+HREF="man.ivec-new-sub.html"
+>ivec_new_sub</A
+>&nbsp;--&nbsp;Substract two vectors</DT
+><DT
+><A
+HREF="man.vec-new-union.html"
+>vec_new_union</A
+>&nbsp;--&nbsp;Merge two vectors</DT
+><DT
+><A
+HREF="man.ivec-new-union.html"
+>ivec_new_union</A
+>&nbsp;--&nbsp;Merge two vectors</DT
+><DT
+><A
+HREF="man.bvec-new-union.html"
+>bvec_new_union</A
+>&nbsp;--&nbsp;Merge two vectors</DT
+><DT
+><A
+HREF="man.vec-new-unique.html"
+>vec_new_unique</A
+>&nbsp;--&nbsp;set of distinct values of a vector</DT
+><DT
+><A
+HREF="man.bvec-new-unique.html"
+>bvec_new_unique</A
+>&nbsp;--&nbsp;set of distinct values of a vector</DT
+><DT
+><A
+HREF="man.cvec-new-unit-roots.html"
+>cvec_new_unit_roots</A
+>&nbsp;--&nbsp;construct a vector of units roots</DT
+><DT
+><A
+HREF="man.vec-new-void.html"
+>vec_new_void</A
+>&nbsp;--&nbsp;create an empty vector</DT
+><DT
+><A
+HREF="man.ivec-new-void.html"
+>ivec_new_void</A
+>&nbsp;--&nbsp;create an empty vector</DT
+><DT
+><A
+HREF="man.bvec-new-void.html"
+>bvec_new_void</A
+>&nbsp;--&nbsp;create an empty vector</DT
+><DT
+><A
+HREF="man.cvec-new-void.html"
+>cvec_new_void</A
+>&nbsp;--&nbsp;create an empty vector</DT
+><DT
+><A
+HREF="man.vec-new-zeros.html"
+>vec_new_zeros</A
+>&nbsp;--&nbsp;create a vector of zeros</DT
+><DT
+><A
+HREF="man.ivec-new-zeros.html"
+>ivec_new_zeros</A
+>&nbsp;--&nbsp;create a vector of zeros</DT
+><DT
+><A
+HREF="man.bvec-new-zeros.html"
+>bvec_new_zeros</A
+>&nbsp;--&nbsp;create a byte vector of zeros</DT
+><DT
+><A
+HREF="man.cvec-new-zeros.html"
+>cvec_new_zeros</A
+>&nbsp;--&nbsp;create a vector of zeros</DT
+><DT
+><A
+HREF="man.vec-inner-product.html"
+>vec_inner_product</A
+>&nbsp;--&nbsp;Inner product of two vectors</DT
+><DT
+><A
+HREF="man.ivec-inner-product.html"
+>ivec_inner_product</A
+>&nbsp;--&nbsp;Inner product of two vectors</DT
+><DT
+><A
+HREF="man.vec-inner-product-robust.html"
+>vec_inner_product_robust</A
+>&nbsp;--&nbsp;robust computation of inner product</DT
+><DT
+><A
+HREF="man.vec-norm.html"
+>vec_norm</A
+>&nbsp;--&nbsp;take the norm of a vector</DT
+><DT
+><A
+HREF="man.vec-normalize.html"
+>vec_normalize</A
+>&nbsp;--&nbsp;Normalization of the vector</DT
+><DT
+><A
+HREF="man.vec-incr.html"
+>vec_incr</A
+>&nbsp;--&nbsp;Increment the components of a vector by a value</DT
+><DT
+><A
+HREF="man.ivec-incr.html"
+>ivec_incr</A
+>&nbsp;--&nbsp;Increment the components of a vector by a value</DT
+><DT
+><A
+HREF="man.cvec-incr.html"
+>cvec_incr</A
+>&nbsp;--&nbsp;Increment the components of a vector by a value</DT
+><DT
+><A
+HREF="man.cvec-incr-real.html"
+>cvec_incr_real</A
+>&nbsp;--&nbsp;add a value to the real components of a vector</DT
+><DT
+><A
+HREF="man.vec-ins.html"
+>vec_ins</A
+>&nbsp;--&nbsp;insert an element into a vector</DT
+><DT
+><A
+HREF="man.ivec-ins.html"
+>ivec_ins</A
+>&nbsp;--&nbsp;insert an element into a vector</DT
+><DT
+><A
+HREF="man.bvec-ins.html"
+>bvec_ins</A
+>&nbsp;--&nbsp;insert an element into a vector</DT
+><DT
+><A
+HREF="man.cvec-ins.html"
+>cvec_ins</A
+>&nbsp;--&nbsp;insert an element into a vector</DT
+><DT
+><A
+HREF="man.vec-init.html"
+>vec_init</A
+>&nbsp;--&nbsp;Initialization of a vector from a buffer of double</DT
+><DT
+><A
+HREF="man.ivec-init.html"
+>ivec_init</A
+>&nbsp;--&nbsp;Initialization of a vector from a buffer of int</DT
+><DT
+><A
+HREF="man.bvec-init.html"
+>bvec_init</A
+>&nbsp;--&nbsp;Initialization of a vector from a buffer of byte</DT
+><DT
+><A
+HREF="man.cvec-init.html"
+>cvec_init</A
+>&nbsp;--&nbsp;Initialization of a vector from a buffer</DT
+><DT
+><A
+HREF="man.vec-ones.html"
+>vec_ones</A
+>&nbsp;--&nbsp;set all the elements of a vector to one</DT
+><DT
+><A
+HREF="man.ivec-ones.html"
+>ivec_ones</A
+>&nbsp;--&nbsp;Set all the elements of a vector to one</DT
+><DT
+><A
+HREF="man.bvec-ones.html"
+>bvec_ones</A
+>&nbsp;--&nbsp;set all the elements of a vector to one</DT
+><DT
+><A
+HREF="man.cvec-ones.html"
+>cvec_ones</A
+>&nbsp;--&nbsp;set all the elements of a vector to one</DT
+><DT
+><A
+HREF="man.-vec-copy.html"
+>Vec_copy</A
+>&nbsp;--&nbsp;copy a vector into another</DT
+><DT
+><A
+HREF="man.vec-copy.html"
+>vec_copy</A
+>&nbsp;--&nbsp;copy a vector into another</DT
+><DT
+><A
+HREF="man.ivec-copy.html"
+>ivec_copy</A
+>&nbsp;--&nbsp;copy a vector into another</DT
+><DT
+><A
+HREF="man.bvec-copy.html"
+>bvec_copy</A
+>&nbsp;--&nbsp;copy a vector into another</DT
+><DT
+><A
+HREF="man.cvec-copy.html"
+>cvec_copy</A
+>&nbsp;--&nbsp;copy a complex vector into another</DT
+><DT
+><A
+HREF="man.vec-copy-from-ivec.html"
+>vec_copy_from_ivec</A
+>&nbsp;--&nbsp;copy a vector with a type</DT
+><DT
+><A
+HREF="man.vec-copy-from-bvec.html"
+>vec_copy_from_bvec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.vec-copy-from-cvec.html"
+>vec_copy_from_cvec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.ivec-copy-from-vec.html"
+>ivec_copy_from_vec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.ivec-copy-from-bvec.html"
+>ivec_copy_from_bvec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.ivec-copy-from-cvec.html"
+>ivec_copy_from_cvec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.bvec-copy-from-vec.html"
+>bvec_copy_from_vec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.bvec-copy-from-ivec.html"
+>bvec_copy_from_ivec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.bvec-copy-from-cvec.html"
+>bvec_copy_from_cvec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.cvec-copy-from-vec.html"
+>cvec_copy_from_vec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.cvec-copy-from-ivec.html"
+>cvec_copy_from_ivec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.cvec-copy-from-bvec.html"
+>cvec_copy_from_bvec</A
+>&nbsp;--&nbsp;copy a vector with a type conversion</DT
+><DT
+><A
+HREF="man.vec-copy-mem.html"
+>vec_copy_mem</A
+>&nbsp;--&nbsp;copy a vector into a buffer</DT
+><DT
+><A
+HREF="man.ivec-copy-mem.html"
+>ivec_copy_mem</A
+>&nbsp;--&nbsp;copy a vector into a buffer</DT
+><DT
+><A
+HREF="man.bvec-copy-mem.html"
+>bvec_copy_mem</A
+>&nbsp;--&nbsp;copy a vector into a buffer</DT
+><DT
+><A
+HREF="man.cvec-copy-mem.html"
+>cvec_copy_mem</A
+>&nbsp;--&nbsp;copy a vector into a buffer</DT
+><DT
+><A
+HREF="man.vec-count.html"
+>vec_count</A
+>&nbsp;--&nbsp;Count an element in a vector</DT
+><DT
+><A
+HREF="man.ivec-count.html"
+>ivec_count</A
+>&nbsp;--&nbsp;Count an element in a vector</DT
+><DT
+><A
+HREF="man.bvec-count.html"
+>bvec_count</A
+>&nbsp;--&nbsp;Count an element in a vector</DT
+><DT
+><A
+HREF="man.cvec-count.html"
+>cvec_count</A
+>&nbsp;--&nbsp;Count an element in a vector</DT
+><DT
+><A
+HREF="man.vec-pop.html"
+>vec_pop</A
+>&nbsp;--&nbsp;remove the head of a vector (the last element)</DT
+><DT
+><A
+HREF="man.ivec-pop.html"
+>ivec_pop</A
+>&nbsp;--&nbsp;remove the head of a vector (the last element)</DT
+><DT
+><A
+HREF="man.bvec-pop.html"
+>bvec_pop</A
+>&nbsp;--&nbsp;remove the head of a vector (the last element)</DT
+><DT
+><A
+HREF="man.cvec-pop.html"
+>cvec_pop</A
+>&nbsp;--&nbsp;remove the head of a vector (the last element)</DT
+><DT
+><A
+HREF="man.vec-pow.html"
+>vec_pow</A
+>&nbsp;--&nbsp;Set the components of a vector to a power</DT
+><DT
+><A
+HREF="man.vec-push.html"
+>vec_push</A
+>&nbsp;--&nbsp;add an element at the end of a vector</DT
+><DT
+><A
+HREF="man.ivec-push.html"
+>ivec_push</A
+>&nbsp;--&nbsp;add an element at the end of a vector</DT
+><DT
+><A
+HREF="man.bvec-push.html"
+>bvec_push</A
+>&nbsp;--&nbsp;add an element at the end of a vector</DT
+><DT
+><A
+HREF="man.cvec-push.html"
+>cvec_push</A
+>&nbsp;--&nbsp;add an element at the end of a vector</DT
+><DT
+><A
+HREF="man.vec-qsort.html"
+>vec_qsort</A
+>&nbsp;--&nbsp;Sort a vector with the quick sort</DT
+><DT
+><A
+HREF="man.ivec-qsort.html"
+>ivec_qsort</A
+>&nbsp;--&nbsp;Sort a vector with the quick sort</DT
+><DT
+><A
+HREF="man.bvec-qsort.html"
+>bvec_qsort</A
+>&nbsp;--&nbsp;Sort a vector with the quick sort</DT
+><DT
+><A
+HREF="man.vec-qsort-index.html"
+>vec_qsort_index</A
+>&nbsp;--&nbsp;sort the indexes of a vector</DT
+><DT
+><A
+HREF="man.ivec-qsort-index.html"
+>ivec_qsort_index</A
+>&nbsp;--&nbsp;sort the indexes of a vector</DT
+><DT
+><A
+HREF="man.bvec-qsort-index.html"
+>bvec_qsort_index</A
+>&nbsp;--&nbsp;sort the indexes of a vector</DT
+><DT
+><A
+HREF="man.vec-range.html"
+>vec_range</A
+>&nbsp;--&nbsp;set the vector to [0 1 2 3 ...]</DT
+><DT
+><A
+HREF="man.ivec-range.html"
+>ivec_range</A
+>&nbsp;--&nbsp;set the vector to [0 1 2 3 ...]</DT
+><DT
+><A
+HREF="man.bvec-range.html"
+>bvec_range</A
+>&nbsp;--&nbsp;set the vector to [0 1 2 3 ...]</DT
+><DT
+><A
+HREF="man.cvec-range.html"
+>cvec_range</A
+>&nbsp;--&nbsp;set the vector to [0 1 2 3 ...]</DT
+><DT
+><A
+HREF="man.vec-replace.html"
+>vec_replace</A
+>&nbsp;--&nbsp;replace a value by another</DT
+><DT
+><A
+HREF="man.ivec-replace.html"
+>ivec_replace</A
+>&nbsp;--&nbsp;replace a value by another</DT
+><DT
+><A
+HREF="man.bvec-replace.html"
+>bvec_replace</A
+>&nbsp;--&nbsp;replace a value by another</DT
+><DT
+><A
+HREF="man.cvec-replace.html"
+>cvec_replace</A
+>&nbsp;--&nbsp;replace a value by another</DT
+><DT
+><A
+HREF="man.vec-reverse.html"
+>vec_reverse</A
+>&nbsp;--&nbsp;Reverse a vector</DT
+><DT
+><A
+HREF="man.ivec-reverse.html"
+>ivec_reverse</A
+>&nbsp;--&nbsp;Reverse a vector</DT
+><DT
+><A
+HREF="man.bvec-reverse.html"
+>bvec_reverse</A
+>&nbsp;--&nbsp;Reverse a vector</DT
+><DT
+><A
+HREF="man.vec-set.html"
+>vec_set</A
+>&nbsp;--&nbsp;Initialization of a vector with a value</DT
+><DT
+><A
+HREF="man.ivec-set.html"
+>ivec_set</A
+>&nbsp;--&nbsp;Initialization of a vector with a value</DT
+><DT
+><A
+HREF="man.bvec-set.html"
+>bvec_set</A
+>&nbsp;--&nbsp;Initialization of a vector with a value</DT
+><DT
+><A
+HREF="man.cvec-set.html"
+>cvec_set</A
+>&nbsp;--&nbsp;Initialization of a vector with a value</DT
+><DT
+><A
+HREF="man.vec-set-between.html"
+>vec_set_between</A
+>&nbsp;--&nbsp;Set some vector components to a value</DT
+><DT
+><A
+HREF="man.ivec-set-between.html"
+>ivec_set_between</A
+>&nbsp;--&nbsp;Set some vector components to a value</DT
+><DT
+><A
+HREF="man.bvec-set-between.html"
+>bvec_set_between</A
+>&nbsp;--&nbsp;set a part of a vector with a value</DT
+><DT
+><A
+HREF="man.cvec-set-between.html"
+>cvec_set_between</A
+>&nbsp;--&nbsp;Set some vector components to a value</DT
+><DT
+><A
+HREF="man.vec-set-length.html"
+>vec_set_length</A
+>&nbsp;--&nbsp;Modify the length of a vector</DT
+><DT
+><A
+HREF="man.ivec-set-length.html"
+>ivec_set_length</A
+>&nbsp;--&nbsp;Modify the length of a vector</DT
+><DT
+><A
+HREF="man.bvec-set-length.html"
+>bvec_set_length</A
+>&nbsp;--&nbsp;Modify the length of a vector</DT
+><DT
+><A
+HREF="man.cvec-set-length.html"
+>cvec_set_length</A
+>&nbsp;--&nbsp;Modify the length of a vector</DT
+><DT
+><A
+HREF="man.vec-set-length-max.html"
+>vec_set_length_max</A
+>&nbsp;--&nbsp;Modify the amount of memory allocated to a vector</DT
+><DT
+><A
+HREF="man.ivec-set-length-max.html"
+>ivec_set_length_max</A
+>&nbsp;--&nbsp;Modify the amount of memory allocated to a vector</DT
+><DT
+><A
+HREF="man.bvec-set-length-max.html"
+>bvec_set_length_max</A
+>&nbsp;--&nbsp;Modify the amount of memory allocated to a vector</DT
+><DT
+><A
+HREF="man.cvec-set-length-max.html"
+>cvec_set_length_max</A
+>&nbsp;--&nbsp;Modify the amount of memory allocated to a vector</DT
+><DT
+><A
+HREF="man.vec-set-subvector.html"
+>vec_set_subvector</A
+>&nbsp;--&nbsp;set a part of a vector with another vector</DT
+><DT
+><A
+HREF="man.ivec-set-subvector.html"
+>ivec_set_subvector</A
+>&nbsp;--&nbsp;set a part of a vector with another vector</DT
+><DT
+><A
+HREF="man.bvec-set-subvector.html"
+>bvec_set_subvector</A
+>&nbsp;--&nbsp;set a part of a vector with another vector</DT
+><DT
+><A
+HREF="man.cvec-set-subvector.html"
+>cvec_set_subvector</A
+>&nbsp;--&nbsp;set a part of a vector with another vector</DT
+><DT
+><A
+HREF="man.vec-sqr.html"
+>vec_sqr</A
+>&nbsp;--&nbsp;put the components of a vector to square</DT
+><DT
+><A
+HREF="man.ivec-sqr.html"
+>ivec_sqr</A
+>&nbsp;--&nbsp;put the components of a vector to square</DT
+><DT
+><A
+HREF="man.vec-sqrt.html"
+>vec_sqrt</A
+>&nbsp;--&nbsp;components of a vector to square root</DT
+><DT
+><A
+HREF="man.vec-sub.html"
+>vec_sub</A
+>&nbsp;--&nbsp;substract a vector from another</DT
+><DT
+><A
+HREF="man.ivec-sub.html"
+>ivec_sub</A
+>&nbsp;--&nbsp;substract a vector from another</DT
+><DT
+><A
+HREF="man.cvec-sub.html"
+>cvec_sub</A
+>&nbsp;--&nbsp;substract a vector from another</DT
+><DT
+><A
+HREF="man.vec-sum.html"
+>vec_sum</A
+>&nbsp;--&nbsp;Sum of a vector</DT
+><DT
+><A
+HREF="man.ivec-sum.html"
+>ivec_sum</A
+>&nbsp;--&nbsp;Sum of a vector</DT
+><DT
+><A
+HREF="man.cvec-sum.html"
+>cvec_sum</A
+>&nbsp;--&nbsp;Sum of a vector</DT
+><DT
+><A
+HREF="man.vec-sum-between.html"
+>vec_sum_between</A
+>&nbsp;--&nbsp;partial sum of a vector</DT
+><DT
+><A
+HREF="man.ivec-sum-between.html"
+>ivec_sum_between</A
+>&nbsp;--&nbsp;partial sum of a vector</DT
+><DT
+><A
+HREF="man.cvec-sum-between.html"
+>cvec_sum_between</A
+>&nbsp;--&nbsp;partial sum of a vector</DT
+><DT
+><A
+HREF="man.vec-sum-robust.html"
+>vec_sum_robust</A
+>&nbsp;--&nbsp;Robut summation over elements of a vector</DT
+><DT
+><A
+HREF="man.vec-sum-sqr.html"
+>vec_sum_sqr</A
+>&nbsp;--&nbsp;Sum of square value of a vector</DT
+><DT
+><A
+HREF="man.vec-to-bvec.html"
+>vec_to_bvec</A
+>&nbsp;--&nbsp;convert a vector into a byte vector</DT
+><DT
+><A
+HREF="man.vec-to-ivec.html"
+>vec_to_ivec</A
+>&nbsp;--&nbsp;convet a vector into a vector of integers</DT
+><DT
+><A
+HREF="man.vec-to-cvec.html"
+>vec_to_cvec</A
+>&nbsp;--&nbsp;convert a vector into a complex vector</DT
+><DT
+><A
+HREF="man.ivec-to-vec.html"
+>ivec_to_vec</A
+>&nbsp;--&nbsp;convert a vector of integers into a vector</DT
+><DT
+><A
+HREF="man.ivec-to-bvec.html"
+>ivec_to_bvec</A
+>&nbsp;--&nbsp;convert a vector of integers into a vector of byte</DT
+><DT
+><A
+HREF="man.ivec-to-cvec.html"
+>ivec_to_cvec</A
+>&nbsp;--&nbsp;convert a vector of integers into a complex vector</DT
+><DT
+><A
+HREF="man.bvec-to-ivec.html"
+>bvec_to_ivec</A
+>&nbsp;--&nbsp;convert a byte vector into a vector of integers</DT
+><DT
+><A
+HREF="man.bvec-to-vec.html"
+>bvec_to_vec</A
+>&nbsp;--&nbsp;convert a byte vector into a vector</DT
+><DT
+><A
+HREF="man.bvec-to-cvec.html"
+>bvec_to_cvec</A
+>&nbsp;--&nbsp;convert a byte vector into a complex vector</DT
+><DT
+><A
+HREF="man.vec-cum-sum.html"
+>vec_cum_sum</A
+>&nbsp;--&nbsp;Cumulative sum of a vector</DT
+><DT
+><A
+HREF="man.ivec-cum-sum.html"
+>ivec_cum_sum</A
+>&nbsp;--&nbsp;cumulative sum of a vector</DT
+><DT
+><A
+HREF="man.cvec-cum-sum.html"
+>cvec_cum_sum</A
+>&nbsp;--&nbsp;Cumulative sum of a vector</DT
+><DT
+><A
+HREF="man.ivec-unique.html"
+>ivec_unique</A
+>&nbsp;--&nbsp;set of distinct values of a vector</DT
+><DT
+><A
+HREF="man.vec-variance.html"
+>vec_variance</A
+>&nbsp;--&nbsp;computes variance estimate of input vector</DT
+><DT
+><A
+HREF="man.vec-variance-robust.html"
+>vec_variance_robust</A
+>&nbsp;--&nbsp;robust computation of the variance of a vector</DT
+><DT
+><A
+HREF="man.vec-void.html"
+>vec_void</A
+>&nbsp;--&nbsp;set a vector to the void vector</DT
+><DT
+><A
+HREF="man.ivec-void.html"
+>ivec_void</A
+>&nbsp;--&nbsp;set a vector to the void vector</DT
+><DT
+><A
+HREF="man.bvec-void.html"
+>bvec_void</A
+>&nbsp;--&nbsp;set a vector to the void vector</DT
+><DT
+><A
+HREF="man.cvec-void.html"
+>cvec_void</A
+>&nbsp;--&nbsp;set a vector to the void vector</DT
+><DT
+><A
+HREF="man.vec-zeros.html"
+>vec_zeros</A
+>&nbsp;--&nbsp;set all the elements of a vector to zero</DT
+><DT
+><A
+HREF="man.ivec-zeros.html"
+>ivec_zeros</A
+>&nbsp;--&nbsp;Set all the elements of a vector to zero</DT
+><DT
+><A
+HREF="man.bvec-zeros.html"
+>bvec_zeros</A
+>&nbsp;--&nbsp;set all the elements of a vector to zero</DT
+><DT
+><A
+HREF="man.cvec-zeros.html"
+>cvec_zeros</A
+>&nbsp;--&nbsp;set all the elements of a vector to zero</DT
+><DT
+><A
+HREF="man.vlc-affect-codewords.html"
+>vlc_affect_codewords</A
+>&nbsp;--&nbsp;assign the codewords of a variable length code</DT
+><DT
+><A
+HREF="man.vlc-delete.html"
+>vlc_delete</A
+>&nbsp;--&nbsp;free a variable length code object</DT
+><DT
+><A
+HREF="man.vlc-decode-concat.html"
+>vlc_decode_concat</A
+>&nbsp;--&nbsp;decoding of a binary sequence encoded by a VLC</DT
+><DT
+><A
+HREF="man.vlc-decode-concat-n.html"
+>vlc_decode_concat_N</A
+>&nbsp;--&nbsp;decode a variable length encoded sequence</DT
+><DT
+><A
+HREF="man.vlc-encode-concat.html"
+>vlc_encode_concat</A
+>&nbsp;--&nbsp;encode a sequence with a VLC</DT
+><DT
+><A
+HREF="man.vlc-flc.html"
+>vlc_flc</A
+>&nbsp;--&nbsp;construct a fixed length code</DT
+><DT
+><A
+HREF="man.vlc-get-child0.html"
+>vlc_get_child0</A
+>&nbsp;--&nbsp;left child node of a node</DT
+><DT
+><A
+HREF="man.vlc-get-child1.html"
+>vlc_get_child1</A
+>&nbsp;--&nbsp;right child node of a node</DT
+><DT
+><A
+HREF="man.vlc-get-cwd.html"
+>vlc_get_cwd</A
+>&nbsp;--&nbsp;get the codeword associated with a node</DT
+><DT
+><A
+HREF="man.vlc-get-cwd-length.html"
+>vlc_get_cwd_length</A
+>&nbsp;--&nbsp;get the codeword length associated with a node</DT
+><DT
+><A
+HREF="man.vlc-huffman.html"
+>vlc_huffman</A
+>&nbsp;--&nbsp;construction according to the Huffman algorithm</DT
+><DT
+><A
+HREF="man.vlc-hu-tucker.html"
+>vlc_hu_tucker</A
+>&nbsp;--&nbsp;construction according to the Hu-Tucker algorithm</DT
+><DT
+><A
+HREF="man.vlc-kraft-sum.html"
+>vlc_kraft_sum</A
+>&nbsp;--&nbsp;sum kraft of a variable length code</DT
+><DT
+><A
+HREF="man.vlc-clone.html"
+>vlc_clone</A
+>&nbsp;--&nbsp;copy a variable length code</DT
+><DT
+><A
+HREF="man.vlc-maxh.html"
+>vlc_maxh</A
+>&nbsp;--&nbsp;length of the longest codeword</DT
+><DT
+><A
+HREF="man.vlc-mdl.html"
+>vlc_mdl</A
+>&nbsp;--&nbsp;mean description length of a vector</DT
+><DT
+><A
+HREF="man.vlc-minh.html"
+>vlc_minh</A
+>&nbsp;--&nbsp;length of the smallest codeword</DT
+><DT
+><A
+HREF="man.vlc-new.html"
+>vlc_new</A
+>&nbsp;--&nbsp;new variable length code</DT
+><DT
+><A
+HREF="man.vlc-nodes-delta-energy.html"
+>vlc_nodes_delta_energy</A
+>&nbsp;--&nbsp;reduction of MSE associated with a node bit</DT
+><DT
+><A
+HREF="man.vlc-nodes-entropy.html"
+>vlc_nodes_entropy</A
+>&nbsp;--&nbsp;entropies of node bits</DT
+><DT
+><A
+HREF="man.vlc-nodes-expectation.html"
+>vlc_nodes_expectation</A
+>&nbsp;--&nbsp;expectation of a vlc node</DT
+><DT
+><A
+HREF="man.vlc-nodes-pdf.html"
+>vlc_nodes_pdf</A
+>&nbsp;--&nbsp;probabilities of 0 and 1 for vlc nodes</DT
+><DT
+><A
+HREF="man.vlc-nodes-variance.html"
+>vlc_nodes_variance</A
+>&nbsp;--&nbsp;variances given the knowledge of the nodes</DT
+><DT
+><A
+HREF="man.vlc-node-variance.html"
+>vlc_node_variance</A
+>&nbsp;--&nbsp;variance given the knowledge of a node</DT
+><DT
+><A
+HREF="man.vlc-nb-bits-required.html"
+>vlc_nb_bits_required</A
+>&nbsp;--&nbsp;number of bits required to encode a sequence</DT
+><DT
+><A
+HREF="man.vlc-print.html"
+>vlc_print</A
+>&nbsp;--&nbsp;print a variable length code</DT
+><DT
+><A
+HREF="man.vlc-print-all.html"
+>vlc_print_all</A
+>&nbsp;--&nbsp;detailled printing a variable length code</DT
+><DT
+><A
+HREF="man.vlc-read.html"
+>vlc_read</A
+>&nbsp;--&nbsp;construct a VLC from a string</DT
+><DT
+><A
+HREF="man.vlc-is-leaf.html"
+>vlc_is_leaf</A
+>&nbsp;--&nbsp;check if a node is a leaf</DT
+><DT
+><A
+HREF="man.vlc-is-node.html"
+>vlc_is_node</A
+>&nbsp;--&nbsp;check if a node is an internal node</DT
+><DT
+><A
+HREF="man.it-dwt.html"
+>it_dwt</A
+>&nbsp;--&nbsp;discrete wavelet transform</DT
+><DT
+><A
+HREF="man.it-idwt.html"
+>it_idwt</A
+>&nbsp;--&nbsp;inverse discrete wavelet transform</DT
+><DT
+><A
+HREF="man.it-wavelet-merge.html"
+>it_wavelet_merge</A
+>&nbsp;--&nbsp;merge the subband vectors of a wavelet to a vector</DT
+><DT
+><A
+HREF="man.it-wavelet-new.html"
+>it_wavelet_new</A
+>&nbsp;--&nbsp;wavelet transform constructor</DT
+><DT
+><A
+HREF="man.it-wavelet-split.html"
+>it_wavelet_split</A
+>&nbsp;--&nbsp;split the vector of wavelet coefficients</DT
+><DT
+><A
+HREF="man.it-dwt2d.html"
+>it_dwt2D</A
+>&nbsp;--&nbsp;separable 2D discrete wavelet transform</DT
+><DT
+><A
+HREF="man.it-idwt2d.html"
+>it_idwt2D</A
+>&nbsp;--&nbsp;inverse separable 2D discrete wavelet transform</DT
+><DT
+><A
+HREF="man.it-wavelet2d-merge.html"
+>it_wavelet2D_merge</A
+>&nbsp;--&nbsp;merge the subband matrices of a 2D wavelet</DT
+><DT
+><A
+HREF="man.it-wavelet2d-new.html"
+>it_wavelet2D_new</A
+>&nbsp;--&nbsp;separable 2D wavelet transform constructor</DT
+><DT
+><A
+HREF="man.it-wavelet2d-split.html"
+>it_wavelet2D_split</A
+>&nbsp;--&nbsp;split the matrix of wavelet coefficients</DT
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

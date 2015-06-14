@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Polymorphism</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Objects"
+HREF="objects.html"><LINK
+REL="PREVIOUS"
+TITLE="Casting"
+HREF="casting.html"><LINK
+REL="NEXT"
+TITLE="Comments on implementation"
+HREF="implementation.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="casting.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix A. Objects</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="implementation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="POLYMORPHISM"
+>A.3. Polymorphism</A
+></H1
+><P
+>  Polymorphism allows to use an object in a place where a parent object is expected. The child object is seen as the parent object except the methods of the child class are called, rather than the methods of the parent class.
+  </P
+><PRE
+CLASS="PROGRAMLISTING"
+>  
+it_scalar_quantizer_t *scalar_quantizer; /* declare a scalar quantizer object */
+it_quantizer_t *quantizer; /* declare a quantizer object */
+vec v = vec_new_ones(10);  /* a vector */
+
+/* create and initialize a new scalar quantizer centered on 0 with step 1 */
+scalar_quantizer = it_scalar_quantizer_new_from_center(0, 1);
+
+/* cast the it_scalar_quantizer_t object to a it_quantizer_t object. */
+/* valid since it_quantizer_t is the parent of it_scalar_quantizer_t */
+quantizer = IT_QUANTIZER(scalar_quantizer);
+
+/* call a method of the it_quantizer_t class on the quantizer. */
+/* the method called is that of it_scalar_quantizer_t due to polymorphism. */
+it_quantize(quantizer, v);
+
+/* this does the same thing as above, with a simpler syntax. */
+it_quantize(scalar_quantizer, v);
+
+  </PRE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="casting.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="implementation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Casting</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="objects.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Comments on implementation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

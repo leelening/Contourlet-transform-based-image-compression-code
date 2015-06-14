@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>itf_differentiate</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="itf_identity"
+HREF="man.itf-identity.html"><LINK
+REL="NEXT"
+TITLE="itf_expectation"
+HREF="man.itf-expectation.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.itf-identity.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.itf-expectation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.ITF-DIFFERENTIATE"
+></A
+>itf_differentiate</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN9513"
+></A
+><H2
+>Name</H2
+>itf_differentiate&nbsp;--&nbsp;differentiation operator</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN9516"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN9517"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/math.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>double itf_differentiate</CODE
+>( double x, it_function_args(itf_differentiate) *args
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+>The function <CODE
+CLASS="FUNCTION"
+>itf_differentiate</CODE
+> defines the differentiate of an it_function_t. The differentiate of the function is approximated by computing the value of the function at <CODE
+CLASS="PARAMETER"
+>x</CODE
+>+delta and <CODE
+CLASS="PARAMETER"
+>x</CODE
+>-delta, and computing the difference divided by two delta. In the current implementation, delta is set to 1e-5, leading to an error in O(1e-10). The differentiation operator has the following parameters, passed through the <CODE
+CLASS="PARAMETER"
+>args</CODE
+> argument.</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN9530"
+></A
+><H3
+>Function parameters</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>function</DT
+><DD
+><P
+>         The function to differentiate.
+      </P
+></DD
+><DT
+>args</DT
+><DD
+><P
+>         The parameters of the function to differentiate.
+      </P
+></DD
+></DL
+></DIV
+></DIV
+><H2
+>RETURN VALUE</H2
+><P
+>    The differentiate of the function for a given 'x'
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;math.h&gt;
+
+...
+
+/* declare the differentiation parameters */
+it_function_args(itf_differentiate) differentiate_args;
+
+/* differentiate the identity function */
+differentiate_args.function = itf_identity;
+differentiate_args.args = NULL;
+
+/* compute the value of the differentiate at 1.0 */
+itf_differentiate(1.0, &#38;differentiate_args);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.itf-identity.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.itf-expectation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>itf_identity</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>itf_expectation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

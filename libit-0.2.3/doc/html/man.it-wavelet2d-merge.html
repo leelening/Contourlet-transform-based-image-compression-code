@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_wavelet2D_merge</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_idwt2D"
+HREF="man.it-idwt2d.html"><LINK
+REL="NEXT"
+TITLE="it_wavelet2D_new"
+HREF="man.it-wavelet2d-new.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-idwt2d.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet2d-new.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-WAVELET2D-MERGE"
+></A
+>it_wavelet2D_merge</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN21040"
+></A
+><H2
+>Name</H2
+>it_wavelet2D_merge&nbsp;--&nbsp;merge the subband matrices of a 2D wavelet</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN21043"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN21044"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet2D.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>mat it_wavelet2D_merge</CODE
+>( mat * subbands, int nb_level
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function merges the set of subband matrices <CODE
+CLASS="PARAMETER"
+>subbands</CODE
+> to a single concatenated matrix suitable for <CODE
+CLASS="FUNCTION"
+>it_idwt2D</CODE
+>. The number of levels <CODE
+CLASS="PARAMETER"
+>nb_level</CODE
+> must be given. The <CODE
+CLASS="PARAMETER"
+>subbands</CODE
+> argument is an array of <CODE
+CLASS="PARAMETER"
+>nb_level</CODE
+>+1 matricess with 'subbands[0]' representing the low-frequency subband.
+  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet2D.h&gt;
+
+...
+
+mat mt = it_dwt2D(m, 5); /* perform a wavelet decomposition on 5 levels);
+mat *subbands = it_wavelet2D_split(mt, 5); /* split the transformed matrix */
+mat_zero(subbands[0]); /* clear the low pass band */
+mt = it_wavelet2D_merge(mt, 5); /* merge the subbands to the transformed matrix */
+m = it_idwt2D(mt, 5);     /* recompose the matrix 'm' */</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-idwt2d.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-wavelet2d-new.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_idwt2D</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_wavelet2D_new</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

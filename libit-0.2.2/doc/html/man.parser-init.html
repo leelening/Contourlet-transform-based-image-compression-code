@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>parser_init</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_wavelet2D_merge"
+HREF="man.it-wavelet2d-merge.html"><LINK
+REL="NEXT"
+TITLE="itf_compose"
+HREF="man.itf-compose.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet2d-merge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.itf-compose.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.PARSER-INIT"
+></A
+>parser_init</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN15471"
+></A
+><H2
+>Name</H2
+>parser_init&nbsp;--&nbsp;Allocation and initialization of a parser</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN15474"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN15475"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/parser.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>parser_t * parser_init</CODE
+>( int argc, char ** argv, const char * filename, char * cmd_line
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> Creation and initialisation of a parser. This initialization requires 4 arguments, from the one which has the higher priority to the one of the lower priority. The first two (<CODE
+CLASS="PARAMETER"
+>argc</CODE
+> and <CODE
+CLASS="PARAMETER"
+>argv</CODE
+>) correspond to the command line. The <CODE
+CLASS="PARAMETER"
+>filename</CODE
+> argument is the name of the file from which some variables must be read. The final argument, <CODE
+CLASS="PARAMETER"
+>cmd_line</CODE
+>, is a string which allows to have default values for arguments
+Any of these arguments may be NULL (or 0 for argc). In that case the corresponding source (either the command line, a file or the string of default value) is ignored). 
+  </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;parser.h&gt;
+
+...
+
+/* Initialization of the parser from the command line arguments, a file parameter and a string of default parameter                               */
+parser_t * parser = parser_init(argc, argv, 
+                                "test_parser.param", 
+		                "a=-35\ndef=9\nv=[-1,-2,-3]\ncv=[i 1 -i 1+i]" );
+int i      = parser_get_int( parser, "a" );
+int def    = parser_get_int( parser, "def" );
+double dbl = parser_get_double( parser, "dbl" );
+char * s   = parser_get_string( parser, "S" );
+vec v      = parser_get_vec( parser, "V2" );
+ivec iv    = parser_get_ivec( parser, "V" );
+cvec cv    = parser_get_cvec( parser, "cv" );
+mat m      = parser_get_mat( parser, "m");
+cmat cm    = parser_get_cmat( parser, "cm");
+/* Print the content of the parser */
+parser_print( parser );
+/* Delete the parser allocated by function parser_init */
+parser_delete( parser );</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-wavelet2d-merge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.itf-compose.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_wavelet2D_merge</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>itf_compose</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

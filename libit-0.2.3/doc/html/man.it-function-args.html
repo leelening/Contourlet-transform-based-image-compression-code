@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_function_args</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_function"
+HREF="man.it-function.html"><LINK
+REL="NEXT"
+TITLE="vec_1N"
+HREF="man.vec-1n.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-function.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.vec-1n.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-FUNCTION-ARGS"
+></A
+>it_function_args</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN11685"
+></A
+><H2
+>Name</H2
+>it_function_args&nbsp;--&nbsp;continuous function parameters declaration macro</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN11688"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN11689"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/types.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>void it_function_args</CODE
+>( name
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This macro allow to define extra parameters for a continuous function <CODE
+CLASS="PARAMETER"
+>name</CODE
+> declared with the <CODE
+CLASS="FUNCTION"
+>it_function</CODE
+> macro. These parameters may be used to modify the behaviour of the continuous function. This macro returns the type of the structure used to store the parameters of the function <CODE
+CLASS="PARAMETER"
+>name</CODE
+>. It may be used during the declaration of these parameters, followed with the bracketed list of parameters separated by a semicolon, ended by a semicolon after the closing bracket (as in normal structure declaration). It may also be used to declare a parameter structure of the function <CODE
+CLASS="PARAMETER"
+>name</CODE
+> which will store the value of these parameters.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;types.h&gt;
+
+...
+
+/* declare the parameters of the function named 'gaussian' */
+it_function_args(gaussian) {
+  double mean;  /* the mean of the Gaussian */
+  double sigma; /* the standard deviation of the Gaussian */
+};
+it_function(gaussian)
+{
+  double mean = it_this-&#38;gt;mean;   /* read the 'mean' parameter */
+  double sigma = it_this-&#38;gt;sigma; /* read the 'sigma' parameter */
+ 
+  /* compute the value taken by this Gaussian function in 'x' */
+  return(1.0/(sqrt(2.0*M_PI)*sigma)*exp(-(x-mean)*(x-mean)/(2.0*sigma*sigma)));
+}
+void foo()
+{
+  /* use 'gaussian_args' to store the parameters of the 'gaussian' function */
+  it_function_args(gaussian) gaussian_args;
+  
+  gaussian_args.mean = 0.0;  /* set the mean to zero */
+  gaussian_args.sigma = 1.0; /* set the standard deviation to one */
+  /* evaluate the Gaussian function parametrized as above in 2.0 */
+  it_printf("value of the normal distribution in %f = %f
+",
+            2.0, gaussian(2.0, &#38;#38;gaussian_args));
+}</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-function.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.vec-1n.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_function</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>vec_1N</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

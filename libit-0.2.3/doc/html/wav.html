@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Sound reading and writing</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Input/Output"
+HREF="inputoutput.html"><LINK
+REL="PREVIOUS"
+TITLE="Image reading and writing"
+HREF="pnm.html"><LINK
+REL="NEXT"
+TITLE="Parser"
+HREF="parser.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="pnm.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Input/Output</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="parser.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="WAV"
+>2.3. Sound reading and writing</A
+></H1
+><P
+>      Sound files can be read in the WAV format as matrices using <A
+HREF="man.mat-wav-read.html"
+>mat_wav_read()</A
+> or <A
+HREF="man.imat-wav-read.html"
+>imat_wav_read()</A
+>. A row of the matrix corresponds to a channel (i.e. stereo files are read as a two-row matrix). The columns correspond to the instants in time. Similarly, sounds can be written to disk using <A
+HREF="man.mat-wav-write.html"
+>mat_wav_write()</A
+> or <A
+HREF="man.imat-wav-write.html"
+>imat_wav_write()</A
+> call, provided the sampling rate and sample resolution is also given. Some information can be retrieved from any WAV file using <A
+HREF="man.wav-info.html"
+>wav_info()</A
+> call. Compressed WAV files are not supported.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="SOUNDIO-EXAMPLE"
+></A
+><P
+><B
+>Example 2-3. Sound input/output</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  imat m;
+
+  m = imat_wav_read("sound.wav"); /* read the sound            */
+  vec_reverse(m[0]);              /* reverse the first channel */
+  imat_wav_write(m, "sound.wav"); /* write the sound           */
+
+  int channels;        /* number of channels          */
+  int srate;           /* sampling rate               */
+  int depth;           /* sampling resolution in bits */
+  int length;          /* number of samples           */
+  wav_info( sound_in, &#38;channels, &#38;srate, &#38;depth, &#38;length );</PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pnm.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="parser.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Image reading and writing</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="inputoutput.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Parser</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>P.d.f. estimation and measure</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Measures"
+HREF="measures.html"><LINK
+REL="PREVIOUS"
+TITLE="Measures"
+HREF="measures.html"><LINK
+REL="NEXT"
+TITLE="Information measures"
+HREF="information.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="measures.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Measures</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="information.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="PDF"
+>3.2. P.d.f. estimation and measure</A
+></H1
+><P
+>    The p.d.f. (probability density function) of a stationary ergodic source can be estimated from the histogram of the samples of that source. The histogram of a vector of samples is obtained using <A
+HREF="man.histogram.html"
+>histogram()</A
+>, returning the number of occurences of each particular value of the alphabet in the input vector. The normalized histogram, representing an estimator of the p.d.f., is obtained using <A
+HREF="man.histogram-normalized.html"
+>histogram_normalized()</A
+>. The cardinal of the set of integer values taken by the source must be given to these functions, and the input vector is assumed to be positive. The conditional histogram, that is the bidimensional histogram of a sample knowing the previous sample, is computed similarly using <A
+HREF="man.histogram-cond.html"
+>histogram_cond()</A
+>.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="MEASURE.ESTIMATION.HISTOGRAM"
+></A
+><P
+><B
+>Example 3-2. Histogram example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>ivec v = ivec_new_string("0 0 1 0 1 1 1 0 0 0"); /* [ 0 0 1 0 1 1 1 0 0 0 ] */
+
+/* compute the histogram of v assumed to be a binary source */
+ivec h = histogram(2, v);                        /* h = [ 6 4 ]             */
+
+/* estimate the first-order p.d.f. of v */       
+vec pdf = histogram_normalized(2, v);            /* pdf = [ 0.6 0.4 ]       */
+
+/* compute the conditional histogram of v */       
+imat cpdf = histogram_cond(2, v);                 /* cpdf = [ [ 3 2 ]
+                                                             [ 2 2 ] ]      */</PRE
+></DIV
+><P
+>    To compute the stationary p.d.f. of a Markov chain from the transition probability matrix the function <A
+HREF="man.markov-marg-pdf.html"
+>markov_marg_pdf()</A
+> is provided. It uses the Froebenius theorem which states that the stationary p.d.f. is obtained from the eigen vector of the transition probability matrix associated with the eigen value 1.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="MEASURE.ESTIMATION.MARKOVSTAT"
+></A
+><P
+><B
+>Example 3-3. Stationary law estimation example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>ivec v = ivec_new_string("0 0 1 0 1 1 1 0 0 0"); /* [ 0 0 1 0 1 1 1 0 0 0 ]  */
+
+/* compute the conditional p.d.f. of v */
+imat ch = histogram_cond(2, v);                  /* ch = [ [ 3 2 ]
+                                                           [ 2 2 ] ]         */
+mat cpdf = mat_new(2, 2);
+int s = imat_sum_col(cpdf, 0);
+cpdf[0][0] = (double) ch[0][0] / s;
+cpdf[1][0] = (double) ch[1][0] / s;
+int s = imat_sum_col(cpdf, 1);
+cpdf[0][1] = (double) ch[0][1] / s;
+cpdf[1][1] = (double) ch[1][1] / s;
+                                                 /* cpdf = [ [ 0.6 0.5 ]
+                                                             [ 0.4 0.5 ] ]   */
+
+/* estimate the stationary law */
+vec pdf = markov_marg_pdf(cpdf);                 /* pdf = [0.555 0.444]      */
+                                                 /*     = [5/9 4/9]          */</PRE
+></DIV
+><P
+>    The expectation (first-order moment) and variance (second-order moment) of a discrete source are computed from the p.d.f. and the values associated to each symbol using <A
+HREF="man.source-expectation.html"
+>source_expectation()</A
+> and <A
+HREF="man.source-variance.html"
+>source_variance()</A
+> respectively.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="MEASURE.ESTIMATION."
+></A
+><P
+><B
+>Example 3-4. Expectation and variance example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>vec pdf = vec_new_string("0.5 0.3 0.1 0.1"); /* probability density function */
+vec rec = vec_new_string("-1 0 1.5 2.5");    /* values of the symbols        */
+
+/* compute the expectation of the source */
+double mean = source_expectation(pdf, rec);  /* -0.5 + 0.15 + 0.25 = -0.1    */
+
+/* compute the variance of the source */
+double var = source_variance(pdf, rec);      /* 0.5 + 0.225 + 0.625 = 1.35   */</PRE
+></DIV
+><P
+>    A p.d.f. can be check for validity using <A
+HREF="man.is-valid-pdf.html"
+>is_valid_pdf()</A
+>, by verifying it sums to one up to a small rounding error. Similarly a transition probability matrix can be checked for validity using <A
+HREF="man.is-valid-markov-matrix.html"
+>is_valid_markov_matrix()</A
+>.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="measures.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="information.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Measures</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="measures.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Information measures</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_idft</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_dft"
+HREF="man.it-dft.html"><LINK
+REL="NEXT"
+TITLE="it_fourier_new"
+HREF="man.it-fourier-new.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-dft.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-fourier-new.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-IDFT"
+></A
+>it_idft</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN1052"
+></A
+><H2
+>Name</H2
+>it_idft&nbsp;--&nbsp;inverse discrete Fourier transform</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN1055"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN1056"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/fourier.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>cvec it_idft</CODE
+>( cvec v
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the inverse discrete Fourier transform of the complex vector <CODE
+CLASS="PARAMETER"
+>v</CODE
+>. The first element of this vector corresponds to the lowest frequency (DC value). If <CODE
+CLASS="PARAMETER"
+>v</CODE
+> is conjugate symmetric, that is if v[N-i] = v[i]*, where N is the length of <CODE
+CLASS="PARAMETER"
+>v</CODE
+>, the output will be a real vector (that is, all elements of the complex output vector will have a null imaginary part).  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The vector of the inverse discrete Fourier transform
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;fourier.h&gt;
+
+...
+
+cvec vt = cvec_new_string("1 1+i 0 1-i");
+/* reconstruct the vector using the inverse discrete Fourier transform */
+cvec v = it_idft(vt);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-dft.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-fourier-new.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_dft</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_fourier_new</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

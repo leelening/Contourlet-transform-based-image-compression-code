@@ -1,0 +1,14 @@
+运行说明：
+
+本版本适用于vc6.0  及以上版本
+
+1、下载安装opencv1.0并按照opencv安装例程进行配置安装
+2、vc中点工程-》设置-》连接，添加库文件
+cv.lib highgui.lib cxcore.lib  
+3、配置完毕
+
+
+另外：
+debug、release版本可以直接运行
+运行的结果为pgm文件，可以用附带的demo.exe打开，或者用matlab的imread("**.pgm")也可以打开
+

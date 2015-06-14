@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Measures</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Programming with libit"
+HREF="programming.html"><LINK
+REL="PREVIOUS"
+TITLE="Parser"
+HREF="parser.html"><LINK
+REL="NEXT"
+TITLE="P.d.f. estimation and measure"
+HREF="pdf.html"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="parser.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pdf.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="MEASURES"
+></A
+>Chapter 3. Measures</H1
+><P
+>      This chapter presents the various measures related to information theory.
+  </P
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="DISTANCE"
+>3.1. Distance measures</A
+></H1
+><P
+>    Various distances are provided to measure differences between vectors, such as the Hamming distance and the symbol or bit error rate (SER/BER), the Levenshtein distance, and the norm distance and mean square error (MSE).
+  </P
+><P
+>    The Hamming distance is the number of elements that are not equal in the two vectors. If the vectors are not of the same size, the distance is increased by the difference of lengths (i.e. the missing symbols are assumed to be not equal). Divided by the length of the original vector, this leads to the symbol error rate (SER). The Hamming distance is computed using <A
+HREF="man.vec-distance-hamming.html"
+>vec_distance_hamming()</A
+>. The SER is computed using <A
+HREF="man.vec-ser.html"
+>vec_ser()</A
+>, <A
+HREF="man.ivec-ser.html"
+>ivec_ser()</A
+> and <A
+HREF="man.bvec-ber.html"
+>bvec_ber()</A
+>. If the 'received' vector (second parameter) has a larger size as the 'original' vector (first parameter), the excess symbols are discarded for computing the SER.
+  </P
+><P
+>    The Levenshtein distance corresponds to the minimum of insertion, deletion or substitutions needed to transform one vector into another. The costs need not be equal for all operations although they are often assumed so. To compute this distance, the function <A
+HREF="man.ivec-distance-levenshtein.html"
+>ivec_distance_levenshtein()</A
+> is provided.
+  </P
+><P
+>    The Euclidean norm between two vectors, corresponding the norm of the difference of the vectors, is computed using <A
+HREF="man.vec-distance-norm.html"
+>vec_distance_norm()</A
+>. It is defined the same way for matrices (e.g. to compute the norm between images) using <A
+HREF="man.mat-distance-norm.html"
+>mat_distance_norm()</A
+>. The norm to use is given as the power factor which is often assigned the value 2. If the vectors are not of the same size, the distance is increased assuming that missing elements are equal to 0. The mean square error is computed by dividing the 2-norm between two vectors by the number of elements, and obtained from <A
+HREF="man.vec-distance-mse.html"
+>vec_distance_mse()</A
+> and <A
+HREF="man.mat-distance-mse.html"
+>mat_distance_mse()</A
+>. Missing elements are assumed to be equal to a parameter specifying the default reconstruction value.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="MEASURE.DISTANCE.EXAMPLE"
+></A
+><P
+><B
+>Example 3-1. Distance example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>ivec v1 = ivec_new_string("1 2 3");            /* v1 = [ 1 2 3 ]        */
+ivec v2 = ivec_new_string("0 2 5");            /* v2 = [ 0 2 5 ]        */
+ivec v3 = ivec_new_string("0 1 2 3");          /* v3 = [ 0 2 2 3 ]      */
+
+/* compute the hamming distance between v1 and v2 */
+ivec_distance_hamming(v1, v2);                 /* hamming distance = 2  */ 
+
+/* compute the SER between v1 and v2 */
+ivec_ser(v1, v2);                              /* SER = 2/3 = 0.667     */ 
+
+/* compute the Levenshtein distance between v1 and v3 */
+ivec_distance_levenshtein(v1, v3, 1, 1, 1);    /* deletion+subst. =&#62; 2  */
+
+/* compute the MSE between v1 and v2 */
+ivec_distance_mse(v1,v2,0);                    /* (1 + 2^2) / 3 = 1.667 */</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="parser.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pdf.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Parser</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>P.d.f. estimation and measure</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

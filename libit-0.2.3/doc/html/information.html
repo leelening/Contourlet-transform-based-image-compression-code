@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Information measures</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Measures"
+HREF="measures.html"><LINK
+REL="PREVIOUS"
+TITLE="P.d.f. estimation and measure"
+HREF="pdf.html"><LINK
+REL="NEXT"
+TITLE="Source Coding Tools"
+HREF="source.html"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="pdf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Measures</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="source.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INFORMATION"
+>3.3. Information measures</A
+></H1
+><P
+>    Information measures such as the entropy, conditional entropy, and Kullback-Leibler distance are provided on discrete sources p.d.f.. The entropy H(X) of a discrete source X or cardinal N with p.d.f. P(X) is defined as:
+  </P
+><DIV
+CLASS="INFORMALEQUATION"
+><P
+></P
+><A
+NAME="AEN536"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="eq-entropy.png"
+ALIGN="CENTER"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>    If P(X=x) is null, it is omitted from the sum. It represents the average number of bits per sample needed to represent a realization of the source. The entropy of a p.d.f. (expressed as a vector), is computed using the <A
+HREF="man.entropy.html"
+>entropy()</A
+> function. The special case of the binary source can be computed more simply by providing the probability of the zero bit and calling <A
+HREF="man.entropy-bin.html"
+>entropy_bin()</A
+>.
+  </P
+><P
+>    The conditional entropy H(X|Y) of a discrete N-valued random variable X knowing another discrete M-valued random variable Y given the joint p.d.f. matrix P(X,Y) is defined as:
+  </P
+><DIV
+CLASS="INFORMALEQUATION"
+><P
+></P
+><A
+NAME="AEN551"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="eq-condentropy.png"
+ALIGN="CENTER"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>    In libit, only the special case of a random markov source is currently supported, where N=M and given the transition matrix P(X|Y), the joint p.d.f. is estimated by first decomposing P(X,Y) into P(X|Y)P(Y) and obtaining P(Y) from the Froebenius theorem. This conditional entropy can be computed using <A
+HREF="man.entropy-markov.html"
+>entropy_markov()</A
+> and providing the matrix of transition probability P(X|Y).
+  </P
+><P
+>    The Kullback-Leibler distance or relative entropy is defined between two p.d.f. P(X) and P'(X) as:
+  </P
+><DIV
+CLASS="INFORMALEQUATION"
+><P
+></P
+><A
+NAME="AEN565"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="eq-kullback.png"
+ALIGN="CENTER"></P
+></DIV
+><P
+></P
+></DIV
+><P
+>    It corresponds to the excess rate needed for coding the source described by P(X) using the p.d.f. P'(X) instead of the appropriate p.d.f. P(X). Strictly speaking this measure is not a distance, as it is not symmetric. It can be computed using the function <A
+HREF="man.vec-distance-kullback-leibler.html"
+>vec_distance_kullback_leibler()</A
+>.
+  </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="MEASURE.INFO"
+></A
+><P
+><B
+>Example 3-5. Information measure example</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>/* The probability distribution function of the source        */
+vec pdf = vec_new_string( "0.6 0.4" );           /* pdf = [ 0.6 0.4 ]        */
+
+/* a conditional p.d.f. for a markov source (same stationary law as above)   */
+mat cpdf = mat_new(2, 2);
+cpdf[0][0] = 2.0/3.0; /* P(X(t)=0 | X(t-1)=0) */
+cpdf[1][0] = 1.0/3.0; /* P(X(t)=1 | X(t-1)=0) */
+cpdf[0][1] = 1.0/2.0; /* P(X(t)=0 | X(t-1)=1) */
+cpdf[1][1] = 1.0/2.0; /* P(X(t)=1 | X(t-1)=1) */
+                                                 /* cpdf = [ [ 0.667 0.5 ]
+                                                             [ 0.333 0.5 ] ] */
+
+/* compute the entropy */   
+double H  = entropy(pdf);                        /* H = 0.971 */
+double Hb = entropy_bin(0.6);                    /* same thing using P(X=0)  */
+
+/* compute the conditional entropy */
+double Hc = entropy_markov(cpdf);                /* Hc = 0.951 &#60; H */
+
+
+/* a uniform p.d.f. */
+vec uni = vec_new_set(2, 1.0/2.0);               /* uni = [ 0.5 0.5 ]        */
+
+/* compute the relative entropy */
+double r = vec_distance_kullback_leibler( pdf, uni );   /* r = 0.029 = 1 - H */</PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pdf.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="source.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>P.d.f. estimation and measure</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="measures.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Source Coding Tools</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_convolutional_code_encode</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="modulate_bpsk"
+HREF="man.modulate-bpsk.html"><LINK
+REL="NEXT"
+TITLE="it_convolutional_code_encode_symbolic"
+HREF="man.it-convolutional-code-encode-symbolic.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.modulate-bpsk.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-convolutional-code-encode-symbolic.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-CONVOLUTIONAL-CODE-ENCODE"
+></A
+>it_convolutional_code_encode</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN155"
+></A
+><H2
+>Name</H2
+>it_convolutional_code_encode&nbsp;--&nbsp;convolutional encoding</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN158"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN159"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/convcode.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>bvec it_convolutional_code_encode</CODE
+>( it_convolutional_code_t *code, bvec b
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function encodes the binary vector <CODE
+CLASS="PARAMETER"
+>b</CODE
+> with the convolutional code specified in <CODE
+CLASS="PARAMETER"
+>code</CODE
+>.  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The encoded sequence
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;convcode.h&gt;
+
+...
+
+/* the matrix of generator polynomials */
+imat generator = imat_new(1, 2); 
+int feedback = 0; /* an optional feedback polynomial for recursive codes */
+
+generator[0][0] = 0133; /* generator polynomials using the C octal notation */
+generator[0][1] = 0171;
+
+/* create the convolutional code */
+it_convolutional_code_t *code = it_convolutional_code_new(generator, feedback);
+
+/* some input message */
+bvec input = bvec_new_string("0 1 1 0 0 0 1");
+
+/* encode the sequence with the convolutional code */
+bvec output = it_cc_encode(code, input);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.modulate-bpsk.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-convolutional-code-encode-symbolic.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>modulate_bpsk</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_convolutional_code_encode_symbolic</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

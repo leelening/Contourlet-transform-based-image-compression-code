@@ -1,0 +1,5 @@
+file name = ../data/test.wav
+channels = 1
+sampling rate = 22050
+depth = 16
+length = 39192 samples/channel

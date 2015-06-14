@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>it_dwt2D</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="LIBIT Documentation"
+HREF="index.html"><LINK
+REL="UP"
+HREF="refmanual.html"><LINK
+REL="PREVIOUS"
+TITLE="it_wavelet_split"
+HREF="man.it-wavelet-split.html"><LINK
+REL="NEXT"
+TITLE="it_idwt2D"
+HREF="man.it-idwt2d.html"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>LIBIT Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="man.it-wavelet-split.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="man.it-idwt2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="MAN.IT-DWT2D"
+></A
+>it_dwt2D</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN20979"
+></A
+><H2
+>Name</H2
+>it_dwt2D&nbsp;--&nbsp;separable 2D discrete wavelet transform</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN20982"
+></A
+><H2
+>Synopsis</H2
+><DIV
+CLASS="FUNCSYNOPSIS"
+><P
+></P
+><A
+NAME="AEN20983"
+></A
+><PRE
+CLASS="FUNCSYNOPSISINFO"
+>#include &lt;it/wavelet2D.h&gt;
+      </PRE
+><P
+><CODE
+><CODE
+CLASS="FUNCDEF"
+>mat it_dwt2D</CODE
+>( mat m, it_wavelet_lifting_t const *lifting, int levels
+        );</CODE
+></P
+><P
+></P
+></DIV
+></DIV
+><H2
+>DESCRIPTION</H2
+><P
+> This function computes the <CODE
+CLASS="PARAMETER"
+>levels</CODE
+>-level separable discrete wavelet transform of <CODE
+CLASS="PARAMETER"
+>m</CODE
+> using the lifting steps described by <CODE
+CLASS="PARAMETER"
+>lifting</CODE
+>. Currently the lifting steps for the usual 5/3 and 9/7 biorthogonal filters are predefined as "it_wavelet_lifting_53" and "it_wavelet_lifting_97", although you can provide your own lifting steps.
+This transform is critically sampled, therefore the output matrix of coefficients has the same size as the input matrix <CODE
+CLASS="PARAMETER"
+>m</CODE
+>.
+  </P
+><H2
+>RETURN VALUE</H2
+><P
+>    The set of wavelet coefficients
+   </P
+><H2
+>EXAMPLE</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;#include &lt;wavelet2D.h&gt;
+
+...
+
+/* analyse a signal 'm' using a 5-level 9/7 wavelet decomposition */
+mat mt = it_dwt2D(m, it_wavelet_lifting_97, 5);
+
+/* recompose the signal by inverse transform */
+mat mr = it_idwt2D(mt, it_wavelet_lifting_97, 5);</PRE
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="man.it-wavelet-split.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="man.it-idwt2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>it_wavelet_split</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="refmanual.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>it_idwt2D</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,23 @@
+Implementation of the contourlet transform for image compression.
+
+This package depends on the following libraries:
+- libit : low-level vector and matrix handling library
+http://libit.sourceforge.net
+- libezbc : Embedded ZeroBlock Coder
+http://www.irisa.fr/temics/Equipe/Chappelier/libezbc.tar.gz
+
+This package consists of the following files:
+- COPYING: GNU General Public License
+- contourlet.c : contourlet transform
+- contourlet.h : corresponding header file
+- pyramid.c : pyramidal decomposition
+- pyramid.h : corresponding header file
+- dfb.c : directionnal analysis
+- dfb.h : corresponding header file
+- ezbc.c : interface with EZBC
+- ezbc.h : corresponding header file
+- main.c : example
+- Makefile : allows to build the example using the make tool
+- README : this file
+
+The source code in this package is provided as is under the terms of the GNU General Public License. Please refer to the COPYING file for more details.

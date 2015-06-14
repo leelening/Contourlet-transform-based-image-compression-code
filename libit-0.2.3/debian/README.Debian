@@ -1,0 +1,11 @@
+libit for Debian
+---------------
+
+libit provides easy to use yet efficient tools related to information theory
+and signal processing. It includes basic vector, matrix and function types, 
+some common source and channel coding tools such as quantization, entropy
+coding, etc...
+
+By default libit is compiled without debugging options.
+
+-- Vivien Chappelier <vivien.chappelier@irisa.fr>  Thu Mar 17 18:46:49 UTC 2005

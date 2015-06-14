@@ -1,0 +1,8 @@
+function show(org,pict)
+
+subplot(1,2,1);
+% imagesc(org);
+% colormap(gray);
+subplot(1,2,2);
+imagesc(pict);
+colormap(gray);
