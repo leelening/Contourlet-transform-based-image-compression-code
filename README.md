@@ -160,12 +160,4 @@ Academic use only.
 ## Author
 
 **Lening Li**
-- B.S. in Computer Science (Harbin Institute of Technology, 2014)
-- M.S. in Computer Science (WPI, 2016)
-- Ph.D. in Robotics Engineering (WPI, 2022)
-
-## Acknowledgments
-
-- Harbin Institute of Technology
-- Dissertation advisor and committee
-- Image processing research community
+- GitHub: [@leelening](https://github.com/leelening)
